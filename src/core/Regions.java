@@ -38,6 +38,11 @@ public class Regions {
         return region;
     }
 
+    public void genRandCoor(ArrayList<Integer> region) {
+        int leftBound = coorX1Y1(region).getFirst();
+    }
+
+
     // Returns the coordinates of the new region
     public ArrayList<Integer> coorX1Y1(ArrayList<ArrayList<Integer>> region) {
         return region.getFirst();
