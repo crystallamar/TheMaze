@@ -170,7 +170,7 @@ public class World implements Serializable {
         genGrass.generateGrass(world, 94, 55);
         objective.trialRoom(world); // build background of trial room
 
-        ArrayList<Integer> trialCoinCoor = readFile.readTrialCoinsCoor("trialCoins");
+        ArrayList<Integer> trialCoinCoor = readFile.readTrialCoinsCoor("trialCoinsCoor");
         ArrayList<Boolean> trialCoinBool = readFile.readTrialCoinsBool("trialCoinsBool");
         ArrayList<Integer> avatarCoor = readFile.readAvatarCoor("avatarCoor");
         int trialNum = avatarCoor.get(3);

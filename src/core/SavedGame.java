@@ -315,7 +315,7 @@ public class SavedGame {
         return numCoins;
     }
 
-    public void saveTrialCoins(TETile[][] world, ArrayList<Integer> trialCoins, int trialNum) {
+    public void saveTrialCoinsPosition(TETile[][] world, ArrayList<Integer> trialCoins, int trialNum) {
 
 
         boolean trialRedCoin = false;
