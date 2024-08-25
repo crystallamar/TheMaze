@@ -2,6 +2,7 @@ package core;
 
 import edu.princeton.cs.algs4.In;
 import org.antlr.v4.runtime.misc.Utils;
+import org.reflections.vfs.Vfs;
 import tileengine.TETile;
 import tileengine.Tileset;
 import utils.FileUtils;
@@ -316,6 +317,7 @@ public class SavedGame {
 
     public void saveTrialCoins(TETile[][] world, ArrayList<Integer> trialCoins, int trialNum) {
 
+
         boolean trialRedCoin = false;
         boolean trialOrangeCoin= false;
         boolean trialYellowCoin = false;
@@ -338,6 +340,11 @@ public class SavedGame {
 
 
         while(!trialRedCoin) {
+//            for (int i = 0; i < 94; i++) {
+//                for (int x = 0; x < 55; x++) {
+//
+//                }
+//            }
             if (world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.CELLRED || world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.num1 || world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.letterA) {
                 trialCoin1X = trialCoins.get(0);
                 trialCoin1Y = trialCoins.get(1);
@@ -560,16 +567,78 @@ public class SavedGame {
         return trialCoins;
     }
 
-    public void saveTrialCoinsBool (boolean coin1, boolean coin2, boolean coin3, boolean coin4, boolean coin5, boolean coin6) {
-        String bool1 = Boolean.toString(coin1);
-        String bool2 = Boolean.toString(coin2);
-        String bool3 = Boolean.toString(coin3);
-        String bool4 = Boolean.toString(coin4);
-        String bool5 = Boolean.toString(coin5);
-        String bool6 = Boolean.toString(coin6);
+    public void saveTrialCoinsBool () {
+        Boolean bool1 = readTrialCoin1Bool("trialCoin1Bool");
+        Boolean bool2 = readTrialCoin1Bool("trialCoin2Bool");
+        Boolean bool3 = readTrialCoin1Bool("trialCoin3Bool");
+        Boolean bool4 = readTrialCoin1Bool("trialCoin4Bool");
+        Boolean bool5 = readTrialCoin1Bool("trialCoin5Bool");
+        Boolean bool6 = readTrialCoin1Bool("trialCoin6Bool");
 
-        String sTrialCoinsBool = bool1 + " " + bool2 + " " + bool3 + " " + bool4 + " " + bool5 + " " + bool6;
+
+
+
+
+
+        String sBool1 = Boolean.toString(bool1);
+        String sBool2 = Boolean.toString(bool2);
+        String sBool3 = Boolean.toString(bool3);
+        String sBool4 = Boolean.toString(bool4);
+        String sBool5 = Boolean.toString(bool5);
+        String sBool6 = Boolean.toString(bool6);
+
+        String sTrialCoinsBool = sBool1 + " " + sBool2 + " " + sBool3 + " " + sBool4 + " " + sBool5 + " " + sBool6;
         FileUtils.writeFile("trialCoinsBool", sTrialCoinsBool);
+    }
+
+    public void saveTrialCoin1Bool(Boolean bool) {
+        String s = Boolean.toString(bool);
+        FileUtils.writeFile("trialCoin1Bool", s);
+    }
+    public void saveTrialCoin2Bool(Boolean bool) {
+        String s = Boolean.toString(bool);
+        FileUtils.writeFile("trialCoin2Bool", s);
+    }
+    public void saveTrialCoin3Bool(Boolean bool) {
+        String s = Boolean.toString(bool);
+        FileUtils.writeFile("trialCoin3Bool", s);
+    }
+    public void saveTrialCoin4Bool(Boolean bool) {
+        String s = Boolean.toString(bool);
+        FileUtils.writeFile("trialCoin4Bool", s);
+    }
+    public void saveTrialCoin5Bool(Boolean bool) {
+        String s = Boolean.toString(bool);
+        FileUtils.writeFile("trialCoin5Bool", s);
+    }
+    public void saveTrialCoin6Bool(Boolean bool) {
+        String s = Boolean.toString(bool);
+        FileUtils.writeFile("trialCoin6Bool", s);
+    }
+
+    public boolean readTrialCoin1Bool(String fileName){
+        String s = FileUtils.readFile(fileName);
+        return Boolean.parseBoolean(s);
+    }
+    public boolean readTrialCoin2Bool(String fileName){
+        String s = FileUtils.readFile(fileName);
+        return Boolean.parseBoolean(s);
+    }
+    public boolean readTrialCoin3Bool(String fileName){
+        String s = FileUtils.readFile(fileName);
+        return Boolean.parseBoolean(s);
+    }
+    public boolean readTrialCoin4Bool(String fileName){
+        String s = FileUtils.readFile(fileName);
+        return Boolean.parseBoolean(s);
+    }
+    public boolean readTrialCoin5Bool(String fileName){
+        String s = FileUtils.readFile(fileName);
+        return Boolean.parseBoolean(s);
+    }
+    public boolean readTrialCoin6Bool(String fileName){
+        String s = FileUtils.readFile(fileName);
+        return Boolean.parseBoolean(s);
     }
 
     public ArrayList<Boolean> readTrialCoinsBool (String fileName) {
@@ -603,6 +672,17 @@ public class SavedGame {
         String sTrial = FileUtils.readFile(fileName);
         boolean trial = Boolean.parseBoolean(sTrial);
         return trial;
+    }
+
+    public void saveIfLoadedGame(Boolean bool) {
+        String sBool = Boolean.toString(bool);
+        FileUtils.writeFile("ifLoadedGame", sBool);
+    }
+
+    public Boolean readIfLoadedGame(String fileName) {
+        String sBool = FileUtils.readFile(fileName);
+        boolean bool = Boolean.parseBoolean(sBool);
+        return bool;
     }
 
 

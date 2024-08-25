@@ -54,7 +54,7 @@ public class Objectives {
     }
     public void objective1 (TETile[][] world, Random rand, long seed, int x, int y) {
         PlayingGame playGame = new PlayingGame();
-
+        SavedGame save = new SavedGame();
         Coins coins = new Coins();
 
         Character newAvatar = new Character();
@@ -64,6 +64,13 @@ public class Objectives {
         trialRoomIntro();
         trialContinue(world);
         coins.generateCoins(world, rand, true, 1);
+        save.saveTrialCoin1Bool(false);
+        save.saveTrialCoin2Bool(false);
+        save.saveTrialCoin3Bool(false);
+        save.saveTrialCoin4Bool(false);
+        save.saveTrialCoin5Bool(false);
+        save.saveTrialCoin6Bool(false);
+
         ArrayList<Integer> avatarCoor = newAvatar.generateAvatar(world, rand);
         ter.renderFrame(world);
 
@@ -78,6 +85,7 @@ public class Objectives {
 
     public void objective2(TETile[][] world, Random rand, long seed) {
         PlayingGame playGame = new PlayingGame();
+        SavedGame save = new SavedGame();
 
         Coins coins = new Coins();
         Character newAvatar = new Character();
@@ -86,6 +94,12 @@ public class Objectives {
         trialRoomIntro();
         trialContinue(world);
         coins.generateCoins(world, rand, true, 2);
+        save.saveTrialCoin1Bool(false);
+        save.saveTrialCoin2Bool(false);
+        save.saveTrialCoin3Bool(false);
+        save.saveTrialCoin4Bool(false);
+        save.saveTrialCoin5Bool(false);
+        save.saveTrialCoin6Bool(false);
         ArrayList<Integer> avatarCoor = newAvatar.generateAvatar(world, rand);
         ter.renderFrame(world);
 
@@ -95,6 +109,7 @@ public class Objectives {
     public void objective3(TETile[][] world, Random rand, long seed) {
         PlayingGame playGame = new PlayingGame();
         EndGame endGame = new EndGame();
+        SavedGame save = new SavedGame();
 
         Coins coins = new Coins();
         Character newAvatar = new Character();
@@ -103,6 +118,13 @@ public class Objectives {
         trialRoomIntro();
         trialContinue(world);
         coins.generateCoins(world, rand, true, 3);
+        save.saveTrialCoin1Bool(false);
+        save.saveTrialCoin2Bool(false);
+        save.saveTrialCoin3Bool(false);
+        save.saveTrialCoin4Bool(false);
+        save.saveTrialCoin5Bool(false);
+        save.saveTrialCoin6Bool(false);
+
         ArrayList<Integer> avatarCoor = newAvatar.generateAvatar(world, rand);
         ter.renderFrame(world);
 

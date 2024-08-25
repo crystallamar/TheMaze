@@ -48,6 +48,7 @@ public class Main {
 
         if (seed == 'a') {
             SavedGame loadGame = new SavedGame();
+            loadGame.saveIfLoadedGame(true);
             world = loadGame.openSavedFile();
             ter.renderFrame(world);
             seed = loadGame.readSeed("seed");
@@ -56,10 +57,11 @@ public class Main {
             ArrayList<Integer> OGCoin1 = loadGame.readOGCoin1("OGCoin1");
             ArrayList<Integer> OGCoin2 = loadGame.readOGCoin1("OGCoin2");
             ArrayList<Integer> OGCoin3 = loadGame.readOGCoin1("OGCoin3");
-            int numTrial = loadGame.readNumOGCoinsPickedUp("numOGCoinsPickedUp");
+            int numTrial = avatarCoor.get(3);
+            //int numTrial = loadGame.readNumOGCoinsPickedUp("numOGCoinsPickedUp");
             int trialCoinsPickedUp = avatarCoor.get(2);
-            int trialBool = avatarCoor.get(3);
-            int numOGCoins = avatarCoor.get(4);
+            int trialBool = avatarCoor.get(4);
+            //int numOGCoins = avatarCoor.get(4);
 
             //world = updatedWorld.generateSavedWorld(world, avatarCoor, OGCoin1, OGCoin2, OGCoin3, trialCoinsPickedUp, trialBool, numOGCoins);
             //ter.renderFrame(world);
@@ -67,7 +69,7 @@ public class Main {
             ter.renderFrame(world);
         } else {
             SavedGame saveFiles = new SavedGame();
-
+            saveFiles.saveIfLoadedGame(false);
             saveFiles.saveSeed(seed);
             World updatedWorld = new World(seed);
 

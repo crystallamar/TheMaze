@@ -2,6 +2,7 @@ package core;
 
 import tileengine.TETile;
 import tileengine.Tileset;
+import utils.FileUtils;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -38,7 +39,13 @@ public class Coins {
         }
         if (toSaveTrialCoins == 6) {
             save.saveTrialCoins(world, coinCoor, numTrials);
-            save.saveTrialCoinsBool(false, false, false, false, false, false);
+            save.saveTrialCoin1Bool(false);
+            save.saveTrialCoin2Bool(false);
+            save.saveTrialCoin3Bool(false);
+            save.saveTrialCoin4Bool(false);
+            save.saveTrialCoin5Bool(false);
+            save.saveTrialCoin6Bool(false);
+            save.saveTrialCoinsBool();
 
         }
         return coinCoor;
@@ -176,7 +183,7 @@ public class Coins {
     public int removeCoin(TETile[][] world, int x, int y) {
         if (world[x][y] == Tileset.CELL) {
             world[x][y] = Tileset.SAND;
-            return 1;
+            return 0;
         }
         if (world[x][y] == Tileset.CELLRED) {
             world[x][y] = Tileset.SAND;
@@ -184,23 +191,23 @@ public class Coins {
         }
         if (world[x][y] == Tileset.CELLYellow) {
             world[x][y] = Tileset.SAND;
-            return 1;
+            return 2;
         }
         if (world[x][y] == Tileset.CELLOrange) {
             world[x][y] = Tileset.SAND;
-            return 1;
+            return 3;
         }
         if (world[x][y] == Tileset.CELLGreen) {
             world[x][y] = Tileset.SAND;
-            return 1;
+            return 4;
         }
         if (world[x][y] == Tileset.CELLBlue) {
             world[x][y] = Tileset.SAND;
-            return 1;
+            return 5;
         }
         if (world[x][y] == Tileset.CELLViolet) {
             world[x][y] = Tileset.SAND;
-            return 1;
+            return 6;
         }
         if (world[x][y] == Tileset.num1) {
             world[x][y] = Tileset.SAND;
@@ -208,23 +215,23 @@ public class Coins {
         }
         if (world[x][y] == Tileset.num2) {
             world[x][y] = Tileset.SAND;
-            return 1;
+            return 2;
         }
         if (world[x][y] == Tileset.num3) {
             world[x][y] = Tileset.SAND;
-            return 1;
+            return 3;
         }
         if (world[x][y] == Tileset.num4) {
             world[x][y] = Tileset.SAND;
-            return 1;
+            return 4;
         }
         if (world[x][y] == Tileset.num5) {
             world[x][y] = Tileset.SAND;
-            return 1;
+            return 5;
         }
         if (world[x][y] == Tileset.num6) {
             world[x][y] = Tileset.SAND;
-            return 1;
+            return 6;
         }
         if (world[x][y] == Tileset.letterA) {
             world[x][y] = Tileset.SAND;
@@ -232,23 +239,23 @@ public class Coins {
         }
         if (world[x][y] == Tileset.letterB) {
             world[x][y] = Tileset.SAND;
-            return 1;
+            return 2;
         }
         if (world[x][y] == Tileset.letterC) {
             world[x][y] = Tileset.SAND;
-            return 1;
+            return 3;
         }
         if (world[x][y] == Tileset.letterD) {
             world[x][y] = Tileset.SAND;
-            return 1;
+            return 4;
         }
         if (world[x][y] == Tileset.letterE) {
             world[x][y] = Tileset.SAND;
-            return 1;
+            return 5;
         }
         if (world[x][y] == Tileset.letterF) {
             world[x][y] = Tileset.SAND;
-            return 1;
+            return 6;
         }
 
         return 0;
@@ -369,30 +376,76 @@ public class Coins {
     }
 
     public void placeTrialCoins(TETile[][] world, int trialNum, int coin1X, int coin1Y, int coin2X, int coin2Y, int coin3X, int coin3Y, int coin4X, int coin4Y, int coin5X, int coin5Y, int coin6X, int coin6Y) {
+        SavedGame loadGame = new SavedGame();
+        boolean place1 = loadGame.readTrialCoin1Bool("trialCoin1Bool");
+        boolean place2 = loadGame.readTrialCoin2Bool("trialCoin2Bool");
+        boolean place3 = loadGame.readTrialCoin3Bool("trialCoin3Bool");
+        boolean place4 = loadGame.readTrialCoin4Bool("trialCoin4Bool");
+        boolean place5 = loadGame.readTrialCoin5Bool("trialCoin5Bool");
+        boolean place6 = loadGame.readTrialCoin6Bool("trialCoin6Bool");
+
+
+
         if (trialNum == 1) {
-            world[coin1X][coin1Y] = Tileset.CELLRED;
-            world[coin2X][coin2Y] = Tileset.CELLOrange;
-            world[coin3X][coin3Y] = Tileset.CELLYellow;
-            world[coin4X][coin4Y] = Tileset.CELLGreen;
-            world[coin5X][coin5Y] = Tileset.CELLBlue;
-            world[coin6X][coin6Y] = Tileset.CELLViolet;
+            if (!place1) {
+                world[coin1X][coin1Y] = Tileset.CELLRED;
+            }
+            if (!place2) {
+                world[coin2X][coin2Y] = Tileset.CELLOrange;
+            }
+            if (!place3) {
+                world[coin3X][coin3Y] = Tileset.CELLYellow;
+            }
+            if (!place4) {
+                world[coin4X][coin4Y] = Tileset.CELLGreen;
+            }
+            if (!place5) {
+                world[coin5X][coin5Y] = Tileset.CELLBlue;
+            }
+            if (!place6) {
+                world[coin6X][coin6Y] = Tileset.CELLViolet;
+            }
         }
         if (trialNum == 2) {
-            world[coin1X][coin1Y] = Tileset.num1;
-            world[coin2X][coin2Y] = Tileset.num2;
-            world[coin3X][coin3Y] = Tileset.num3;
-            world[coin4X][coin4Y] = Tileset.num4;
-            world[coin5X][coin5Y] = Tileset.num5;
-            world[coin6X][coin6Y] = Tileset.num6;
+            if (!place1) {
+                world[coin1X][coin1Y] = Tileset.num1;
+            }
+            if (!place2){
+                world[coin2X][coin2Y] = Tileset.num2;
+            }
+            if (!place3){
+                world[coin3X][coin3Y] = Tileset.num3;
+            }
+            if (!place4){
+                world[coin4X][coin4Y] = Tileset.num4;
+            }
+            if (!place5){
+                world[coin5X][coin5Y] = Tileset.num5;
+            }
+            if (!place6){
+                world[coin6X][coin6Y] = Tileset.num6;
+            }
         }
 
         if (trialNum == 3) {
-            world[coin1X][coin1Y] = Tileset.letterA;
-            world[coin2X][coin2Y] = Tileset.letterB;
-            world[coin3X][coin3Y] = Tileset.letterC;
-            world[coin4X][coin4Y] = Tileset.letterD;
-            world[coin5X][coin5Y] = Tileset.letterE;
-            world[coin6X][coin6Y] = Tileset.letterF;
+            if (!place1){
+                world[coin1X][coin1Y] = Tileset.letterA;
+            }
+            if (!place2){
+                world[coin2X][coin2Y] = Tileset.letterB;
+            }
+            if (!place3){
+                world[coin3X][coin3Y] = Tileset.letterC;
+            }
+            if (!place4){
+                world[coin4X][coin4Y] = Tileset.letterD;
+            }
+            if (!place5){
+                world[coin5X][coin5Y] = Tileset.letterE;
+            }
+            if (!place6){
+                world[coin6X][coin6Y] = Tileset.letterF;
+            }
         }
     }
 

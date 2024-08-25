@@ -79,8 +79,9 @@ public class Character {
         SavedGame saveGame = new SavedGame();
         if ((input == 'q') || (input == 'Q')) {
             saveGame.createSavedFile(world, avatarCoor, seed, OGCoin1, OGCoin2, OGCoin3, numCoinsPickedUp, true);
-            saveGame.saveTrialCoins(world, trialCoinCoor, numCoinsPickedUp);
-            saveGame.saveTrialCoinsBool(trialCoinBool.get(0), trialCoinBool.get(1), trialCoinBool.get(2), trialCoinBool.get(3), trialCoinBool.get(4), trialCoinBool.get(5));
+            saveGame.saveTrialCoinsBool();
+            //saveGame.saveTrialCoins(world, trialCoinCoor, numCoinsPickedUp);
+
             //saveGame.readAvatarCoor("avatarCoor");
             System.exit(0);
         }
@@ -101,6 +102,7 @@ public class Character {
         numCoinsPickedUp = avatarPickedUpCoinArray.getFirst();
         int trialHappening = avatarPickedUpCoinArray.get(1);
         trialNum = avatarPickedUpCoinArray.get(2); ///////////////////
+        int whichCoin = avatarPickedUpCoinArray.get(3);
         while (!avatarCoor.isEmpty()) {
             avatarCoor.remove(0);
         }
@@ -144,6 +146,8 @@ public class Character {
         numCoinsPickedUp = avatarPickedUpCoinArray.getFirst();
         trialNum = avatarPickedUpCoinArray.get(2);
         int trialHappening = avatarPickedUpCoinArray.get(1);
+        int whichCoin = avatarPickedUpCoinArray.get(3);
+
         while (!avatarCoor.isEmpty()) {
             avatarCoor.remove(0);
         }
@@ -188,6 +192,8 @@ public class Character {
         numCoinsPickedUp = avatarPickedUpCoinArray.getFirst();
         int trialHappening = avatarPickedUpCoinArray.get(1);
         trialNum = avatarPickedUpCoinArray.get(2);
+        int whichCoin = avatarPickedUpCoinArray.get(3);
+
 
         while (!avatarCoor.isEmpty()) {
             avatarCoor.remove(0);
@@ -237,6 +243,8 @@ public class Character {
         numCoinsPickedUp = avatarPickedUpCoinArray.getFirst();
         int trialHappening = avatarPickedUpCoinArray.get(1);
         trialNum = avatarPickedUpCoinArray.get(2);
+        int whichCoin = avatarPickedUpCoinArray.get(3);
+
         while (!avatarCoor.isEmpty()) {
             avatarCoor.remove(0);
         }
@@ -272,12 +280,20 @@ public class Character {
 
     public ArrayList<Integer> avatarPickedUpCoin(TETile[][] world, int x, int y, Random rand, Boolean trial, int OGCoins, long seed) {
 
-// Returns numberOfCoinsPickedUpInTrial, 1 if it is a trial, and og coins
+// Returns numberOfCoinsPickedUpInTrial, 1 if it is a trial, and og coins, AND WHICH COIN IN TRIAL HAS BEEN PICKED UP
         boolean isCoin = coins.isCoin(world, x, y);
         ArrayList<Integer> numCoinsAndBool = new ArrayList<>();
-        int False = 0;
-        int True = 1;
-        coinsPickedUp += coins.removeCoin(world, x, y);
+        SavedGame save = new SavedGame();
+        boolean ifSaved = save.readIfLoadedGame("ifLoadedGame");
+        if (ifSaved) {
+            ArrayList<Integer> avatarCoor = save.readAvatarCoor("avatarCoor");
+            coinsPickedUp = avatarCoor.get(2);
+        }
+        if (isCoin){
+            coinsPickedUp++;
+        }
+        int whichCoin = coins.removeCoin(world, x, y);
+
 //        if(coinsPickedUp == 7){
 //            coinsPickedUp = 0;
 //        }
@@ -317,45 +333,27 @@ public class Character {
             numCoinsAndBool.add(OGCoins);
         }
 
-
-//
-//        if (isCoin && !trial) { // And Trial is false
-//            if (coinsPickedUp == 6) {
-//                numCoinsAndBool.add(True);
-//            }
-//            else {
-//                numCoinsAndBool.remove(0);
-//                numCoinsAndBool.add(0);
-//                numCoinsAndBool.add(True);
-//            }
-//            OGCoins++;
-//        }
-//        else if (isCoin && trial) { // And trial is true
-//            numCoinsAndBool.add(True);
-//            //trials.trialRoom(world);
-//            //trials.objectives(world, OGCoins, rand, coinsPickedUp, x, y, seed);
-//            if (OGCoins == 3) {
-//                endGame.callEndGame(world);
-//            }
-//        }
-//        else {
-//            numCoinsAndBool.add(False);
-//        }
-//        numCoinsAndBool.add(OGCoins);
+        if (whichCoin == 1) {
+            save.saveTrialCoin1Bool(true);
+        }
+        if (whichCoin == 2) {
+            save.saveTrialCoin2Bool(true);
+        }
+        if (whichCoin == 3) {
+            save.saveTrialCoin3Bool(true);
+        }
+        if (whichCoin == 4) {
+            save.saveTrialCoin4Bool(true);
+        }
+        if (whichCoin == 5) {
+            save.saveTrialCoin5Bool(true);
+        }
+        if (whichCoin == 6) {
+            save.saveTrialCoin6Bool(true);
+        }
 
 
-
-
-
-
-
-
-//        else if (currNumCoinsPickedUp == 6){
-//            currNumCoinsPickedUp++;
-//
-//            numCoinsAndBool.add(False);
-//            numCoinsAndBool.add(currNumCoinsPickedUp);
-//        }
+        numCoinsAndBool.add(whichCoin);
         return numCoinsAndBool;
 
     }

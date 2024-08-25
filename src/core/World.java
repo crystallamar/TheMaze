@@ -89,7 +89,14 @@ public class World implements Serializable {
          // read Num OG COIns picked up
         //EndGame endGame = new EndGame();
         //boolean ifGameEnd = true;
-        playingGame.playingGame(world, avatarCoor, rand, false, numTrial, seed, numTrialCoinsPickedUp, trialBool);
+        boolean trial;
+        if (trialBool == 0) {
+            trial = false;
+        }
+        else{
+            trial = true;
+        }
+        playingGame.playingGame(world, avatarCoor, rand, trial, numTrial, seed, numTrialCoinsPickedUp, trialBool);
     }
 
     public TETile[][] generateSavedWorld (TETile[][] world, ArrayList<Integer> savedAvatarCoor, ArrayList<Integer> OGCoin1, ArrayList<Integer> OGCoin2, ArrayList<Integer> OGCoin3, int numTrialCoinsPickedUp, int trialBool, int numOGCoinsPickedUp) {
@@ -192,7 +199,7 @@ public class World implements Serializable {
 
 
         coin.placeTrialCoins(world, trialNum, coin1X, coin1Y, coin2X, coin2Y, coin3X, coin3Y, coin4X, coin4Y, coin5X, coin5Y, coin6X, coin6Y);
-        coin.removeTrialCoinsPickedUp(world, trialCoinCoor, coin1Bool, coin2Bool, coin3Bool, coin4Bool, coin5Bool, coin6Bool);
+        //coin.removeTrialCoinsPickedUp(world, trialCoinCoor, coin1Bool, coin2Bool, coin3Bool, coin4Bool, coin5Bool, coin6Bool);
 
         avatar.setAvatarCoor(world, avatarCoor);
         //ter.renderFrame(world);
