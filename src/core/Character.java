@@ -296,8 +296,8 @@ public class Character {
         }
         else if (isCoin && trial) { // And trial is true
             numCoinsAndBool.add(True);
-            trials.trialRoom(world);
-            trials.objectives(world, OGCoins, rand, coinsPickedUp, x, y, seed);
+            //trials.trialRoom(world);
+            //trials.objectives(world, OGCoins, rand, coinsPickedUp, x, y, seed);
             if (OGCoins == 3) {
                 endGame.callEndGame(world);
             }

@@ -15,6 +15,7 @@ import java.util.Random;
 public class World implements Serializable {
     long seed;
     Random rand;
+    //TERenderer ter = new TERenderer();
     //new Random(seed);
 
     public World(long seed) {
@@ -160,11 +161,12 @@ public class World implements Serializable {
         Character avatar = new Character();
 
         genGrass.generateGrass(world, 94, 55);
-        objective.trialContinue(world); // build background of trial room
+        objective.trialRoom(world); // build background of trial room
 
         ArrayList<Integer> trialCoinCoor = readFile.readTrialCoinsCoor("trialCoins");
         ArrayList<Boolean> trialCoinBool = readFile.readTrialCoinsBool("trialCoinsBool");
         ArrayList<Integer> avatarCoor = readFile.readAvatarCoor("avatarCoor");
+        int trialNum = avatarCoor.get(3);
 
         int coin1X = trialCoinCoor.get(0);
         int coin1Y = trialCoinCoor.get(1);
@@ -179,6 +181,8 @@ public class World implements Serializable {
         int coin6X = trialCoinCoor.get(10);
         int coin6Y = trialCoinCoor.get(11);
 
+
+
         boolean coin1Bool = trialCoinBool.get(0);
         boolean coin2Bool = trialCoinBool.get(1);
         boolean coin3Bool = trialCoinBool.get(2);
@@ -186,9 +190,12 @@ public class World implements Serializable {
         boolean coin5Bool = trialCoinBool.get(4);
         boolean coin6Bool = trialCoinBool.get(5);
 
+
+        coin.placeTrialCoins(world, trialNum, coin1X, coin1Y, coin2X, coin2Y, coin3X, coin3Y, coin4X, coin4Y, coin5X, coin5Y, coin6X, coin6Y);
         coin.removeTrialCoinsPickedUp(world, trialCoinCoor, coin1Bool, coin2Bool, coin3Bool, coin4Bool, coin5Bool, coin6Bool);
 
         avatar.setAvatarCoor(world, avatarCoor);
+        //ter.renderFrame(world);
         return world;
     }
 

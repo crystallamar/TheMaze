@@ -43,10 +43,15 @@ public class Main {
 
         titleScreen.generateTitleScreen(world, WIDTH, HEIGHT);
         long seed = titleScreen.onTitlePage(world, WIDTH, HEIGHT);
+
+
+
         if (seed == 'a') {
             SavedGame loadGame = new SavedGame();
             world = loadGame.openSavedFile();
+            ter.renderFrame(world);
             seed = loadGame.readSeed("seed");
+            World updatedWorld = new World(seed);
             avatarCoor = loadGame.readAvatarCoor("avatarCoor");
             ArrayList<Integer> OGCoin1 = loadGame.readOGCoin1("OGCoin1");
             ArrayList<Integer> OGCoin2 = loadGame.readOGCoin1("OGCoin2");
@@ -56,9 +61,8 @@ public class Main {
             int trialBool = avatarCoor.get(3);
             int numOGCoins = avatarCoor.get(4);
 
-            World updatedWorld = new World(seed);
-            world = updatedWorld.generateSavedWorld(world, avatarCoor, OGCoin1, OGCoin2, OGCoin3, trialCoinsPickedUp, trialBool, numOGCoins);
-            ter.renderFrame(world);
+            //world = updatedWorld.generateSavedWorld(world, avatarCoor, OGCoin1, OGCoin2, OGCoin3, trialCoinsPickedUp, trialBool, numOGCoins);
+            //ter.renderFrame(world);
             updatedWorld.callPlayGame(world, avatarCoor, seed, numTrial, trialCoinsPickedUp, trialBool);
             ter.renderFrame(world);
         } else {

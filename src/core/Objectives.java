@@ -296,7 +296,7 @@ public class Objectives {
                                 loadGame.saveIfTrial(true);
                                 ArrayList<Integer> trialCoinsCoor = loadGame.readTrialCoinsCoor("trialCoinsCoor");
                                 ArrayList<Boolean> trialCoinsBool = loadGame.readTrialCoinsBool("trialCoinsBool");
-                                avatar.ifExitObjective(key, world, avatarCoor, seed, OGCoin1, OGCoin2, OGCoin3, OGCoins, trialCoinsCoor, trialCoinsBool);
+                                avatar.ifExitObjective(key, world, avatarCoor, seed, OGCoin1, OGCoin2, OGCoin3, numCoinsPickedUpInTrial, trialCoinsCoor, trialCoinsBool);
                                 ifColon = false;
                             }
                         }
