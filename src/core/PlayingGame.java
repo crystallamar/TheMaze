@@ -67,8 +67,8 @@ public class PlayingGame {
         ArrayList<Integer> OGCoin1 = new ArrayList<>();
         ArrayList<Integer> OGCoin2 = new ArrayList<>();
         ArrayList<Integer> OGCoin3 = new ArrayList<>();
-        //int avX = avatarCoor.get(0);
-        //int avY = avatarCoor.get(1);
+        int avX = avatarCoor.get(0);
+        int avY = avatarCoor.get(1);
         Coins coin = new Coins();
         SavedGame savedGame = new SavedGame();
         if (avatarCoor.size() == 11) {
@@ -98,6 +98,7 @@ public class PlayingGame {
             int currMouseYCoor = 0;
             Objectives objectives = new Objectives();
             save.saveIfTrial(false);
+            Boolean didCharMove = true;
 
 
             while (expectingInput) {
@@ -119,15 +120,18 @@ public class PlayingGame {
 
 
 
-
-
+                    ArrayList<Integer> temp = new ArrayList<>();
+                    temp.addAll(avatarCoor);
                     avatarCoor = avatar.moveChar(key, world, avatarCoor, rand, trial, numTrial, seed);
+                    if (temp.equals(avatarCoor)) {
+                        didCharMove = false;
+                    }
                     if (avatarCoor.size() == 8) {
                         while (!avatarCoor.isEmpty()) {
                             avatarCoor.remove(0);
                         }
-                        //avatarCoor.add(avY);
-                        //avatarCoor.add(avY);
+                        avatarCoor.add(avY);
+                        avatarCoor.add(avY);
                         avatarCoor.add(0);
                         avatarCoor.add(0);
                         avatarCoor.add(0);
@@ -154,7 +158,7 @@ public class PlayingGame {
                     if (trialBool == 0) {
                         trial = false; // if numCoins == 0, don't call objective
                     }
-                    else {
+                    else if (didCharMove){
                         trial = true;
                         //numCoins = avatarCoor.get(2);
                         if (numLoops == 0) {
