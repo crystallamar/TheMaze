@@ -281,31 +281,75 @@ public class Character {
 //        if(coinsPickedUp == 7){
 //            coinsPickedUp = 0;
 //        }
-        numCoinsAndBool.add(coinsPickedUp);
+        //numCoinsAndBool.add(coinsPickedUp);
 
-        if (isCoin && !trial) { // And Trial is false
+        if (isCoin && trial) {
             if (coinsPickedUp == 6) {
-                numCoinsAndBool.add(True);
+                if (OGCoins == 3) {
+                    endGame.callEndGame(world);
+                }
+                else {
+                    numCoinsAndBool.add(coinsPickedUp);
+                    numCoinsAndBool.add(0);
+                    numCoinsAndBool.add(OGCoins);
+                }
             }
             else {
-                numCoinsAndBool.remove(0);
-                numCoinsAndBool.add(0);
-                numCoinsAndBool.add(True);
+                numCoinsAndBool.add(coinsPickedUp);
+                numCoinsAndBool.add(1);
+                numCoinsAndBool.add(OGCoins);
             }
+        }
+        else if (!isCoin && trial){
+            numCoinsAndBool.add(coinsPickedUp);
+            numCoinsAndBool.add(1);
+            numCoinsAndBool.add(OGCoins);
+        }
+        else if (isCoin && !trial) {
+            numCoinsAndBool.add(0);
+            numCoinsAndBool.add(1);
             OGCoins++;
+            numCoinsAndBool.add(OGCoins);
         }
-        else if (isCoin && trial) { // And trial is true
-            numCoinsAndBool.add(True);
-            //trials.trialRoom(world);
-            //trials.objectives(world, OGCoins, rand, coinsPickedUp, x, y, seed);
-            if (OGCoins == 3) {
-                endGame.callEndGame(world);
-            }
+        else { //Not a coin and !trial
+            numCoinsAndBool.add(coinsPickedUp);
+            numCoinsAndBool.add(0);
+            numCoinsAndBool.add(OGCoins);
         }
-        else {
-            numCoinsAndBool.add(False);
-        }
-        numCoinsAndBool.add(OGCoins);
+
+
+//
+//        if (isCoin && !trial) { // And Trial is false
+//            if (coinsPickedUp == 6) {
+//                numCoinsAndBool.add(True);
+//            }
+//            else {
+//                numCoinsAndBool.remove(0);
+//                numCoinsAndBool.add(0);
+//                numCoinsAndBool.add(True);
+//            }
+//            OGCoins++;
+//        }
+//        else if (isCoin && trial) { // And trial is true
+//            numCoinsAndBool.add(True);
+//            //trials.trialRoom(world);
+//            //trials.objectives(world, OGCoins, rand, coinsPickedUp, x, y, seed);
+//            if (OGCoins == 3) {
+//                endGame.callEndGame(world);
+//            }
+//        }
+//        else {
+//            numCoinsAndBool.add(False);
+//        }
+//        numCoinsAndBool.add(OGCoins);
+
+
+
+
+
+
+
+
 //        else if (currNumCoinsPickedUp == 6){
 //            currNumCoinsPickedUp++;
 //

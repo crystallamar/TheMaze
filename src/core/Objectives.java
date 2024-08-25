@@ -245,7 +245,7 @@ public class Objectives {
                     int y = avatarCoor.get(1);
                     numCoinsPickedUpInTrial = avatarCoor.get(2);
                     int OGCoins = avatarCoor.get(3);
-                    int trialBool = avatarCoor.get(4);
+                    int trialBool = 1;
                     if (numCoinsPickedUpInTrial != 7) {
                         numCoinsPickedUpInTrial = trialPickUpCoin(world, x, y, numCoinsPickedUpInTrial, numTrial);
 
