@@ -142,7 +142,7 @@ public class World implements Serializable {
 //        int OGCoin3X = avatarCoor.get(9);
 //        int OGCoin3Y = avatarCoor.get(10);
 
-
+        numOGCoinsPickedUp = savedAvatarCoor.get(3);
         ArrayList<ArrayList<Integer>> centerCoorOfSand = new ArrayList<>();
         genGrass.generateGrass(world, width, height);
         addMountains.generateMountains(world, seed, width, height, rand);
@@ -160,8 +160,8 @@ public class World implements Serializable {
                 if (numOGCoinsPickedUp == 2) {
                     ArrayList<Integer> firstCoinPickedUp = saveGame.readFirstCoinPickedUp("firstCoinPickedUp");
                     world[firstCoinPickedUp.get(0)][firstCoinPickedUp.get(1)] = Tileset.SAND;
-                    //ArrayList<Integer> secondCoinPickedUp = saveGame.readSecondCoinPickedUp("secondCoinPickedUp");
-                    //world[avatarCoor.get(0)][avatarCoor.get(1)] = Tileset.SAND;
+                    ArrayList<Integer> secondCoinPickedUp = saveGame.readSecondCoinPickedUp("secondCoinPickedUp");
+                    world[secondCoinPickedUp.get(0)][secondCoinPickedUp.get(1)] = Tileset.SAND;
                 }
             }
 

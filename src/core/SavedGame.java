@@ -56,6 +56,10 @@ public class SavedGame {
         if (!ifTrial) {
             world = genWorld.generateSavedWorld(world, avatarCoor, OGCoin1, OGCoin2, OGCoin3, trialCoinsPickedUp, trialBool, numOGCoins);
             coin.removeCoin(world, firstCoinPickedUp.get(0), firstCoinPickedUp.get(1));
+            if (numOGCoins == 2) {
+                ArrayList<Integer> secondCoindPickedUp = readSecondCoinPickedUp("secondCoinPickedUp");
+                coin.removeCoin(world, secondCoindPickedUp.getFirst(), secondCoindPickedUp.get(1));
+            }
             return world;
         }
         else if (ifTrial) {
