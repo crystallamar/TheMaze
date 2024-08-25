@@ -44,12 +44,33 @@ public class Tileset {
     public static final TETile TREE = new TETile('♠', Color.green, treeBackground, "tree", 11);
 
     public static final TETile CELL = new TETile('█', Color.white, Color.black, "cell", 12);
+    public static final TETile CELLRED = new TETile('█', Color.white, Color.RED, "cell", 12);
 
+    public static final TETile CELLYellow = new TETile('█', Color.white, Color.YELLOW, "cell", 12);
 
+    public static final TETile CELLOrange = new TETile('█', Color.white, Color.ORANGE, "cell", 12);
+    public static final TETile CELLGreen = new TETile('█', Color.white, Color.GREEN, "cell", 12);
 
+    public static final TETile CELLBlue = new TETile('█', Color.white, Color.BLUE, "cell", 12);
+    public static final TETile CELLViolet = new TETile('█', Color.white, Color.PINK, "cell", 12);
 
-    //public static final TETile newGame = new TETile("New Game (N)", Color.gray, Color.white, "titleScreen", 13);
+    //public public static final TETile CELLViolet = new TETile('█', Color.white, Color.black, "cell", 12);static final TETile newGame = new TETile("New Game (N)", Color.gray, Color.white, "titleScreen", 13);
+    public static final TETile num1 = new TETile('1', new Color(128, 192, 128), Color.RED, "num1", 2);
 
+    public static final TETile num2 = new TETile('2', new Color(128, 192, 128), Color.ORANGE, "num1", 2);
+    public static final TETile num3 = new TETile('3', new Color(128, 192, 128), Color.YELLOW, "num1", 2);
+    public static final TETile num4 = new TETile('4', new Color(128, 192, 128), Color.GREEN, "num1", 2);
+
+    public static final TETile num5 = new TETile('5', new Color(128, 192, 128), Color.BLUE, "num1", 2);
+    public static final TETile num6 = new TETile('6', new Color(128, 192, 128), Color.PINK, "num1", 2);
+
+    public static final TETile letterA = new TETile('A', new Color(128, 192, 128), Color.RED, "num1", 2);
+    public static final TETile letterB = new TETile('B', new Color(128, 192, 128), Color.ORANGE, "num1", 2);
+
+    public static final TETile letterC = new TETile('C', new Color(128, 192, 128), Color.YELLOW, "num1", 2);
+    public static final TETile letterD = new TETile('D', new Color(128, 192, 128), Color.GREEN, "num1", 2);
+    public static final TETile letterE = new TETile('E', new Color(128, 192, 128), Color.BLUE, "num1", 2);
+    public static final TETile letterF = new TETile('F', new Color(128, 192, 128), Color.PINK, "num1", 2);
 
 }
 

@@ -1,51 +1,83 @@
 package core;
 
 import tileengine.TETile;
+import tileengine.Tileset;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Sand {
+    Random rand = new Random();
     RandomGenerator randGen = new RandomGenerator();
     Paint painter = new Paint();
     Regions buildReg = new Regions();
 
-    public void generateSand(TETile[][] world, long seed) {
-        ArrayList<Integer> region = new ArrayList<>();
+    public ArrayList<ArrayList<Integer>> generateSand(TETile[][] world, Random random) {
+        ArrayList<ArrayList<Integer>> centerCoorOfEachRoom = new ArrayList<>();
+        ArrayList<ArrayList<Integer>> regions = buildReg.getRegion();
 
-        int numRooms = ranNumRooms(seed);
+        boolean addCoor = false;
+        for(int i = 0; i < regions.size(); i++) {
+            ArrayList<Integer> region = regions.get(i);
+            int numRooms = ranNumRooms(random) + 2;
+            while (numRooms > 0) {
+                ArrayList<Integer> room = new ArrayList<>();
+                room.addAll(buildReg.generateRegion(random, region, 4, 4, 6));
 
-        while (numRooms > 0) {
-            region.addAll(buildReg.worldRegion1());
-            int startX = randGen.generateXCoorInReg(seed, region);
-            int startY = randGen.generateYCoorInReg(seed, region);
-            buildReg.generateRegion(seed, startX, startY, 8, 8, 3);
-            painter.paintWorld(world, seed, "Sand", region);
-            numRooms--;
+                addCoor = painter.paint(world, random, "Sand", room);
+                if (addCoor) {
+                    centerCoorOfEachRoom.add(buildReg.getCenterOfRegion(room));
+                }
+                numRooms--;
 
+            }
         }
+        return centerCoorOfEachRoom;
     }
 
 
 
 
     // Function that generates a random number of rooms
-    public int ranNumRooms(long seed) {
-        int numRooms = randGen.generateNumRooms(seed, 4) + 6;
+    public int ranNumRooms(Random random) {
+        int numRooms = randGen.generateNumRooms(random, 4) + 6;
         return numRooms;
     }
 
+    public boolean isTouchingGrassBottom(TETile[][] world, int x, int y) {
+        if (world[x][y-1] == Tileset.GRASS) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
+    public boolean isTouchingGrassLeft(TETile[][] world, int x, int y) {
+        if (world[x-1][y] == Tileset.GRASS) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    public boolean isTouchingGrassTop(TETile[][] world, int x, int y) {
+        if (world[x][y + 1] == Tileset.GRASS) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
+    public boolean isTouchingGrassRight(TETile[][] world, int x, int y) {
+        if (world[x+1][y] == Tileset.GRASS) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
-//    public int sizeRoomX(long seed) {
-//        int randWidth = randGen.generateSizeRoomX(seed, 8) + 3;
-//        return randWidth;
-//    }
-//
-//    public int sizeRoomY(long seed) {
-//        int randLength = randGen.generateSizeRoomY(seed, 6) + 2;
-//        return randLength;
-//    }
 
 }

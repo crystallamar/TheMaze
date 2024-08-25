@@ -9,78 +9,51 @@ import java.util.Random;
 
 public class Mountains {
     Regions region = new Regions();
+    RandomGenerator randGen = new RandomGenerator();
 
-    public void generateMountains(TETile[][] world, long seed, int width, int height) {
-        generateLeftWall(world, seed, width, height);
-        generateTopWall(world, seed, width, height);
-        generateRightWall(world, seed, width, height);
-        generateBottomWall(world, seed, width, height);
+    public void generateMountains(TETile[][] world, long seed, int width, int height, Random random) {
+        generateLeftWall(world, seed, width, height, random);
+        generateBottomWall(world, seed, width, height, random);
+        generateRightWall(world, seed, width, height, random);
+        generateTopWall(world, seed, width, height, random);
 
     }
 
-    public void generateLeftWall(TETile[][] world, long seed, int width, int height) {
+    public void generateLeftWall(TETile[][] world, long seed, int width, int height, Random random) {
 
-        ArrayList<ArrayList<Integer>> leftWall = region.generateRegion(seed, 0, 0, 3, 3, 2);
-        int leftWallX1 = region.coorX1Y1(leftWall).getFirst();
-        int leftWallX2 = region.coorX2Y2(leftWall).getFirst();
-
-        for (int i = leftWallX1; i < leftWallX2; i++) {
-            for (int m = 0; m < height; m++) {
-                world[i][m] = Tileset.MOUNTAIN;
+        int leftWallX2 = randGen.generateXCoorInReg(random, region.mountainLeftWall()) + 1;
+        for (int x = 0; x < leftWallX2; x++) {
+            for (int y = 0; y < height; y++) {
+                world[x][y] = Tileset.MOUNTAIN;
             }
         }
-
     }
 
-    public void generateTopWall(TETile[][] world, long seed, int width, int height) {
-
-        ArrayList<ArrayList<Integer>> topWall = region.generateRegion(seed, 0, height, 3, 3, 2);
-        int topWallY1 = region.coorX1Y1(topWall).getLast(); // Should be 55
-        int topWallY2 = region.coorX2Y2(topWall).getLast(); //
-
-        int randSizeHeight = topWallY2 - topWallY1;
-
-        while (randSizeHeight > 0) {
-            for (int i = 0; i < width; i++) {
-                world[i][height - randSizeHeight] = Tileset.MOUNTAIN;
+    public void generateBottomWall(TETile[][] world, long seed, int width, int height, Random random) {
+        int bottomWallY2 = randGen.generateYCoorInReg(random, region.mountainBottomWall()) + 1;
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < bottomWallY2; y++) {
+                world[x][y] = Tileset.MOUNTAIN;
             }
-            randSizeHeight--;
         }
     }
 
-    public void generateRightWall(TETile[][] world, long seed, int width, int height) {
-
-        ArrayList<ArrayList<Integer>> rightWall = region.generateRegion(seed, height, 0, 3, 3, 2);
-        int rightWallX1 = region.coorX1Y1(rightWall).getFirst();
-        int rightWallX2 = region.coorX2Y2(rightWall).getFirst();
-
-        int randSizeWidth = rightWallX2 - rightWallX1;
-
-        while (randSizeWidth > 0) {
-            for (int m = 0; m < height; m++) {
-                world[width - randSizeWidth][m] = Tileset.MOUNTAIN;
+    public void generateRightWall(TETile[][] world, long seed, int width, int height, Random random) {
+        int rightWallX2 = randGen.generateXCoorInReg(random, region.mountainRightWall()) - 1;
+        for (int x = rightWallX2; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                world[x][y] = Tileset.MOUNTAIN;
             }
-            randSizeWidth--;
         }
-
-
     }
 
-    public void generateBottomWall(TETile[][] world, long seed, int width, int height) {
-
-        ArrayList<ArrayList<Integer>> bottomWall = new ArrayList<>();
-
-        bottomWall = region.generateRegion(seed, 0, 0, 3, 3, 2);
-        int bottomWallY1 = region.coorX1Y1(bottomWall).getLast();
-        int bottomWallY2 = region.coorX2Y2(bottomWall).getLast();
-
-        int randSizeHeight = bottomWallY2 - bottomWallY1;
-        while (randSizeHeight >= 0) {
-            for (int i = 0; i < width; i++) {
-                world[i][bottomWallY1 + randSizeHeight] = Tileset.MOUNTAIN;
+    public void generateTopWall(TETile[][] world, long seed, int width, int height, Random random) {
+        int topWallY2 = randGen.generateYCoorInReg(random, region.mountainTopWall()) -1;
+        for (int x = 0; x < width; x++) {
+            for (int y = topWallY2; y < height; y++) {
+                world[x][y] = Tileset.MOUNTAIN;
             }
-            randSizeHeight--;
         }
-
     }
+
 }
