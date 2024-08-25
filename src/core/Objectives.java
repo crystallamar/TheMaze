@@ -334,6 +334,13 @@ public class Objectives {
             }
         }
     }
+
+    public Random getRand() {
+        Random rand = this.rand;
+        return rand;
+    }
+
+
     }
 
 

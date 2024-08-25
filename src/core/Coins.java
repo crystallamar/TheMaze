@@ -189,11 +189,11 @@ public class Coins {
             world[x][y] = Tileset.SAND;
             return 1;
         }
-        if (world[x][y] == Tileset.CELLYellow) {
+        if (world[x][y] == Tileset.CELLOrange) {
             world[x][y] = Tileset.SAND;
             return 2;
         }
-        if (world[x][y] == Tileset.CELLOrange) {
+        if (world[x][y] == Tileset.CELLYellow) {
             world[x][y] = Tileset.SAND;
             return 3;
         }

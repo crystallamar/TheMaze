@@ -166,6 +166,7 @@ public class World implements Serializable {
         SavedGame readFile = new SavedGame();
         Coins coin = new Coins();
         Character avatar = new Character();
+        Random rand = this.rand;
 
         genGrass.generateGrass(world, 94, 55);
         objective.trialRoom(world); // build background of trial room
@@ -202,6 +203,7 @@ public class World implements Serializable {
         //coin.removeTrialCoinsPickedUp(world, trialCoinCoor, coin1Bool, coin2Bool, coin3Bool, coin4Bool, coin5Bool, coin6Bool);
 
         avatar.setAvatarCoor(world, avatarCoor);
+        //objective.whilePlayingTrial(world, avatarCoor, rand, true, trialNum, seed);
         //ter.renderFrame(world);
         return world;
     }
