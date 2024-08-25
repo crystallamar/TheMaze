@@ -10,8 +10,7 @@ import utils.FileUtils;
 import java.awt.*;
 import java.io.*;
 import java.nio.file.Files;
-
-
+import java.util.ArrayList;
 
 
 public class TitleScreen {
@@ -133,6 +132,42 @@ public class TitleScreen {
 
 
 
+    }
+
+    public static void copyMain(TETile[][] world, long seed){
+        ArrayList<Integer> avatarCoor = new ArrayList<>();
+        if (seed == 'a') {
+//          File savedGame = new File("Saved Game");
+            SavedGame loadGame = new SavedGame();
+
+            loadGame.saveIfLoadedGame(true);
+            world = loadGame.openSavedFile();
+            seed = loadGame.readSeed("seed");
+            World updatedWorld = new World(seed);
+            avatarCoor = loadGame.readAvatarCoor("avatarCoor");
+            int numTrial = avatarCoor.get(3);
+            int trialCoinsPickedUp = avatarCoor.get(2);
+            int trialBool = avatarCoor.get(4);
+            Boolean ifTrial = loadGame.readIfTrial("ifTrial");
+            if (!ifTrial) {
+                updatedWorld.callPlayGame(world, avatarCoor, seed, numTrial, trialCoinsPickedUp, trialBool);
+            }
+            else
+            {
+                updatedWorld.callObjectivePlayGame(world, avatarCoor, true, numTrial, seed);
+            }
+        }
+        else {
+            SavedGame saveFiles = new SavedGame();
+            saveFiles.saveIfLoadedGame(false);
+            saveFiles.saveSeed(seed);
+            World updatedWorld = new World(seed);
+
+            avatarCoor = updatedWorld.generateWorld(world, seed, 94, 55);
+            // Av coor is av coor, OGCoin1 coor, OGCoin2 Coor, and OGCoin3 coor
+            updatedWorld.callPlayGame(world, avatarCoor, seed, 0, 0, 0);
+
+        }
     }
 
 }
