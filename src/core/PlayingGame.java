@@ -71,13 +71,22 @@ public class PlayingGame {
         //int avY = avatarCoor.get(1);
         Coins coin = new Coins();
         SavedGame savedGame = new SavedGame();
-
-        OGCoin1.add(avatarCoor.get(2));
-        OGCoin1.add(avatarCoor.get(3));
-        OGCoin2.add(avatarCoor.get(4));
-        OGCoin2.add(avatarCoor.get(5));
-        OGCoin3.add(avatarCoor.get(6));
-        OGCoin3.add(avatarCoor.get(7));
+        if (avatarCoor.size() == 11) {
+            OGCoin1.add(avatarCoor.get(5));
+            OGCoin1.add(avatarCoor.get(6));
+            OGCoin2.add(avatarCoor.get(7));
+            OGCoin2.add(avatarCoor.get(8));
+            OGCoin3.add(avatarCoor.get(9));
+            OGCoin3.add(avatarCoor.get(10));
+        }
+        else {
+            OGCoin1.add(avatarCoor.get(2));
+            OGCoin1.add(avatarCoor.get(3));
+            OGCoin2.add(avatarCoor.get(4));
+            OGCoin2.add(avatarCoor.get(5));
+            OGCoin3.add(avatarCoor.get(6));
+            OGCoin3.add(avatarCoor.get(7));
+        }
         ArrayList<Integer> mouseCoor;
         while (playingGame) {
             boolean expectingInput = true;
