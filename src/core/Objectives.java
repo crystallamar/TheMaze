@@ -34,14 +34,14 @@ public class Objectives {
             return trialPickUpCoin(world, x, y, numLoops, coinCountOG);
         }
         if (coinCountOG == 2 && numLoops == 0) {
-            objective2(world, rand, seed);
+            objective2(world, rand, seed, x, y);
             return 0;
         }
         else if (coinCountOG == 2) {
             return trialPickUpCoin(world, x, y, numLoops, coinCountOG);
         }
         if (coinCountOG == 3 && numLoops == 0) {
-            objective3(world, rand, seed);
+            objective3(world, rand, seed, x, y);
             return 0;
         }
         else if (coinCountOG == 3) {
@@ -58,6 +58,7 @@ public class Objectives {
         Coins coins = new Coins();
 
         Character newAvatar = new Character();
+        //save.saveAVCoorWorld(x, y);
         coins.removeCoin(world, x, y);
         //World updatedWorld = new World(seed);
         trialRoom(world);
@@ -84,11 +85,13 @@ public class Objectives {
 
 
 
-    public void objective2(TETile[][] world, Random rand, long seed) {
+    public void objective2(TETile[][] world, Random rand, long seed, int x, int y) {
         PlayingGame playGame = new PlayingGame();
         SavedGame save = new SavedGame();
 
         Coins coins = new Coins();
+        //save.saveAVCoorWorld(x, y);
+
         Character newAvatar = new Character();
         //World updatedWorld = new World(seed);
         trialRoom(world);
@@ -107,13 +110,15 @@ public class Objectives {
         whilePlayingTrial(world, avatarCoor, rand, true, 2, seed);
     }
 
-    public void objective3(TETile[][] world, Random rand, long seed) {
+    public void objective3(TETile[][] world, Random rand, long seed, int x, int y) {
         PlayingGame playGame = new PlayingGame();
         EndGame endGame = new EndGame();
         SavedGame save = new SavedGame();
 
         Coins coins = new Coins();
         Character newAvatar = new Character();
+        //save.saveAVCoorWorld(x, y);
+
         //World updatedWorld = new World(seed);
         trialRoom(world);
         trialRoomIntro();
@@ -179,6 +184,7 @@ public class Objectives {
         if (trialNum == 3){
             endGame.endGame(world);
         }
+
         endGame.endObjective(world, trialNum);
 
         ter.renderFrame(world);
@@ -186,19 +192,20 @@ public class Objectives {
 
     public int trialPickUpCoin(TETile[][] world, int x, int y, int numTrialCoins, int trialNum) {
         Coins coin = new Coins();
+        SavedGame save = new SavedGame();
         if (coin.isCoin(world, x, y)) {
             numTrialCoins += coin.removeCoin(world, x, y);
             return numTrialCoins;
         }
 
         if (numTrialCoins == 6) {
-           trialComplete(world, trialNum);
-           numTrialCoins++;
+            trialComplete(world, trialNum);
+            numTrialCoins++;
         }
         return numTrialCoins;
     }
 
-    public void whilePlayingTrial(TETile[][] world, ArrayList<Integer> avatarCoor, Random rand, Boolean trial, int numTrial, Long seed){
+    public void whilePlayingTrial(TETile[][] world, ArrayList<Integer> avatarCoor, Random rand, Boolean trial, int numTrial, long seed){
         Character avatar = new Character();
         Boolean playingGame = true;
         TERenderer ter = new TERenderer();
@@ -207,7 +214,7 @@ public class Objectives {
         loadGame.saveIfTrial(true);
 
         Hover mousePointer = new Hover();
-        int numLoops = 0;
+        //int numLoops = 0;
         int numCoinsPickedUpInTrial;
         Objectives objectives = new Objectives();
         ArrayList<Integer> OGCoin1 = loadGame.readOGCoin1("OGCoin1");
@@ -275,8 +282,8 @@ public class Objectives {
                         while (!avatarCoor.isEmpty()) {
                             avatarCoor.remove(0);
                         }
-                        avatarCoor.add(x);
-                        avatarCoor.add(y);
+                        avatarCoor.add(x); //wrong but okay
+                        avatarCoor.add(y); // wrong but okay
                         avatarCoor.add(numCoinsPickedUpInTrial);
                         avatarCoor.add(OGCoins);
                         avatarCoor.add(trialBool);
@@ -290,11 +297,12 @@ public class Objectives {
                     if (numCoinsPickedUpInTrial == 7) {
                         playingGame = false;
                         expectingInput = false;
+                        ArrayList<Integer> avXY = loadGame.readAVCoorWorld();
                         while (!avatarCoor.isEmpty()) {
                             avatarCoor.remove(0);
                         }
-                        avatarCoor.add(x);
-                        avatarCoor.add(y);
+                        avatarCoor.addAll(avXY);
+                        //avatarCoor.add(y);
                         avatarCoor.add(0);
                         avatarCoor.add(OGCoins);
                         avatarCoor.add(0);

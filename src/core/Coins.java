@@ -265,6 +265,8 @@ public class Coins {
 
     public boolean isCoin(TETile[][] world, int x, int y) {
         if (world[x][y] == Tileset.CELL) {
+            SavedGame saveGame = new SavedGame();
+            saveGame.saveAVCoorWorld(x, y);
             //world[x][y] = Tileset.SAND;
             return true;
         }

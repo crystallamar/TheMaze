@@ -36,6 +36,8 @@ public class Character {
         }
 
         public void setAvatarCoor(TETile[][] world, ArrayList<Integer> avatarCoor) {
+            SavedGame save = new SavedGame();
+            //ArrayList<Integer> avCoor = save.readAVCoorWorld();
             world[avatarCoor.getFirst()][avatarCoor.get(1)] = Tileset.AVATAR;
         }
 
@@ -71,13 +73,14 @@ public class Character {
         SavedGame saveGame = new SavedGame();
         if ((input == 'q') || (input == 'Q')) {
             saveGame.createSavedFile(world, avatarCoor, seed, OGCoin1, OGCoin2, OGCoin3, numCoinsPickedUp, false);
-            saveGame.readAvatarCoor("avatarCoor");
+            //saveGame.readAvatarCoor("avatarCoor");
             System.exit(0);
         }
     }
     public void ifExitObjective(char input, TETile[][] world, ArrayList<Integer> avatarCoor, long seed, ArrayList<Integer> OGCoin1, ArrayList<Integer> OGCoin2, ArrayList<Integer> OGCoin3, int numCoinsPickedUp, ArrayList<Integer> trialCoinCoor, ArrayList<Boolean> trialCoinBool) {
         SavedGame saveGame = new SavedGame();
         if ((input == 'q') || (input == 'Q')) {
+            //saveGame.saveAVCoorWorld(avatarCoor.get(0), avatarCoor.get(1));
             saveGame.createSavedFile(world, avatarCoor, seed, OGCoin1, OGCoin2, OGCoin3, numCoinsPickedUp, true);
             saveGame.saveTrialCoinsBool();
             //saveGame.saveTrialCoins(world, trialCoinCoor, numCoinsPickedUp);
@@ -288,6 +291,7 @@ public class Character {
         if (ifSaved) {
             ArrayList<Integer> avatarCoor = save.readAvatarCoor("avatarCoor");
             coinsPickedUp = avatarCoor.get(2);
+            save.saveIfLoadedGame(false);
         }
         if (isCoin){
             coinsPickedUp++;

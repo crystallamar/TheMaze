@@ -41,7 +41,7 @@ public class TitleScreen {
     }
 
     public long onTitlePage(TETile[][] world, int width, int height) {
-
+        SavedGame save = new SavedGame();
         boolean titleOn = true;
         char key;
         Grass grass = new Grass();
@@ -62,6 +62,7 @@ public class TitleScreen {
 
                     seedFromEnterSeed = enterSeed(seed);
                     if (seedFromEnterSeed != 0) {
+                        save.saveSeed(seedFromEnterSeed);
                         return seedFromEnterSeed;
                     }
                 return seedFromEnterSeed;

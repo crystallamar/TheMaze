@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Array;
 import java.util.ArrayList;
 
 
@@ -66,9 +67,10 @@ public class PlayingGame {
         ArrayList<Integer> OGCoin1 = new ArrayList<>();
         ArrayList<Integer> OGCoin2 = new ArrayList<>();
         ArrayList<Integer> OGCoin3 = new ArrayList<>();
-        int avX = avatarCoor.get(0);
-        int avY = avatarCoor.get(1);
+        //int avX = avatarCoor.get(0);
+        //int avY = avatarCoor.get(1);
         Coins coin = new Coins();
+        SavedGame savedGame = new SavedGame();
 
         OGCoin1.add(avatarCoor.get(2));
         OGCoin1.add(avatarCoor.get(3));
@@ -115,8 +117,8 @@ public class PlayingGame {
                         while (!avatarCoor.isEmpty()) {
                             avatarCoor.remove(0);
                         }
-                        avatarCoor.add(avX);
-                        avatarCoor.add(avY);
+                        //avatarCoor.add(avY);
+                        //avatarCoor.add(avY);
                         avatarCoor.add(0);
                         avatarCoor.add(0);
                         avatarCoor.add(0);
@@ -153,16 +155,17 @@ public class PlayingGame {
                             //save.saveFile("World", world);
                             SavedGame saveGame = new SavedGame();
                             saveGame.saveAvatarCoor(avatarCoor);
+                            saveGame.saveAVCoorWorld(avatarCoor.get(0), avatarCoor.get(1));
                             numTrial = avatarCoor.get(3);
                             numLoops = objectives.objectives(world, numTrial, rand, numLoops, x, y, seed);
                             //int newAvatarCoorOGCoins = avatarCoor.get(2) + 1;
-                            avX = avatarCoor.get(0);
-                            avY = avatarCoor.get(1);
+                            //avX = avatarCoor.get(0);
+                            //avY = avatarCoor.get(1);
                             while (!avatarCoor.isEmpty()){
                                 avatarCoor.remove(0);
                             }
-                            avatarCoor.add(avX);
-                            avatarCoor.add(avY);
+                            avatarCoor.add(x);
+                            avatarCoor.add(y);
                             avatarCoor.add(numTrialCoinsPickedUp);
                             avatarCoor.add(numTrial);
                             avatarCoor.add(0);
@@ -172,6 +175,7 @@ public class PlayingGame {
                             avatarCoor.add(OGCoin2.get(1));
                             avatarCoor.add(OGCoin3.get(0));
                             avatarCoor.add(OGCoin3.get(1));
+                            //savedGame.saveAvatarCoor(avatarCoor);
                             //int newAvatarCoorOGCoins = numLoops;
                             //avatarCoor.remove(2);
                             //avatarCoor.add(2, newAvatarCoorOGCoins);
@@ -179,9 +183,18 @@ public class PlayingGame {
                         } else if (numLoops == 7) {
                             numLoops = 0;
                             numTrial++;
+                            ArrayList<Integer> arrayForSecondCoinPickedUp = new ArrayList<>();
+                            int xx = avatarCoor.get(0);
+                            int yy = avatarCoor.get(1);
+                            arrayForSecondCoinPickedUp.add(xx);
+                            arrayForSecondCoinPickedUp.add(yy);
+                            savedGame.saveCoinPickedUpSecond(arrayForSecondCoinPickedUp);
+                            //savedGame.saveAvatarCoor(avatarCoor);
+
                             // RETRIEVE GAME BEFORE TRIAL
                         } else {
                             numLoops = objectives.objectives(world, numTrial, rand, numLoops, x, y, seed);
+                            //savedGame.saveAvatarCoor(avatarCoor);
                         }
 
 

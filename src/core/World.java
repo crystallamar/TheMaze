@@ -109,12 +109,27 @@ public class World implements Serializable {
         Sand addSand = new Sand();
         Character avatar = new Character();
         Coins coins = new Coins();
-        ArrayList<Integer> avatarCoor = new ArrayList<>();
+        //ArrayList<Integer> avatarCoor = new ArrayList<>();
         SavedGame saveGame =  new SavedGame();
         //ArrayList<Integer> coinCoor;
+//        avatarCoor.addAll(saveGame.readAVCoorWorld());
+//        avatarCoor.add(savedAvatarCoor.get(2));
+//        avatarCoor.add(savedAvatarCoor.get(3));
+//        avatarCoor.add(savedAvatarCoor.get(4));
+//        avatarCoor.add(savedAvatarCoor.get(5));
+//        avatarCoor.add(savedAvatarCoor.get(6));
+//        avatarCoor.add(savedAvatarCoor.get(7));
+//        avatarCoor.add(savedAvatarCoor.get(8));
+//        avatarCoor.add(savedAvatarCoor.get(9));
+//        avatarCoor.add(savedAvatarCoor.get(10));
+
+
+
         ArrayList<Integer> coinCoor1 = OGCoin1;
         ArrayList<Integer> coinCoor2 = OGCoin2;
         ArrayList<Integer> coinCoor3 = OGCoin3;
+
+        //ArrayList<Integer> savedAvatarCoorXY = saveGame.readAVCoorWorld();
 
 //        int trialCoinsPickedUp = avatarCoor.get(2);
 //        int trialBool = avatarCoor.get(3);
@@ -138,15 +153,15 @@ public class World implements Serializable {
 
             //coinCoor = coins.generateCoins(world, rand, false, 0);
             if (numOGCoinsPickedUp != 0) {
-                if (numOGCoinsPickedUp == 1) {
-                    ArrayList<Integer> firstCoinPickedUp = saveGame.readFirstCoinPickedUp("firstCoinPickedUp");
-                    world[firstCoinPickedUp.get(0)][firstCoinPickedUp.get(1)] = Tileset.SAND;
-                }
+//                if (numOGCoinsPickedUp == 1) {
+//                    ArrayList<Integer> firstCoinPickedUp = saveGame.readFirstCoinPickedUp("firstCoinPickedUp");
+//                    world[firstCoinPickedUp.get(0)][firstCoinPickedUp.get(1)] = Tileset.SAND;
+//                }
                 if (numOGCoinsPickedUp == 2) {
                     ArrayList<Integer> firstCoinPickedUp = saveGame.readFirstCoinPickedUp("firstCoinPickedUp");
                     world[firstCoinPickedUp.get(0)][firstCoinPickedUp.get(1)] = Tileset.SAND;
-                    ArrayList<Integer> secondCoinPickedUp = saveGame.readSecondCoinPickedUp("secondCoinPickedUp");
-                    world[secondCoinPickedUp.get(0)][secondCoinPickedUp.get(1)] = Tileset.SAND;
+                    //ArrayList<Integer> secondCoinPickedUp = saveGame.readSecondCoinPickedUp("secondCoinPickedUp");
+                    //world[avatarCoor.get(0)][avatarCoor.get(1)] = Tileset.SAND;
                 }
             }
 
@@ -198,15 +213,27 @@ public class World implements Serializable {
         boolean coin5Bool = trialCoinBool.get(4);
         boolean coin6Bool = trialCoinBool.get(5);
 
-
+        //coin.generateCoins(world, rand, true, trialNum);
         coin.placeTrialCoins(world, trialNum, coin1X, coin1Y, coin2X, coin2Y, coin3X, coin3Y, coin4X, coin4Y, coin5X, coin5Y, coin6X, coin6Y);
-        //coin.removeTrialCoinsPickedUp(world, trialCoinCoor, coin1Bool, coin2Bool, coin3Bool, coin4Bool, coin5Bool, coin6Bool);
+        coin.removeTrialCoinsPickedUp(world, trialCoinCoor, coin1Bool, coin2Bool, coin3Bool, coin4Bool, coin5Bool, coin6Bool);
 
         avatar.setAvatarCoor(world, avatarCoor);
         //objective.whilePlayingTrial(world, avatarCoor, rand, true, trialNum, seed);
         //ter.renderFrame(world);
         return world;
     }
+
+    public void callObjectivePlayGame(TETile[][] world, ArrayList<Integer> avatarCoor, Boolean trial, int numTrial, long seed) {
+        Random rand = this.rand;
+        Objectives objective = new Objectives();
+        PlayingGame playGame = new PlayingGame();
+
+        objective.whilePlayingTrial(world, avatarCoor, rand, trial, numTrial, seed);
+        if (numTrial != 3){
+            playGame.playingGame(world, avatarCoor, rand, false, numTrial, seed, 0, 0);
+        }
+    }
+
 
 }
 

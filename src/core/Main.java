@@ -39,6 +39,8 @@ public class Main {
         PlayingGame playingGame = new PlayingGame();
         ArrayList<Integer> avatarCoor = new ArrayList<>();
         EndGame endGame = new EndGame();
+        SavedGame loadGame = new SavedGame();
+
 
 
         titleScreen.generateTitleScreen(world, WIDTH, HEIGHT);
@@ -47,13 +49,11 @@ public class Main {
 
 
         if (seed == 'a') {
-            SavedGame loadGame = new SavedGame();
-            Objectives objective = new Objectives();
 
             loadGame.saveIfLoadedGame(true);
             world = loadGame.openSavedFile();
             ter.renderFrame(world);
-            Random rand = objective.getRand();
+            //Random rand = objective.getRand();
             seed = loadGame.readSeed("seed");
             World updatedWorld = new World(seed);
             avatarCoor = loadGame.readAvatarCoor("avatarCoor");
@@ -69,8 +69,9 @@ public class Main {
             if (!ifTrial) {
                 updatedWorld.callPlayGame(world, avatarCoor, seed, numTrial, trialCoinsPickedUp, trialBool);
             }
-            else{
-                objective.whilePlayingTrial(world, avatarCoor, rand, true, numTrial, seed);
+            else
+            {
+                updatedWorld.callObjectivePlayGame(world, avatarCoor, true, numTrial, seed);
             }
             //world = updatedWorld.generateSavedWorld(world, avatarCoor, OGCoin1, OGCoin2, OGCoin3, trialCoinsPickedUp, trialBool, numOGCoins);
             //ter.renderFrame(world);

@@ -111,9 +111,10 @@ public boolean endObjective(TETile[][] world, int trialNum) {
         World genWorld = new World(seed);
         Grass genGrass = new Grass();
         genGrass.generateGrass(world, 94, 55);
-        genWorld.generateWorld(world, seed, 94, 55);
+        //genWorld.generateWorld(world, seed, 94, 55);
         ArrayList<Integer> avatarCoor = retrieveGame.readAvatarCoor("avatarCoor");
-        avatar.setAvatarCoor(world, avatarCoor);
+        ArrayList<Integer> avXY = retrieveGame.readAVCoorWorld();
+        avatar.setAvatarCoor(world, avXY);
         ArrayList<Integer> OGavatarCoor = retrieveGame.readOGAvCoor("OGAvCoor");
         ArrayList<Integer> OGCoin1;
         ArrayList<Integer> OGCoin2;
@@ -126,10 +127,26 @@ public boolean endObjective(TETile[][] world, int trialNum) {
         OGCoin1 = retrieveGame.readOGCoin1("OGCoin1");
         OGCoin2 = retrieveGame.readOGCoin2("OGCoin2");
         OGCoin3 = retrieveGame.readOGCoin3("OGCoin3");
-        ArrayList<Integer> avCoorXY = new ArrayList<>();
-        avCoorXY.add(avatarCoor.get(0));
-        avCoorXY.add(avatarCoor.get(1));
+       // ArrayList<Integer> avCoorXY = new ArrayList<>();
+        //avCoorXY.add(avatarCoor.get(0));
+        //avCoorXY.add(avatarCoor.get(1));
+        int trialCoinsPickedUp = avatarCoor.get(2);
+        int OGCoins = avatarCoor.get(3);
+        int boolTrial = avatarCoor.get(4);
+        while (!avatarCoor.isEmpty()){
+            avatarCoor.remove(0);
+        }
+        avatarCoor.add(avXY.get(0));
+        avatarCoor.add(avXY.get(1));
+        avatarCoor.add(trialCoinsPickedUp);
+        avatarCoor.add(OGCoins);
+        avatarCoor.add(boolTrial);
+        avatarCoor.addAll(OGCoin1);
+        avatarCoor.addAll(OGCoin2);
+        avatarCoor.addAll(OGCoin3);
 
+
+        genWorld.generateSavedWorld(world, avatarCoor, OGCoin1, OGCoin2, OGCoin3, trialCoinsPickedUp, boolTrial, OGCoins);
 
 
 
@@ -137,7 +154,7 @@ public boolean endObjective(TETile[][] world, int trialNum) {
 //        int first = 0;
 //
         if (trialNum == 1) {
-            if (OGCoin1.equals(avCoorXY)) {
+            if (OGCoin1.equals(avXY)) {
                 retrieveGame.saveCoinPickedUpFirst(OGCoin1); // Save first coin coor
                 //firstCoinPickedUp = retrieveGame.readFirstCoinPickedUp("FirstCoinPickedUp"); //
                 avatar.removeOGCoin(world,OGCoin1);
@@ -152,7 +169,7 @@ public boolean endObjective(TETile[][] world, int trialNum) {
             // Store Coor if picked up
 //
 
-            else if (OGCoin2.equals(avCoorXY)) {
+            else if (OGCoin2.equals(avXY)) {
                 retrieveGame.saveCoinPickedUpFirst(OGCoin2);
                 //firstCoinPickedUp = retrieveGame.readFirstCoinPickedUp("FirstCoinPickedUp");
                 avatar.removeOGCoin(world,OGCoin2);
@@ -164,7 +181,7 @@ public boolean endObjective(TETile[][] world, int trialNum) {
 //            whichCoin = 2;
 //
             }
-            else if (OGCoin3.equals(avCoorXY)) {
+            else if (OGCoin3.equals(avXY)) {
                 retrieveGame.saveCoinPickedUpFirst(OGCoin3);
                 //firstCoinPickedUp = retrieveGame.readFirstCoinPickedUp("FirstCoinPickedUp");
                 avatar.removeOGCoin(world,OGCoin3);
@@ -175,24 +192,29 @@ public boolean endObjective(TETile[][] world, int trialNum) {
 //            whichCoin = 3;
 //            first++;
         }
-        else if (trialNum == 2) {
-            if (OGCoin1.equals(avCoorXY)) {
+        else if (trialNum == 2) {//NOT SURE NEEDED
+            if (OGCoin1.equals(avXY)) {
                 firstCoinPickedUp = retrieveGame.readFirstCoinPickedUp("FirstCoinPickedUp");
                 avatar.removeOGCoin(world,firstCoinPickedUp);
+                retrieveGame.saveCoinPickedUpSecond(OGCoin1);
                 avatar.removeOGCoin(world, OGCoin1);
                 avatar.setAvatarCoor(world, avatarCoor);
             }
 
-            if (OGCoin2.equals(avCoorXY)) {
+            if (OGCoin2.equals(avXY)) {
                 firstCoinPickedUp = retrieveGame.readFirstCoinPickedUp("FirstCoinPickedUp");
                 avatar.removeOGCoin(world,firstCoinPickedUp);
+                retrieveGame.saveCoinPickedUpSecond(OGCoin2);
+
                 avatar.removeOGCoin(world, OGCoin2);
                 avatar.setAvatarCoor(world, avatarCoor);
 
             }
-            if (OGCoin3.equals(avCoorXY)) {
+            if (OGCoin3.equals(avXY)) {
                 firstCoinPickedUp = retrieveGame.readFirstCoinPickedUp("FirstCoinPickedUp");
                 avatar.removeOGCoin(world,firstCoinPickedUp);
+                retrieveGame.saveCoinPickedUpSecond(OGCoin3);
+
                 avatar.removeOGCoin(world, OGCoin3);
                 avatar.setAvatarCoor(world, avatarCoor);
 

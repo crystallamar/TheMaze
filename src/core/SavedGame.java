@@ -8,6 +8,7 @@ import tileengine.Tileset;
 import utils.FileUtils;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class SavedGame {
@@ -286,7 +287,7 @@ public class SavedGame {
         stringCoor += " ";
         stringCoor += Integer.toString(yCoor);
 
-        FileUtils.writeFile("SecondCoinPickedUp", stringCoor);
+        FileUtils.writeFile("secondCoinPickedUp", stringCoor);
     }
     public ArrayList<Integer> readSecondCoinPickedUp(String fileName) {
         ArrayList<Integer> secondCoin = new ArrayList<>();
@@ -685,7 +686,23 @@ public class SavedGame {
         return bool;
     }
 
+    public void saveAVCoorWorld(int x, int y) {
+        String sX = Integer.toString(x);
+        String sY = Integer.toString(y);
+        String s = sX + " " + sY;
+        FileUtils.writeFile("worldAvCoor", s);
+    }
 
+    public ArrayList<Integer> readAVCoorWorld() {
+        String s = FileUtils.readFile("worldAvCoor");
+        String[] sArray = s.split(" ");
+        int x = Integer.parseInt(sArray[0]);
+        int y = Integer.parseInt(sArray[1]);
+        ArrayList<Integer> array = new ArrayList<>();
+        array.add(x);
+        array.add(y);
+        return array;
+    }
 
 }
 
