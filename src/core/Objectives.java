@@ -67,7 +67,7 @@ public class Objectives {
         ArrayList<Integer> avatarCoor = newAvatar.generateAvatar(world, rand);
         ter.renderFrame(world);
 
-        whilePlayingTrial(world, avatarCoor, rand, false, 1, seed);
+        whilePlayingTrial(world, avatarCoor, rand, true, 1, seed);
         //trial1Colors(world, avatarCoor.getFirst(), avatarCoor.get(1));
 
 
@@ -89,7 +89,7 @@ public class Objectives {
         ArrayList<Integer> avatarCoor = newAvatar.generateAvatar(world, rand);
         ter.renderFrame(world);
 
-        whilePlayingTrial(world, avatarCoor, rand, false, 2, seed);
+        whilePlayingTrial(world, avatarCoor, rand, true, 2, seed);
     }
 
     public void objective3(TETile[][] world, Random rand, long seed) {
@@ -106,7 +106,7 @@ public class Objectives {
         ArrayList<Integer> avatarCoor = newAvatar.generateAvatar(world, rand);
         ter.renderFrame(world);
 
-        whilePlayingTrial(world, avatarCoor, rand, false, 3, seed);
+        whilePlayingTrial(world, avatarCoor, rand, true, 3, seed);
         endGame.callEndGame(world);
     }
 
@@ -272,7 +272,7 @@ public class Objectives {
                         }
                         avatarCoor.add(x);
                         avatarCoor.add(y);
-                        avatarCoor.add(1);
+                        avatarCoor.add(0);
                         avatarCoor.add(OGCoins);
                         avatarCoor.add(0);
                         avatarCoor.add(OGCoin1.get(0));
@@ -281,6 +281,7 @@ public class Objectives {
                         avatarCoor.add(OGCoin2.get(1));
                         avatarCoor.add(OGCoin3.get(0));
                         avatarCoor.add(OGCoin3.get(1));
+                        //trialBool = 0;
 
 
 

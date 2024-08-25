@@ -155,7 +155,7 @@ public class PlayingGame {
                             saveGame.saveAvatarCoor(avatarCoor);
                             numTrial = avatarCoor.get(3);
                             numLoops = objectives.objectives(world, numTrial, rand, numLoops, x, y, seed);
-                            int newAvatarCoorOGCoins = avatarCoor.get(2) + 1;
+                            //int newAvatarCoorOGCoins = avatarCoor.get(2) + 1;
                             avX = avatarCoor.get(0);
                             avY = avatarCoor.get(1);
                             while (!avatarCoor.isEmpty()){
@@ -165,7 +165,7 @@ public class PlayingGame {
                             avatarCoor.add(avY);
                             avatarCoor.add(numTrialCoinsPickedUp);
                             avatarCoor.add(numTrial);
-                            avatarCoor.add(trialBool);
+                            avatarCoor.add(0);
                             avatarCoor.add(OGCoin1.get(0));
                             avatarCoor.add(OGCoin1.get(1));
                             avatarCoor.add(OGCoin2.get(0));
