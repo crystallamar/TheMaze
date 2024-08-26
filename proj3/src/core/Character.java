@@ -27,18 +27,17 @@ public class Character {
                 world[randX][randY] = Tileset.AVATAR;
                 placeCharacter = true;
             }
-        }
-        while (!placeCharacter);
-            avatarCoor.add(randX);
-            avatarCoor.add(randY);
+        } while (!placeCharacter);
+        avatarCoor.add(randX);
+        avatarCoor.add(randY);
 
-            return avatarCoor;
-        }
+        return avatarCoor;
+    }
 
-        public void setAvatarCoor(TETile[][] world, ArrayList<Integer> avatarCoor) {
-            SavedGame save = new SavedGame();
-            world[avatarCoor.get(0)][avatarCoor.get(1)] = Tileset.AVATAR;
-        }
+    public void setAvatarCoor(TETile[][] world, ArrayList<Integer> avatarCoor) {
+        SavedGame save = new SavedGame();
+        world[avatarCoor.get(0)][avatarCoor.get(1)] = Tileset.AVATAR;
+    }
 
     public ArrayList<Integer> moveChar(char input, TETile[][] world, ArrayList<Integer> avatarCoor, Random rand,
                                        Boolean trial, int OGCoins, long seed) {
@@ -58,9 +57,8 @@ public class Character {
         }
         if (input == 'd') {
             avatarCoor = moveCharRight(world, avatarCoor, rand, trial, trialNum, seed);
-
         }
-//
+
         return avatarCoor;
     }
 
@@ -73,6 +71,7 @@ public class Character {
             System.exit(0);
         }
     }
+
     public void ifExitObjective(char input, TETile[][] world, ArrayList<Integer> avatarCoor, long seed,
                                 ArrayList<Integer> OGCoin1, ArrayList<Integer> OGCoin2, ArrayList<Integer> OGCoin3,
                                 int numCoinsPickedUp, ArrayList<Integer> trialCoinCoor,
@@ -86,16 +85,11 @@ public class Character {
         }
     }
 
-
     public ArrayList<Integer> moveCharUp(TETile[][] world, ArrayList<Integer> avatarCoor, Random rand, Boolean trial,
                                          int trialNum, long seed) {
-
-
         int xCoor = avatarCoor.get(0);
         int yCoor = avatarCoor.get(1);
         int numCoinsPickedUp;
-
-
 
         ArrayList<Integer> avatarPickedUpCoinArray = avatarPickedUpCoin(world, xCoor, yCoor + 1, rand, trial,
                 trialNum, seed);
@@ -273,7 +267,7 @@ public class Character {
             coinsPickedUp = avatarCoor.get(2);
             save.saveIfLoadedGame(false);
         }
-        if (isCoin){
+        if (isCoin) {
             coinsPickedUp++;
         }
         int whichCoin = coins.removeCoin(world, x, y);
@@ -285,25 +279,21 @@ public class Character {
                     numCoinsAndBool.add(0);
                     numCoinsAndBool.add(OGCoins);
 
-            }
-            else {
+            } else {
                 numCoinsAndBool.add(coinsPickedUp);
                 numCoinsAndBool.add(1);
                 numCoinsAndBool.add(OGCoins);
             }
-        }
-        else if (!isCoin && trial){
+        } else if (!isCoin && trial) {
             numCoinsAndBool.add(coinsPickedUp);
             numCoinsAndBool.add(1);
             numCoinsAndBool.add(OGCoins);
-        }
-        else if (isCoin && !trial) {
+        } else if (isCoin && !trial) {
             numCoinsAndBool.add(0);
             numCoinsAndBool.add(1);
             OGCoins++;
             numCoinsAndBool.add(OGCoins);
-        }
-        else { //Not a coin and !trial
+        } else { //Not a coin and !trial
             numCoinsAndBool.add(coinsPickedUp);
             numCoinsAndBool.add(0);
             numCoinsAndBool.add(OGCoins);

@@ -43,8 +43,7 @@ public class Hover {
             StdDraw.setPenColor(Color.green);
             StdDraw.text(7, 52, "Avatar");
             StdDraw.show();
-        }
-        else if (area == "Out of bounds") {
+        } else if (area == "Out of bounds") {
             StdDraw.setPenColor(Color.black);
             StdDraw.filledRectangle(7, 52, 6, 2);
             StdDraw.setPenColor(Color.green);
@@ -78,8 +77,7 @@ public class Hover {
                 mouseCoor.add(mouseXCoor);
                 mouseCoor.add(mouseYCoor);
                 return mouseCoor;
-            }
-            else {
+            } else {
                 mouseCoor.add(0);
                 mouseCoor.add(0);
                 return mouseCoor;
@@ -94,8 +92,7 @@ public class Hover {
 
         if (xCoor == 0 && yCoor == 0) {
             return "Out of bounds";
-        }
-        else {
+        } else {
             if (world[xCoor][yCoor] == Tileset.SAND) {
                 return "Sand";
             }
@@ -110,14 +107,12 @@ public class Hover {
             }
             if (world[xCoor][yCoor] == Tileset.GRASS) {
                 return "Grass";
-            }
-
-            else {
+            } else {
                 return "Still need to write";
             }
         }
     }
-    }
+}
 
 
 

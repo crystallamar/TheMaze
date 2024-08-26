@@ -32,8 +32,7 @@ public class PlayingGame {
             OGCoin2.add(avatarCoor.get(8));
             OGCoin3.add(avatarCoor.get(9));
             OGCoin3.add(avatarCoor.get(10));
-        }
-        else {
+        } else {
             OGCoin1.add(avatarCoor.get(2));
             OGCoin1.add(avatarCoor.get(3));
             OGCoin2.add(avatarCoor.get(4));
@@ -111,8 +110,7 @@ public class PlayingGame {
                     numTrial = avatarCoor.get(3);
                     if (trialBool == 0) {
                         trial = false; // if numCoins == 0, don't call objective
-                    }
-                    else if (didCharMove) {
+                    } else if (didCharMove) {
                         trial = true;
                         //numCoins = avatarCoor.get(2);
                         if (numLoops == 0) {

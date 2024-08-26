@@ -19,8 +19,7 @@ public class Coins {
         int numCoinsTotal;
         if (!trial) {
             numCoinsTotal = 3;
-        }
-        else {
+        } else {
             numCoinsTotal = 6;
             toSaveTrialCoins = 6;
         }
@@ -57,8 +56,7 @@ public class Coins {
                 world[x][y] = Tileset.CELL;
                 placedCoin = true;
             }
-        }
-        else if (trialNum ==1 ){
+        } else if (trialNum ==1 ){
                 if (numCoinsTotal == 1) {
                     if (world[x][y] == Tileset.SAND) {
                         world[x][y] = Tileset.CELLRED;
@@ -96,8 +94,7 @@ public class Coins {
                     }
                 }
 
-        }
-        else if (trialNum == 2) {
+        } else if (trialNum == 2) {
             if (numCoinsTotal == 1) {
                 if (world[x][y] == Tileset.SAND) {
                     world[x][y] = Tileset.num1;
@@ -135,8 +132,7 @@ public class Coins {
             }
 
 
-        }
-        else if (trialNum == 3) {
+        } else if (trialNum == 3) {
             if (numCoinsTotal == 1) {
                 if (world[x][y] == Tileset.SAND) {
                     world[x][y] = Tileset.letterA;
@@ -266,67 +262,42 @@ public class Coins {
             SavedGame saveGame = new SavedGame();
             saveGame.saveAVCoorWorld(x, y);
             return true;
-        }
-        else if (world[x][y] == Tileset.CELLRED) {
+        } else if (world[x][y] == Tileset.CELLRED) {
             return true;
-        }
-        else if (world[x][y] == Tileset.CELLOrange) {
+        } else if (world[x][y] == Tileset.CELLOrange) {
             return true;
-        }
-        else if (world[x][y] == Tileset.CELLYellow) {
+        } else if (world[x][y] == Tileset.CELLYellow) {
             return true;
-        }
-        else if (world[x][y] == Tileset.CELLGreen) {
+        } else if (world[x][y] == Tileset.CELLGreen) {
             return true;
-        }
-
-        else if (world[x][y] == Tileset.CELLBlue) {
+        } else if (world[x][y] == Tileset.CELLBlue) {
             return true;
-        }
-
-        else if (world[x][y] == Tileset.CELLViolet) {
+        } else if (world[x][y] == Tileset.CELLViolet) {
             return true;
-        }
-        else if (world[x][y] == Tileset.num1) {
+        } else if (world[x][y] == Tileset.num1) {
             return true;
-        }
-        else if (world[x][y] == Tileset.num2) {
+        } else if (world[x][y] == Tileset.num2) {
             return true;
-        }
-        else if (world[x][y] == Tileset.num3) {
+        } else if (world[x][y] == Tileset.num3) {
             return true;
-        }
-        else if (world[x][y] == Tileset.num4) {
+        } else if (world[x][y] == Tileset.num4) {
             return true;
-        }
-
-        else if (world[x][y] == Tileset.num5) {
+        } else if (world[x][y] == Tileset.num5) {
             return true;
-        }
-
-        else if (world[x][y] == Tileset.num6) {
+        } else if (world[x][y] == Tileset.num6) {
             return true;
-        }
-        else if (world[x][y] == Tileset.letterA) {
+        } else if (world[x][y] == Tileset.letterA) {
             return true;
-        }
-        else if (world[x][y] == Tileset.letterB) {
+        } else if (world[x][y] == Tileset.letterB) {
             return true;
-        }
-        else if (world[x][y] == Tileset.letterC) {
+        } else if (world[x][y] == Tileset.letterC) {
             return true;
-        }
-        else if (world[x][y] == Tileset.letterD) {
+        } else if (world[x][y] == Tileset.letterD) {
             return true;
-        }
-
-        else //world[x][y] = Tileset.SAND;
+        } else //world[x][y] = Tileset.SAND;
             if (world[x][y] == Tileset.letterE) {
-
-            return true;
-        }
-
-        else return world[x][y] == Tileset.letterF;
+                return true;
+        } else {return world[x][y] == Tileset.letterF;}
     }
 
     public void generateSavedCoins(TETile[][] world, ArrayList<Integer> OGCoin1, ArrayList<Integer> OGCoin2,
@@ -455,5 +426,4 @@ public class Coins {
             coin.removeCoin(world, sixX, sixY);
         }
     }
-
 }
