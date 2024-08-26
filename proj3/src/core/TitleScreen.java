@@ -1,22 +1,14 @@
 package core;
 
 import edu.princeton.cs.algs4.StdDraw;
-import org.antlr.v4.runtime.misc.Utils;
 import tileengine.TETile;
-import tileengine.Tileset;
 import tileengine.TERenderer;
-import utils.FileUtils;
-
 import java.awt.*;
 import java.io.*;
-import java.nio.file.Files;
-import java.util.ArrayList;
-
 
 public class TitleScreen {
     TERenderer ter = new TERenderer();
     long seed = System.currentTimeMillis();
-
 
     public void generateTitleScreen(TETile[][] world, int width, int height) {
         Grass grass = new Grass();
@@ -29,14 +21,12 @@ public class TitleScreen {
         StdDraw.filledSquare(47, 20, 5);
         StdDraw.filledSquare(72, 20, 5);
 
-
         StdDraw.setPenColor(Color.green);
         StdDraw.text(22, 20, "Load Game: L");
         StdDraw.text(47, 20, "New Game: N");
         StdDraw.text(72, 20, "Quit: Q");
 
         StdDraw.show();
-
     }
 
     public long onTitlePage(TETile[][] world, int width, int height) {
@@ -89,16 +79,13 @@ public class TitleScreen {
         String stringKey = "";
         //char prevKey = '0';
 
-
         while (enteringSeed) {
             if (StdDraw.hasNextKeyTyped()) {
                 key = StdDraw.nextKeyTyped();
                 if ((key != 's') || (key != 'S')) {
-
                     if (java.lang.Character.isDigit(key)) {
-//                        seedToReturn = prevKey + key;
-//                        prevKey = key;
-
+                        // seedToReturn = prevKey + key;
+                        // prevKey = key;
                         stringKey += String.valueOf(key);
                         StdDraw.setPenColor(Color.white);
                         StdDraw.filledRectangle(45, 25, 20, 10);
@@ -107,7 +94,6 @@ public class TitleScreen {
                         StdDraw.text(45, 25, stringKey);
                         StdDraw.show();
                     }
-
                 }
                 if ((key == 's') || (key == 'S')) {
                     if (stringKey != "") {
@@ -118,7 +104,6 @@ public class TitleScreen {
             }
         }
 
-
         try {
             ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("Seed.data"));
             output.writeLong(seedToReturn);
@@ -128,14 +113,10 @@ public class TitleScreen {
         }
 
         return seedToReturn;
-
     }
 
     public String forAutoGrader() {
         long seedToConvert = enterSeed(seed);
         return Long.toString(seedToConvert);
-
-
     }
-
 }

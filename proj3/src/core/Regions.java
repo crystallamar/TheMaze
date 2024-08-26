@@ -1,6 +1,5 @@
 package core;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -9,7 +8,8 @@ public class Regions {
     RandomGenerator randGen = new RandomGenerator();
 
     // Generate Region generates a region for any purpose (i.e. size of rooms, mountains, flowewrs, etc.)
-    public ArrayList<Integer> generateRegion(Random random, ArrayList<Integer> worldRegion, int xRand, int yRand, int plus) {
+    public ArrayList<Integer> generateRegion(Random random, ArrayList<Integer> worldRegion, int xRand, int yRand,
+                                             int plus) {
         ArrayList<Integer> regionBuilt = new ArrayList<>();
 
         int x1 = randGen.generateXCoorInReg(random, worldRegion);
@@ -41,9 +41,7 @@ public class Regions {
         center.add(centerY);
 
         return center;
-
     }
-
 
     public ArrayList<Integer> worldRegion1() {
         ArrayList<Integer> reg1 = new ArrayList<>();
@@ -51,7 +49,6 @@ public class Regions {
         int reg1Bottom = 20;
         int reg1Right = 25;
         int reg1Top = 40;
-
 
         reg1.add(reg1Left);
         reg1.add(reg1Bottom);
@@ -78,13 +75,11 @@ public class Regions {
     }
 
     public ArrayList<Integer> worldRegion3() {
-
         ArrayList<Integer> reg3 = new ArrayList<>();
         int reg3Left = 26; //31
         int reg3Bottom = 20; //23
         int reg3Right = 50; // 60
         int reg3Top = 40; // 54
-
 
         reg3.add(reg3Left);
         reg3.add(reg3Bottom);
@@ -95,7 +90,6 @@ public class Regions {
     }
 
     public ArrayList<Integer> worldRegion4() {
-
         ArrayList<Integer> reg4 = new ArrayList<>();
         int reg4Left = 26; //31
         int reg4Bottom = 5; //0
@@ -161,8 +155,6 @@ public class Regions {
         return arrayOfRegions;
 
     }
-
-
 
     public ArrayList<Integer> mountainLeftWall() {
         ArrayList<Integer> mountainWall = new ArrayList<>();

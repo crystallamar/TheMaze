@@ -1,36 +1,24 @@
 package core;
 
-import edu.princeton.cs.algs4.In;
-import org.antlr.v4.runtime.misc.Utils;
-import org.reflections.vfs.Vfs;
 import tileengine.TETile;
 import tileengine.Tileset;
 import utils.FileUtils;
-
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class SavedGame {
-    //File saveFile = new File();
     FileUtils fileUtils = new FileUtils();
-
-
     public static final String savedGameDirectory = (new File(System.getProperty("user.dir")).getPath());
-    //String saveFile = files.readFile("savedGame.txt");
-    //String savedGame = savedGameDirectory + saveFile;
 
-
-    public void createSavedFile (TETile[][] world, ArrayList<Integer> avatarCoor, long seed, ArrayList<Integer> OGCoin1, ArrayList<Integer> OGCoin2, ArrayList<Integer> OGCoin3, int numOGCoinsPickedUp, boolean trial) {
+    public void createSavedFile (TETile[][] world, ArrayList<Integer> avatarCoor, long seed,
+                                 ArrayList<Integer> OGCoin1, ArrayList<Integer> OGCoin2, ArrayList<Integer> OGCoin3,
+                                 int numOGCoinsPickedUp, boolean trial) {
         saveSeed(seed);
         saveAvatarCoor(avatarCoor);
         saveOGCoin1(OGCoin1);
         saveOGCoin2(OGCoin2);
         saveOGCoin3(OGCoin3);
         saveNumOGCoinsPickedUp(numOGCoinsPickedUp);
-
-
-
     }
 
     public TETile[][] openSavedFile() {
@@ -54,27 +42,24 @@ public class SavedGame {
         //Trial Num
 
         if (!ifTrial) {
-            world = genWorld.generateSavedWorld(world, avatarCoor, OGCoin1, OGCoin2, OGCoin3, trialCoinsPickedUp, trialBool, numOGCoins);
+            world = genWorld.generateSavedWorld(world, avatarCoor, OGCoin1, OGCoin2, OGCoin3, trialCoinsPickedUp,
+                    trialBool, numOGCoins);
             coin.removeCoin(world, firstCoinPickedUp.get(0), firstCoinPickedUp.get(1));
             if (numOGCoins == 2) {
                 ArrayList<Integer> secondCoindPickedUp = readSecondCoinPickedUp("secondCoinPickedUp");
                 coin.removeCoin(world, secondCoindPickedUp.get(0), secondCoindPickedUp.get(1));
             }
             return world;
-        }
-        else if (ifTrial) {
+        } else if (ifTrial) {
             world = genWorld.generateTrialWorld(world, seed);
             return world;
         }
-
         return world;
-
     }
 
     public void saveSeed(long seed) {
         String seedString = Long.toString(seed);
         FileUtils.writeFile("seed", seedString);
-
     }
 
     public long readSeed(String fileName) {
@@ -109,47 +94,13 @@ public class SavedGame {
         String sOGCOIN3X = Integer.toString(OGCoin3X);
         String sOGCOIN3Y = Integer.toString(OGCoin3Y);
 
-        String stringCoor = sXCoor + " " + sYCoor + " " + sTrialCoinsPickedUp + " " + sTrialBool + " " + sNumOGCoins + " " + sOGCOIN1X + " " + sOGCOIN1Y + " " + sOGCOIN2X + " " + sOGCOIN2Y + " " + sOGCOIN3X + " " + sOGCOIN3Y;
-
-
-//        String stringCoor = Integer.toString(xCoor);
-//        stringCoor += " ";
-//
-//        stringCoor += Integer.toString(yCoor);
-//        stringCoor += " ";
-//
-//        stringCoor = Integer.toString(trialCoinsPickedUp);
-//        stringCoor += " ";
-//
-//        stringCoor += Integer.toString(trialBool);
-//        stringCoor += " ";
-//
-//        stringCoor = Integer.toString(numOGCoins);
-//        stringCoor += " ";
-//
-//        stringCoor += Integer.toString(OGCoin1X);
-//        stringCoor += " ";
-//
-//        stringCoor = Integer.toString(OGCoin1Y);
-//        stringCoor += " ";
-//
-//        stringCoor += Integer.toString(OGCoin2X);
-//        stringCoor += " ";
-//
-//        stringCoor += Integer.toString(OGCoin2Y);
-//        stringCoor += " ";
-//
-//        stringCoor += Integer.toString(OGCoin3X);
-//        stringCoor += " ";
-//
-//        stringCoor += Integer.toString(OGCoin3Y);
-
-
-
-
+        String stringCoor = sXCoor + " " + sYCoor + " " + sTrialCoinsPickedUp + " " + sTrialBool + " "
+                + sNumOGCoins + " " + sOGCOIN1X + " " + sOGCOIN1Y + " " + sOGCOIN2X + " " + sOGCOIN2Y
+                + " " + sOGCOIN3X + " " + sOGCOIN3Y;
 
         FileUtils.writeFile("avatarCoor", stringCoor);
     }
+
     public ArrayList<Integer> readAvatarCoor(String fileName) {
         ArrayList<Integer> avatarCoor = new ArrayList<>();
         String stringAvatarCoor = FileUtils.readFile(fileName);
@@ -168,7 +119,6 @@ public class SavedGame {
         int OGCoin3X = Integer.parseInt(stringArray[9]);
         int OGCoin3Y = Integer.parseInt(stringArray[10]);
 
-
         avatarCoor.add(xCoor);
         avatarCoor.add(yCoor);
         avatarCoor.add(trialCoinsPickedUp);
@@ -180,7 +130,6 @@ public class SavedGame {
         avatarCoor.add(OGCoin2Y);
         avatarCoor.add(OGCoin3X);
         avatarCoor.add(OGCoin3Y);
-
 
         return avatarCoor;
     }
@@ -194,6 +143,7 @@ public class SavedGame {
 
         FileUtils.writeFile("OGAvCoor", stringCoor);
     }
+
     public ArrayList<Integer> readOGAvCoor(String fileName) {
         ArrayList<Integer> OGavatarCoor = new ArrayList<>();
         String stringAvatarCoor = FileUtils.readFile(fileName);
@@ -214,6 +164,7 @@ public class SavedGame {
 
         FileUtils.writeFile("OGCoin1", stringCoor);
     }
+
     public ArrayList<Integer> readOGCoin1(String fileName) {
         ArrayList<Integer> OGCoin1 = new ArrayList<>();
         String stringAvatarCoor = FileUtils.readFile(fileName);
@@ -234,6 +185,7 @@ public class SavedGame {
 
         FileUtils.writeFile("OGCoin2", stringCoor);
     }
+
     public ArrayList<Integer> readOGCoin2(String fileName) {
         ArrayList<Integer> OGCoin2 = new ArrayList<>();
         String stringAvatarCoor = FileUtils.readFile(fileName);
@@ -244,6 +196,7 @@ public class SavedGame {
         OGCoin2.add(yCoor);
         return OGCoin2;
     }
+
     public void saveOGCoin3(ArrayList<Integer> coin3Coor) {
         int xCoor = coin3Coor.get(0);
         int yCoor = coin3Coor.get(1);
@@ -253,6 +206,7 @@ public class SavedGame {
 
         FileUtils.writeFile("OGCoin3", stringCoor);
     }
+
     public ArrayList<Integer> readOGCoin3(String fileName) {
         ArrayList<Integer> OGCoin3 = new ArrayList<>();
         String stringAvatarCoor = FileUtils.readFile(fileName);
@@ -273,6 +227,7 @@ public class SavedGame {
 
         FileUtils.writeFile("FirstCoinPickedUp", stringCoor);
     }
+
     public ArrayList<Integer> readFirstCoinPickedUp(String fileName) {
         ArrayList<Integer> firstCoin = new ArrayList<>();
         String stringAvatarCoor = FileUtils.readFile(fileName);
@@ -293,6 +248,7 @@ public class SavedGame {
 
         FileUtils.writeFile("secondCoinPickedUp", stringCoor);
     }
+
     public ArrayList<Integer> readSecondCoinPickedUp(String fileName) {
         ArrayList<Integer> secondCoin = new ArrayList<>();
         String stringAvatarCoor = FileUtils.readFile(fileName);
@@ -304,13 +260,8 @@ public class SavedGame {
         return secondCoin;
     }
 
-
-
-
-
     public void saveNumOGCoinsPickedUp(int num) {
         String stringCoor = Integer.toString(num);
-
         FileUtils.writeFile("numOGCoinsPickedUp", stringCoor);
     }
 
@@ -321,8 +272,6 @@ public class SavedGame {
     }
 
     public void saveTrialCoinsPosition(TETile[][] world, ArrayList<Integer> trialCoins, int trialNum) {
-
-
         boolean trialRedCoin = false;
         boolean trialOrangeCoin= false;
         boolean trialYellowCoin = false;
@@ -343,197 +292,249 @@ public class SavedGame {
         int trialCoin6X = 0;
         int trialCoin6Y = 0;
 
-
-        while(!trialRedCoin) {
-//            for (int i = 0; i < 94; i++) {
-//                for (int x = 0; x < 55; x++) {
-//
-//                }
-//            }
-            if (world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.CELLRED || world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.num1 || world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.letterA) {
+        while (!trialRedCoin) {
+            if (world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.CELLRED
+                    || world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.num1
+                    || world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.letterA) {
                 trialCoin1X = trialCoins.get(0);
                 trialCoin1Y = trialCoins.get(1);
                 trialRedCoin = true;
-            } else if (world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.CELLRED || world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.num1 || world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.letterA) {
+            } else if (world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.CELLRED
+                    || world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.num1
+                    || world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.letterA) {
                 trialCoin1X = trialCoins.get(2);
                 trialCoin1Y = trialCoins.get(3);
                 trialRedCoin = true;
-            } else if (world[trialCoins.get(4)][trialCoins.get(5)] == Tileset.CELLRED || world[trialCoins.get(4)][trialCoins.get(5)] == Tileset.num1 || world[trialCoins.get(4)][trialCoins.get(5)] == Tileset.letterA) {
+            } else if (world[trialCoins.get(4)][trialCoins.get(5)] == Tileset.CELLRED
+                    || world[trialCoins.get(4)][trialCoins.get(5)] == Tileset.num1
+                    || world[trialCoins.get(4)][trialCoins.get(5)] == Tileset.letterA) {
                 trialCoin1X = trialCoins.get(4);
                 trialCoin1Y = trialCoins.get(5);
                 trialRedCoin = true;
-            } else if (world[trialCoins.get(6)][trialCoins.get(7)] == Tileset.CELLRED || world[trialCoins.get(6)][trialCoins.get(7)] == Tileset.num1 || world[trialCoins.get(6)][trialCoins.get(7)] == Tileset.letterA) {
+            } else if (world[trialCoins.get(6)][trialCoins.get(7)] == Tileset.CELLRED
+                    || world[trialCoins.get(6)][trialCoins.get(7)] == Tileset.num1
+                    || world[trialCoins.get(6)][trialCoins.get(7)] == Tileset.letterA) {
                 trialCoin1X = trialCoins.get(6);
                 trialCoin1Y = trialCoins.get(7);
                 trialRedCoin = true;
-            } else if (world[trialCoins.get(8)][trialCoins.get(9)] == Tileset.CELLRED || world[trialCoins.get(8)][trialCoins.get(9)] == Tileset.num1 || world[trialCoins.get(8)][trialCoins.get(9)] == Tileset.letterA) {
+            } else if (world[trialCoins.get(8)][trialCoins.get(9)] == Tileset.CELLRED
+                    || world[trialCoins.get(8)][trialCoins.get(9)] == Tileset.num1
+                    || world[trialCoins.get(8)][trialCoins.get(9)] == Tileset.letterA) {
                 trialCoin1X = trialCoins.get(8);
                 trialCoin1Y = trialCoins.get(9);
                 trialRedCoin = true;
-            } else if (world[trialCoins.get(10)][trialCoins.get(11)] == Tileset.CELLRED || world[trialCoins.get(10)][trialCoins.get(11)] == Tileset.num1 || world[trialCoins.get(10)][trialCoins.get(11)] == Tileset.letterA) {
+            } else if (world[trialCoins.get(10)][trialCoins.get(11)] == Tileset.CELLRED
+                    || world[trialCoins.get(10)][trialCoins.get(11)] == Tileset.num1
+                    || world[trialCoins.get(10)][trialCoins.get(11)] == Tileset.letterA) {
                 trialCoin1X = trialCoins.get(10);
                 trialCoin1Y = trialCoins.get(11);
                 trialRedCoin = true;
             }
         }
 
-
-        while(!trialOrangeCoin) {
-            if (world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.CELLOrange || world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.num2 || world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.letterB) {
+        while (!trialOrangeCoin) {
+            if (world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.CELLOrange
+                    || world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.num2
+                    || world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.letterB) {
                 trialCoin2X = trialCoins.get(0);
                 trialCoin2Y = trialCoins.get(1);
                 trialOrangeCoin = true;
-            } else if (world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.CELLOrange || world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.num2 || world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.letterB) {
-                    trialCoin2X = trialCoins.get(2);
-                    trialCoin2Y = trialCoins.get(3);
-                    trialOrangeCoin = true;
-                } else if (world[trialCoins.get(4)][trialCoins.get(5)] == Tileset.CELLOrange || world[trialCoins.get(4)][trialCoins.get(5)] == Tileset.num2 || world[trialCoins.get(4)][trialCoins.get(5)] == Tileset.letterB) {
-                    trialCoin2X = trialCoins.get(4);
-                    trialCoin2Y = trialCoins.get(5);
-                    trialOrangeCoin = true;
-                } else if (world[trialCoins.get(6)][trialCoins.get(7)] == Tileset.CELLOrange || world[trialCoins.get(6)][trialCoins.get(7)] == Tileset.num2 || world[trialCoins.get(6)][trialCoins.get(7)] == Tileset.letterB) {
-                    trialCoin2X = trialCoins.get(6);
-                    trialCoin2Y = trialCoins.get(7);
-                    trialOrangeCoin = true;
-                } else if (world[trialCoins.get(8)][trialCoins.get(9)] == Tileset.CELLOrange || world[trialCoins.get(8)][trialCoins.get(9)] == Tileset.num2 || world[trialCoins.get(8)][trialCoins.get(9)] == Tileset.letterB) {
-                    trialCoin2X = trialCoins.get(8);
-                    trialCoin2Y = trialCoins.get(9);
-                    trialOrangeCoin = true;
-                } else if (world[trialCoins.get(10)][trialCoins.get(11)] == Tileset.CELLOrange || world[trialCoins.get(10)][trialCoins.get(11)] == Tileset.num2 || world[trialCoins.get(10)][trialCoins.get(11)] == Tileset.letterB) {
-                    trialCoin2X = trialCoins.get(10);
-                    trialCoin2Y = trialCoins.get(11);
-                    trialOrangeCoin = true;
-                }
+            } else if (world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.CELLOrange
+                    || world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.num2
+                    || world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.letterB) {
+                trialCoin2X = trialCoins.get(2);
+                trialCoin2Y = trialCoins.get(3);
+                trialOrangeCoin = true;
+            } else if (world[trialCoins.get(4)][trialCoins.get(5)] == Tileset.CELLOrange
+                    || world[trialCoins.get(4)][trialCoins.get(5)] == Tileset.num2
+                    || world[trialCoins.get(4)][trialCoins.get(5)] == Tileset.letterB) {
+                trialCoin2X = trialCoins.get(4);
+                trialCoin2Y = trialCoins.get(5);
+                trialOrangeCoin = true;
+            } else if (world[trialCoins.get(6)][trialCoins.get(7)] == Tileset.CELLOrange
+                    || world[trialCoins.get(6)][trialCoins.get(7)] == Tileset.num2
+                    || world[trialCoins.get(6)][trialCoins.get(7)] == Tileset.letterB) {
+                trialCoin2X = trialCoins.get(6);
+                trialCoin2Y = trialCoins.get(7);
+                trialOrangeCoin = true;
+            } else if (world[trialCoins.get(8)][trialCoins.get(9)] == Tileset.CELLOrange
+                    || world[trialCoins.get(8)][trialCoins.get(9)] == Tileset.num2
+                    || world[trialCoins.get(8)][trialCoins.get(9)] == Tileset.letterB) {
+                trialCoin2X = trialCoins.get(8);
+                trialCoin2Y = trialCoins.get(9);
+                trialOrangeCoin = true;
+            } else if (world[trialCoins.get(10)][trialCoins.get(11)] == Tileset.CELLOrange
+                    || world[trialCoins.get(10)][trialCoins.get(11)] == Tileset.num2
+                    || world[trialCoins.get(10)][trialCoins.get(11)] == Tileset.letterB) {
+                trialCoin2X = trialCoins.get(10);
+                trialCoin2Y = trialCoins.get(11);
+                trialOrangeCoin = true;
+            }
         }
 
-
-
-        while(!trialYellowCoin) {
-            if (world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.CELLYellow || world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.num3 || world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.letterC) {
+        while (!trialYellowCoin) {
+            if (world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.CELLYellow
+                    || world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.num3
+                    || world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.letterC) {
                 trialCoin3X = trialCoins.get(0);
                 trialCoin3Y = trialCoins.get(1);
                 trialYellowCoin = true;
-            } else if (world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.CELLYellow || world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.num3 || world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.letterC) {
+            } else if (world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.CELLYellow
+                    || world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.num3
+                    || world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.letterC) {
                 trialCoin3X = trialCoins.get(2);
                 trialCoin3Y = trialCoins.get(3);
                 trialYellowCoin = true;
-            } else if (world[trialCoins.get(4)][trialCoins.get(5)] == Tileset.CELLYellow || world[trialCoins.get(4)][trialCoins.get(5)] == Tileset.num3 || world[trialCoins.get(4)][trialCoins.get(5)] == Tileset.letterC) {
+            } else if (world[trialCoins.get(4)][trialCoins.get(5)] == Tileset.CELLYellow
+                    || world[trialCoins.get(4)][trialCoins.get(5)] == Tileset.num3
+                    || world[trialCoins.get(4)][trialCoins.get(5)] == Tileset.letterC) {
                 trialCoin3X = trialCoins.get(4);
                 trialCoin3Y = trialCoins.get(5);
                 trialYellowCoin = true;
-            } else if (world[trialCoins.get(6)][trialCoins.get(7)] == Tileset.CELLYellow || world[trialCoins.get(6)][trialCoins.get(7)] == Tileset.num3 || world[trialCoins.get(6)][trialCoins.get(7)] == Tileset.letterC) {
+            } else if (world[trialCoins.get(6)][trialCoins.get(7)] == Tileset.CELLYellow
+                    || world[trialCoins.get(6)][trialCoins.get(7)] == Tileset.num3
+                    || world[trialCoins.get(6)][trialCoins.get(7)] == Tileset.letterC) {
                 trialCoin3X = trialCoins.get(6);
                 trialCoin3Y = trialCoins.get(7);
                 trialYellowCoin = true;
-            } else if (world[trialCoins.get(8)][trialCoins.get(9)] == Tileset.CELLYellow || world[trialCoins.get(8)][trialCoins.get(9)] == Tileset.num3 || world[trialCoins.get(8)][trialCoins.get(9)] == Tileset.letterC) {
+            } else if (world[trialCoins.get(8)][trialCoins.get(9)] == Tileset.CELLYellow
+                    || world[trialCoins.get(8)][trialCoins.get(9)] == Tileset.num3
+                    || world[trialCoins.get(8)][trialCoins.get(9)] == Tileset.letterC) {
                 trialCoin3X = trialCoins.get(8);
                 trialCoin3Y = trialCoins.get(9);
                 trialYellowCoin = true;
-            } else if (world[trialCoins.get(10)][trialCoins.get(11)] == Tileset.CELLYellow || world[trialCoins.get(10)][trialCoins.get(11)] == Tileset.num3 || world[trialCoins.get(10)][trialCoins.get(11)] == Tileset.letterC) {
+            } else if (world[trialCoins.get(10)][trialCoins.get(11)] == Tileset.CELLYellow
+                    || world[trialCoins.get(10)][trialCoins.get(11)] == Tileset.num3
+                    || world[trialCoins.get(10)][trialCoins.get(11)] == Tileset.letterC) {
                 trialCoin3X = trialCoins.get(10);
                 trialCoin3Y = trialCoins.get(11);
                 trialYellowCoin = true;
             }
         }
 
-
-        while(!trialGreenCoin) {
-            if (world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.CELLGreen || world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.num4 || world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.letterD) {
+        while (!trialGreenCoin) {
+            if (world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.CELLGreen
+                    || world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.num4
+                    || world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.letterD) {
                 trialCoin4X = trialCoins.get(0);
                 trialCoin4Y = trialCoins.get(1);
                 trialGreenCoin = true;
-            } else if (world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.CELLGreen || world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.num4 || world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.letterD) {
+            } else if (world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.CELLGreen
+                    || world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.num4
+                    || world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.letterD) {
                 trialCoin4X = trialCoins.get(2);
                 trialCoin4Y = trialCoins.get(3);
                 trialGreenCoin = true;
-            } else if (world[trialCoins.get(4)][trialCoins.get(5)] == Tileset.CELLGreen || world[trialCoins.get(4)][trialCoins.get(5)] == Tileset.num4 || world[trialCoins.get(4)][trialCoins.get(5)] == Tileset.letterD) {
+            } else if (world[trialCoins.get(4)][trialCoins.get(5)] == Tileset.CELLGreen
+                    || world[trialCoins.get(4)][trialCoins.get(5)] == Tileset.num4
+                    || world[trialCoins.get(4)][trialCoins.get(5)] == Tileset.letterD) {
                 trialCoin4X = trialCoins.get(4);
                 trialCoin4Y = trialCoins.get(5);
                 trialGreenCoin = true;
-            } else if (world[trialCoins.get(6)][trialCoins.get(7)] == Tileset.CELLGreen || world[trialCoins.get(6)][trialCoins.get(7)] == Tileset.num4 || world[trialCoins.get(6)][trialCoins.get(7)] == Tileset.letterD) {
+            } else if (world[trialCoins.get(6)][trialCoins.get(7)] == Tileset.CELLGreen
+                    || world[trialCoins.get(6)][trialCoins.get(7)] == Tileset.num4
+                    || world[trialCoins.get(6)][trialCoins.get(7)] == Tileset.letterD) {
                 trialCoin4X = trialCoins.get(6);
                 trialCoin4Y = trialCoins.get(7);
                 trialGreenCoin = true;
-            } else if (world[trialCoins.get(8)][trialCoins.get(9)] == Tileset.CELLGreen || world[trialCoins.get(8)][trialCoins.get(9)] == Tileset.num4 || world[trialCoins.get(8)][trialCoins.get(9)] == Tileset.letterD) {
+            } else if (world[trialCoins.get(8)][trialCoins.get(9)] == Tileset.CELLGreen
+                    || world[trialCoins.get(8)][trialCoins.get(9)] == Tileset.num4
+                    || world[trialCoins.get(8)][trialCoins.get(9)] == Tileset.letterD) {
                 trialCoin4X = trialCoins.get(8);
                 trialCoin4Y = trialCoins.get(9);
                 trialGreenCoin = true;
-            } else if (world[trialCoins.get(10)][trialCoins.get(11)] == Tileset.CELLGreen || world[trialCoins.get(10)][trialCoins.get(11)] == Tileset.num4 || world[trialCoins.get(10)][trialCoins.get(11)] == Tileset.letterD) {
+            } else if (world[trialCoins.get(10)][trialCoins.get(11)] == Tileset.CELLGreen
+                    || world[trialCoins.get(10)][trialCoins.get(11)] == Tileset.num4
+                    || world[trialCoins.get(10)][trialCoins.get(11)] == Tileset.letterD) {
                 trialCoin4X = trialCoins.get(10);
                 trialCoin4Y = trialCoins.get(11);
                 trialGreenCoin = true;
             }
         }
 
-
-
-        while(!trialBlueCoin) {
-            if (world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.CELLBlue || world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.num5 || world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.letterE) {
+        while (!trialBlueCoin) {
+            if (world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.CELLBlue
+                    || world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.num5
+                    || world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.letterE) {
                 trialCoin5X = trialCoins.get(0);
                 trialCoin5Y = trialCoins.get(1);
                 trialBlueCoin = true;
-            } else if (world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.CELLBlue || world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.num5 || world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.letterE) {
+            } else if (world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.CELLBlue
+                    || world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.num5
+                    || world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.letterE) {
                 trialCoin5X = trialCoins.get(2);
                 trialCoin5Y = trialCoins.get(3);
                 trialBlueCoin = true;
-            } else if (world[trialCoins.get(4)][trialCoins.get(5)] == Tileset.CELLBlue || world[trialCoins.get(4)][trialCoins.get(5)] == Tileset.num5 || world[trialCoins.get(4)][trialCoins.get(5)] == Tileset.letterE) {
+            } else if (world[trialCoins.get(4)][trialCoins.get(5)] == Tileset.CELLBlue
+                    || world[trialCoins.get(4)][trialCoins.get(5)] == Tileset.num5
+                    || world[trialCoins.get(4)][trialCoins.get(5)] == Tileset.letterE) {
                 trialCoin5X = trialCoins.get(4);
                 trialCoin5Y = trialCoins.get(5);
                 trialBlueCoin = true;
-            } else if (world[trialCoins.get(6)][trialCoins.get(7)] == Tileset.CELLBlue || world[trialCoins.get(6)][trialCoins.get(7)] == Tileset.num5 || world[trialCoins.get(6)][trialCoins.get(7)] == Tileset.letterE) {
+            } else if (world[trialCoins.get(6)][trialCoins.get(7)] == Tileset.CELLBlue
+                    || world[trialCoins.get(6)][trialCoins.get(7)] == Tileset.num5
+                    || world[trialCoins.get(6)][trialCoins.get(7)] == Tileset.letterE) {
                 trialCoin5X = trialCoins.get(6);
                 trialCoin5Y = trialCoins.get(7);
                 trialBlueCoin = true;
-            } else if (world[trialCoins.get(8)][trialCoins.get(9)] == Tileset.CELLBlue || world[trialCoins.get(8)][trialCoins.get(9)] == Tileset.num5 || world[trialCoins.get(8)][trialCoins.get(9)] == Tileset.letterE) {
+            } else if (world[trialCoins.get(8)][trialCoins.get(9)] == Tileset.CELLBlue
+                    || world[trialCoins.get(8)][trialCoins.get(9)] == Tileset.num5
+                    || world[trialCoins.get(8)][trialCoins.get(9)] == Tileset.letterE) {
                 trialCoin5X = trialCoins.get(8);
                 trialCoin5Y = trialCoins.get(9);
                 trialBlueCoin = true;
-            } else if (world[trialCoins.get(10)][trialCoins.get(11)] == Tileset.CELLBlue || world[trialCoins.get(10)][trialCoins.get(11)] == Tileset.num5 || world[trialCoins.get(10)][trialCoins.get(11)] == Tileset.letterE) {
+            } else if (world[trialCoins.get(10)][trialCoins.get(11)] == Tileset.CELLBlue
+                    || world[trialCoins.get(10)][trialCoins.get(11)] == Tileset.num5
+                    || world[trialCoins.get(10)][trialCoins.get(11)] == Tileset.letterE) {
                 trialCoin5X = trialCoins.get(10);
                 trialCoin5Y = trialCoins.get(11);
                 trialBlueCoin = true;
             }
         }
 
-        while(!trialVioletCoin) {
-            if (world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.CELLViolet || world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.num6 ||world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.letterF) {
+        while (!trialVioletCoin) {
+            if (world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.CELLViolet
+                    || world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.num6
+                    ||world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.letterF) {
                 trialCoin6X = trialCoins.get(0);
                 trialCoin6Y = trialCoins.get(1);
                 trialVioletCoin = true;
-            }
-            else if (world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.CELLViolet || world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.num6 ||world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.letterF) {
+            } else if (world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.CELLViolet
+                    || world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.num6
+                    ||world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.letterF) {
                 trialCoin6X = trialCoins.get(2);
                 trialCoin6Y = trialCoins.get(3);
                 trialVioletCoin = true;
-            }
-            else if (world[trialCoins.get(4)][trialCoins.get(5)] == Tileset.CELLViolet || world[trialCoins.get(4)][trialCoins.get(5)] == Tileset.num6 ||world[trialCoins.get(4)][trialCoins.get(5)] == Tileset.letterF) {
+            } else if (world[trialCoins.get(4)][trialCoins.get(5)] == Tileset.CELLViolet
+                    || world[trialCoins.get(4)][trialCoins.get(5)] == Tileset.num6
+                    || world[trialCoins.get(4)][trialCoins.get(5)] == Tileset.letterF) {
                 trialCoin6X = trialCoins.get(4);
                 trialCoin6Y = trialCoins.get(5);
                 trialVioletCoin = true;
-            }
-            else if (world[trialCoins.get(6)][trialCoins.get(7)] == Tileset.CELLViolet || world[trialCoins.get(6)][trialCoins.get(7)] == Tileset.num6 ||world[trialCoins.get(6)][trialCoins.get(7)] == Tileset.letterF) {
+            } else if (world[trialCoins.get(6)][trialCoins.get(7)] == Tileset.CELLViolet
+                    || world[trialCoins.get(6)][trialCoins.get(7)] == Tileset.num6
+                    || world[trialCoins.get(6)][trialCoins.get(7)] == Tileset.letterF) {
                 trialCoin6X = trialCoins.get(6);
                 trialCoin6Y = trialCoins.get(7);
                 trialVioletCoin = true;
-            }
-
-            else if (world[trialCoins.get(8)][trialCoins.get(9)] == Tileset.CELLViolet || world[trialCoins.get(8)][trialCoins.get(9)] == Tileset.num6 ||world[trialCoins.get(8)][trialCoins.get(9)] == Tileset.letterF) {
+            } else if (world[trialCoins.get(8)][trialCoins.get(9)] == Tileset.CELLViolet
+                    || world[trialCoins.get(8)][trialCoins.get(9)] == Tileset.num6
+                    || world[trialCoins.get(8)][trialCoins.get(9)] == Tileset.letterF) {
                 trialCoin6X = trialCoins.get(8);
                 trialCoin6Y = trialCoins.get(9);
                 trialVioletCoin = true;
-            }
-
-            else if (world[trialCoins.get(10)][trialCoins.get(11)] == Tileset.CELLViolet || world[trialCoins.get(10)][trialCoins.get(11)] == Tileset.num6 ||world[trialCoins.get(10)][trialCoins.get(11)] == Tileset.letterF) {
+            } else if (world[trialCoins.get(10)][trialCoins.get(11)] == Tileset.CELLViolet
+                    || world[trialCoins.get(10)][trialCoins.get(11)] == Tileset.num6
+                    || world[trialCoins.get(10)][trialCoins.get(11)] == Tileset.letterF) {
                 trialCoin6X = trialCoins.get(10);
                 trialCoin6Y = trialCoins.get(11);
                 trialVioletCoin = true;
             }
-
         }
 
-
-
-        String stringTrialCoins = trialCoin1X + " " + trialCoin1Y + " " + trialCoin2X + " " + trialCoin2Y + " " + trialCoin3X + " " + trialCoin3Y + " " +trialCoin4X + " " + trialCoin4Y + " " +trialCoin5X + " " +trialCoin5Y + " " +trialCoin6X + " " +trialCoin6Y;
+        String stringTrialCoins = trialCoin1X + " " + trialCoin1Y + " " + trialCoin2X + " " + trialCoin2Y
+                + " " + trialCoin3X + " " + trialCoin3Y + " " + trialCoin4X + " " + trialCoin4Y
+                + " " + trialCoin5X + " " + trialCoin5Y + " " + trialCoin6X + " " + trialCoin6Y;
         FileUtils.writeFile("trialCoinsCoor", stringTrialCoins);
     }
 
@@ -567,8 +568,6 @@ public class SavedGame {
         trialCoins.add(trialCoin6X);
         trialCoins.add(trialCoin6Y);
 
-
-
         return trialCoins;
     }
 
@@ -579,11 +578,6 @@ public class SavedGame {
         Boolean bool4 = readTrialCoin1Bool("trialCoin4Bool");
         Boolean bool5 = readTrialCoin1Bool("trialCoin5Bool");
         Boolean bool6 = readTrialCoin1Bool("trialCoin6Bool");
-
-
-
-
-
 
         String sBool1 = Boolean.toString(bool1);
         String sBool2 = Boolean.toString(bool2);
@@ -600,48 +594,58 @@ public class SavedGame {
         String s = Boolean.toString(bool);
         FileUtils.writeFile("trialCoin1Bool", s);
     }
+
     public void saveTrialCoin2Bool(Boolean bool) {
         String s = Boolean.toString(bool);
         FileUtils.writeFile("trialCoin2Bool", s);
     }
+
     public void saveTrialCoin3Bool(Boolean bool) {
         String s = Boolean.toString(bool);
         FileUtils.writeFile("trialCoin3Bool", s);
     }
+
     public void saveTrialCoin4Bool(Boolean bool) {
         String s = Boolean.toString(bool);
         FileUtils.writeFile("trialCoin4Bool", s);
     }
+
     public void saveTrialCoin5Bool(Boolean bool) {
         String s = Boolean.toString(bool);
         FileUtils.writeFile("trialCoin5Bool", s);
     }
+
     public void saveTrialCoin6Bool(Boolean bool) {
         String s = Boolean.toString(bool);
         FileUtils.writeFile("trialCoin6Bool", s);
     }
 
-    public boolean readTrialCoin1Bool(String fileName){
+    public boolean readTrialCoin1Bool(String fileName) {
         String s = FileUtils.readFile(fileName);
         return Boolean.parseBoolean(s);
     }
-    public boolean readTrialCoin2Bool(String fileName){
+
+    public boolean readTrialCoin2Bool(String fileName) {
         String s = FileUtils.readFile(fileName);
         return Boolean.parseBoolean(s);
     }
-    public boolean readTrialCoin3Bool(String fileName){
+
+    public boolean readTrialCoin3Bool(String fileName) {
         String s = FileUtils.readFile(fileName);
         return Boolean.parseBoolean(s);
     }
-    public boolean readTrialCoin4Bool(String fileName){
+
+    public boolean readTrialCoin4Bool(String fileName) {
         String s = FileUtils.readFile(fileName);
         return Boolean.parseBoolean(s);
     }
-    public boolean readTrialCoin5Bool(String fileName){
+
+    public boolean readTrialCoin5Bool(String fileName) {
         String s = FileUtils.readFile(fileName);
         return Boolean.parseBoolean(s);
     }
-    public boolean readTrialCoin6Bool(String fileName){
+
+    public boolean readTrialCoin6Bool(String fileName) {
         String s = FileUtils.readFile(fileName);
         return Boolean.parseBoolean(s);
     }
@@ -707,7 +711,4 @@ public class SavedGame {
         array.add(y);
         return array;
     }
-
 }
-
-

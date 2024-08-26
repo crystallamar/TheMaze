@@ -1,6 +1,5 @@
 package core;
 
-import org.checkerframework.checker.units.qual.A;
 import tileengine.TETile;
 import tileengine.Tileset;
 
@@ -10,7 +9,6 @@ import java.util.Random;
 
 public class Hallways {
     RandomGenerator randGen = new RandomGenerator();
-    //Random rand = new Random();
 
     public void generateHallways(TETile[][] world, Random random,  ArrayList<ArrayList<Integer>> centerCoor) {
         //rand.setSeed(seed);
@@ -31,9 +29,7 @@ public class Hallways {
 
         //Connect Random rooms together
         int numRandRoomsToConnect = random.nextInt(5, 10);
-//        if (sortedArrayOfCoor.isEmpty()){
-//            System.err.println("Test error");
-//        }
+
         for(int i = 0; i < numRandRoomsToConnect; i++) {
             int randomRoom2 = random.nextInt(0, sortedArrayOfCoor.size()-1);
             coorRoom1 = sortedArrayOfCoor.get(i);
@@ -112,7 +108,8 @@ public class Hallways {
 
     }
 
-    public void connectRooms(TETile[][] world,  ArrayList<Integer> room1Coor, ArrayList<Integer> room2Coor, Random random) {
+    public void connectRooms(TETile[][] world,  ArrayList<Integer> room1Coor, ArrayList<Integer> room2Coor,
+                             Random random) {
         int tempX1 = room1Coor.get(0);
         int tempY1 = room1Coor.get(1);
         int tempX2 = room2Coor.get(0);

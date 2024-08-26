@@ -1,11 +1,8 @@
 package core;
 import java.awt.*;
-import java.awt.event.MouseMotionAdapter;
-import java.sql.Array;
 import java.util.ArrayList;
 
 import edu.princeton.cs.algs4.StdDraw;
-import org.apache.commons.collections.keyvalue.TiedMapEntry;
 import tileengine.TETile;
 import tileengine.Tileset;
 

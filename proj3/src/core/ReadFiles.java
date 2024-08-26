@@ -17,5 +17,4 @@ public class ReadFiles {
         }
         return savedSeed;
     }
-
 }

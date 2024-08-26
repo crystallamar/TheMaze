@@ -1,21 +1,10 @@
 package core;
 
-import edu.princeton.cs.algs4.ST;
 import edu.princeton.cs.algs4.StdDraw;
 import tileengine.TETile;
 import tileengine.TERenderer;
-import tileengine.Tileset;
-
-import java.awt.*;
-import java.awt.event.InputEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.sql.Array;
 import java.util.ArrayList;
 
-
-import static java.awt.event.MouseEvent.MOUSE_MOVED;
-import java.awt.AWTEvent;
 import java.util.Random;
 
 public class PlayingGame {
@@ -25,45 +14,10 @@ public class PlayingGame {
     TERenderer ter = new TERenderer();
 
     Hover mousePointer = new Hover();
-    //int numLoops = 0;
-    int numCoins;
     SavedGame save = new SavedGame();
 
-
-
-//    public void playingGame(TETile[][] world, ArrayList<Integer> avatarCoor) {
-//       // PointerInfo pointerInfo = new PointerInfo();
-//        while (playingGame) {
-//            boolean expectingInput = true;
-//            boolean ifColon;
-//            char key;
-//            while (expectingInput) {
-//                if (StdDraw.hasNextKeyTyped()) {
-//                    ifColon = true;
-//                    key = StdDraw.nextKeyTyped();
-//                    avatarCoor = avatar.moveChar(key, world, avatarCoor);
-//                    if (key == ':') {
-//                        while(ifColon) {
-//                            if(StdDraw.hasNextKeyTyped()) {
-//                                key = StdDraw.nextKeyTyped();
-//                                avatar.ifExit(key);
-//                                ifColon = false;
-//                            }
-//                        }
-//                    }
-//                    ter.renderFrame(world);
-//
-//                    int modifiers = 0;
-//                   // pointerInfo.mouseMoved(Component.(AWTEvent.MOUSE_MOTION_EVENT_MASK);
-//                //(MOUSE_MOVED));
-//
-//                }
-//            }
-//        }
-//    }
-
-    public void playingGame(TETile[][] world, ArrayList<Integer> avatarCoor, Random rand, Boolean trial, int numTrial, long seed, int numTrialCoinsPickedUp, int trialBoolPassedIn) {
-        // PointerInfo pointerInfo = new PointerInfo();
+    public void playingGame(TETile[][] world, ArrayList<Integer> avatarCoor, Random rand, Boolean trial, int numTrial,
+                            long seed, int numTrialCoinsPickedUp, int trialBoolPassedIn) {
         ArrayList<Integer> OGCoin1 = new ArrayList<>();
         ArrayList<Integer> OGCoin2 = new ArrayList<>();
         ArrayList<Integer> OGCoin3 = new ArrayList<>();
@@ -158,23 +112,16 @@ public class PlayingGame {
                     if (trialBool == 0) {
                         trial = false; // if numCoins == 0, don't call objective
                     }
-                    else if (didCharMove){
+                    else if (didCharMove) {
                         trial = true;
                         //numCoins = avatarCoor.get(2);
                         if (numLoops == 0) {
-
-                            // SAVE GAME HERE
-                            //save.saveFile("Character", avatar);
-                            //save.saveFile("World", world);
                             SavedGame saveGame = new SavedGame();
                             saveGame.saveAvatarCoor(avatarCoor);
                             saveGame.saveAVCoorWorld(avatarCoor.get(0), avatarCoor.get(1));
                             numTrial = avatarCoor.get(3);
                             numLoops = objectives.objectives(world, numTrial, rand, numLoops, x, y, seed);
-                            //int newAvatarCoorOGCoins = avatarCoor.get(2) + 1;
-                            //avX = avatarCoor.get(0);
-                            //avY = avatarCoor.get(1);
-                            while (!avatarCoor.isEmpty()){
+                            while (!avatarCoor.isEmpty()) {
                                 avatarCoor.remove(0);
                             }
                             avatarCoor.add(x);
@@ -188,11 +135,9 @@ public class PlayingGame {
                             avatarCoor.add(OGCoin2.get(1));
                             avatarCoor.add(OGCoin3.get(0));
                             avatarCoor.add(OGCoin3.get(1));
-                            //savedGame.saveAvatarCoor(avatarCoor);
-                            //int newAvatarCoorOGCoins = numLoops;
-                            //avatarCoor.remove(2);
-                            //avatarCoor.add(2, newAvatarCoorOGCoins);
-                            playingGame(world, avatarCoor, rand, false, numTrial, seed, numTrialCoinsPickedUp, trialBool);
+
+                            playingGame(world, avatarCoor, rand, false, numTrial, seed, numTrialCoinsPickedUp,
+                                    trialBool);
                         } else if (numLoops == 7) {
                             numLoops = 0;
                             numTrial++;
@@ -202,26 +147,10 @@ public class PlayingGame {
                             arrayForSecondCoinPickedUp.add(xx);
                             arrayForSecondCoinPickedUp.add(yy);
                             savedGame.saveCoinPickedUpSecond(arrayForSecondCoinPickedUp);
-                            //savedGame.saveAvatarCoor(avatarCoor);
 
-                            // RETRIEVE GAME BEFORE TRIAL
                         } else {
                             numLoops = objectives.objectives(world, numTrial, rand, numLoops, x, y, seed);
-                            //savedGame.saveAvatarCoor(avatarCoor);
                         }
-
-
-                        //else {
-                            //save.saveFile("PlayingGame", playingGame);
-
-                            //numLoops = objectives.objectives(world, numCoins, rand, numLoops, x, y);
-
-                            //numLoops = objectives.trial1Colors(world, avatarCoor.getFirst(), avatarCoor.get(1), numLoops);
-
-
-                            // int updatedNumLoops = objectives.trial1Colors(world, avatarCoor.getFirst(), avatarCoor.get(1), numLoops);
-                            //numLoops = updatedNumLoops;
-
                     }
 
                     if (key == ':') {
@@ -237,9 +166,6 @@ public class PlayingGame {
                     ter.renderFrame(world);
 
                     int modifiers = 0;
-                    // pointerInfo.mouseMoved(Component.(AWTEvent.MOUSE_MOTION_EVENT_MASK);
-                    //(MOUSE_MOVED));
-
                 }
             }
         }

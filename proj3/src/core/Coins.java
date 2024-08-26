@@ -2,14 +2,12 @@ package core;
 
 import tileengine.TETile;
 import tileengine.Tileset;
-import utils.FileUtils;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Coins {
     public ArrayList<Integer> generateCoins(TETile[][] world, Random random, Boolean trial, int numTrials) {
-        //int numCoinsTotal = 10;
         SavedGame save = new SavedGame();
 
         //return coinCoor: Coin1(x,y), coin 2 (x,y) etc.... coin 6 (x, y)
@@ -267,96 +265,72 @@ public class Coins {
         if (world[x][y] == Tileset.CELL) {
             SavedGame saveGame = new SavedGame();
             saveGame.saveAVCoorWorld(x, y);
-            //world[x][y] = Tileset.SAND;
             return true;
         }
         else if (world[x][y] == Tileset.CELLRED) {
-            //world[x][y] = Tileset.SAND;
             return true;
         }
         else if (world[x][y] == Tileset.CELLOrange) {
-            //world[x][y] = Tileset.SAND;
             return true;
         }
         else if (world[x][y] == Tileset.CELLYellow) {
-            //world[x][y] = Tileset.SAND;
             return true;
         }
         else if (world[x][y] == Tileset.CELLGreen) {
-            //world[x][y] = Tileset.SAND;
             return true;
         }
 
         else if (world[x][y] == Tileset.CELLBlue) {
-            //world[x][y] = Tileset.SAND;
             return true;
         }
 
         else if (world[x][y] == Tileset.CELLViolet) {
-            //world[x][y] = Tileset.SAND;
             return true;
         }
         else if (world[x][y] == Tileset.num1) {
-            //world[x][y] = Tileset.SAND;
             return true;
         }
         else if (world[x][y] == Tileset.num2) {
-            //world[x][y] = Tileset.SAND;
             return true;
         }
         else if (world[x][y] == Tileset.num3) {
-            //world[x][y] = Tileset.SAND;
             return true;
         }
         else if (world[x][y] == Tileset.num4) {
-            //world[x][y] = Tileset.SAND;
             return true;
         }
 
         else if (world[x][y] == Tileset.num5) {
-            //world[x][y] = Tileset.SAND;
             return true;
         }
 
         else if (world[x][y] == Tileset.num6) {
-            //world[x][y] = Tileset.SAND;
             return true;
         }
         else if (world[x][y] == Tileset.letterA) {
-            //world[x][y] = Tileset.SAND;
             return true;
         }
         else if (world[x][y] == Tileset.letterB) {
-            //world[x][y] = Tileset.SAND;
             return true;
         }
         else if (world[x][y] == Tileset.letterC) {
-            //world[x][y] = Tileset.SAND;
             return true;
         }
         else if (world[x][y] == Tileset.letterD) {
-            //world[x][y] = Tileset.SAND;
             return true;
         }
 
         else //world[x][y] = Tileset.SAND;
             if (world[x][y] == Tileset.letterE) {
-            //world[x][y] = Tileset.SAND;
+
             return true;
         }
 
         else return world[x][y] == Tileset.letterF;
     }
 
-    public boolean triggerEndOfGame(int numCoinsPickedUp) {
-        //EndGame endGame = new EndGame();
-        boolean ifGameEnd = numCoinsPickedUp == 3;
-        //CHANGE BACK TO 10
-        //endGame.endGame();
-        return ifGameEnd;
-    }
-
-    public void generateSavedCoins(TETile[][] world, ArrayList<Integer> OGCoin1, ArrayList<Integer> OGCoin2, ArrayList<Integer> OGCoin3) {
+    public void generateSavedCoins(TETile[][] world, ArrayList<Integer> OGCoin1, ArrayList<Integer> OGCoin2,
+                                   ArrayList<Integer> OGCoin3) {
         int OGCoin1X = OGCoin1.get(0);
         int OGCoin1Y = OGCoin1.get(1);
 
@@ -370,7 +344,9 @@ public class Coins {
         world[OGCoin3X][OGCoin3Y] = Tileset.CELL;
     }
 
-    public void placeTrialCoins(TETile[][] world, int trialNum, int coin1X, int coin1Y, int coin2X, int coin2Y, int coin3X, int coin3Y, int coin4X, int coin4Y, int coin5X, int coin5Y, int coin6X, int coin6Y) {
+    public void placeTrialCoins(TETile[][] world, int trialNum, int coin1X, int coin1Y, int coin2X, int coin2Y,
+                                int coin3X, int coin3Y, int coin4X, int coin4Y, int coin5X, int coin5Y, int coin6X,
+                                int coin6Y) {
         SavedGame loadGame = new SavedGame();
         boolean place1 = loadGame.readTrialCoin1Bool("trialCoin1Bool");
         boolean place2 = loadGame.readTrialCoin2Bool("trialCoin2Bool");
@@ -444,7 +420,9 @@ public class Coins {
         }
     }
 
-    public void removeTrialCoinsPickedUp(TETile[][] world, ArrayList<Integer> trialCoinCoor, boolean coin1PickedUp, boolean coin2PickedUp, boolean coin3PickedUp, boolean coin4PickedUp, boolean coin5PickedUp, boolean coin6PickedUp) {
+    public void removeTrialCoinsPickedUp(TETile[][] world, ArrayList<Integer> trialCoinCoor, boolean coin1PickedUp,
+                                         boolean coin2PickedUp, boolean coin3PickedUp, boolean coin4PickedUp,
+                                         boolean coin5PickedUp, boolean coin6PickedUp) {
         Coins coin = new Coins();
         if (coin1PickedUp) {
             int oneX = trialCoinCoor.get(0);

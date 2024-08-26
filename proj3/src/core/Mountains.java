@@ -4,7 +4,6 @@ import org.checkerframework.checker.units.qual.A;
 import tileengine.TETile;
 import tileengine.Tileset;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class Mountains {

@@ -1,11 +1,8 @@
 package core;
 
-import edu.princeton.cs.algs4.StdDraw;
-import tileengine.TERenderer;
 import tileengine.TETile;
 import tileengine.Tileset;
 
-import java.awt.*;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -38,18 +35,6 @@ public class AutograderBuddy {
         long seed = copyOnTitleScreen(world);
         world = copyMain(world, seed);
         return world;
-
-
-        // just take seed and associate it with a specific world
-
-        // STEP ONE: read startgame vs. load game
-
-        // STEP TWO: READ SEED IF START GAME
-
-        // STEPTHREE: READ MOVEMENTS
-
-        // STEP FOUR: CHECK FOR SAVING AND QUITTING
-
     }
 
     public static char getNextChar() {
@@ -79,11 +64,6 @@ public class AutograderBuddy {
             }
             if ((key == 'n') || (key == 'N')) {
                 grass.generateGrass(world, 94, 55);
-//                StdDraw.setPenColor(Color.white);
-//                StdDraw.filledRectangle(45, 25, 20, 10);
-//                StdDraw.setPenColor(Color.black);
-//                StdDraw.text(45, 30, "Please enter seed:");
-//                StdDraw.show();
 
                 seedFromEnterSeed = copyEnteringSeed(seed);
                 if (seedFromEnterSeed != 0) {
@@ -119,12 +99,6 @@ public class AutograderBuddy {
             }
             if (java.lang.Character.isDigit(key)) {
                 stringKey += String.valueOf(key);
-//                StdDraw.setPenColor(Color.white);
-//                StdDraw.filledRectangle(45, 25, 20, 10);
-//                StdDraw.setPenColor(Color.black);
-//                StdDraw.text(45, 30, "Please enter seed:");
-//                StdDraw.text(45, 25, stringKey);
-//                StdDraw.show();
             }
         }
         if (stringKey != "") {
@@ -144,11 +118,9 @@ public class AutograderBuddy {
 
 
 
-
-
-
-
-    public static TETile[][] copyPlayingGame(TETile[][] world, ArrayList<Integer> avatarCoor, Random rand, Boolean trial, int numTrial, long seed, int numTrialCoinsPickedUp, int trialBoolPassedIn) {
+    public static TETile[][] copyPlayingGame(TETile[][] world, ArrayList<Integer> avatarCoor, Random rand,
+                                             Boolean trial, int numTrial, long seed, int numTrialCoinsPickedUp,
+                                             int trialBoolPassedIn) {
         Character avatar = new Character();
         Boolean playingGame = true;
         //TERenderer ter = new TERenderer();
@@ -248,16 +220,12 @@ public class AutograderBuddy {
                     //numCoins = avatarCoor.get(2);
                     if (numLoops == 0) {
 
-                        // SAVE GAME HERE
-                        //save.saveFile("Character", avatar);
-                        //save.saveFile("World", world);
                         SavedGame saveGame = new SavedGame();
                         saveGame.saveAvatarCoor(avatarCoor);
                         saveGame.saveAVCoorWorld(avatarCoor.get(0), avatarCoor.get(1));
                         numTrial = avatarCoor.get(3);
                         numLoops = copyObjectives(world, numTrial, rand, numLoops, x, y, seed);
 //
-                        //maybe copy objectives method
 
 
                         while (!avatarCoor.isEmpty()) {
@@ -275,7 +243,8 @@ public class AutograderBuddy {
                         avatarCoor.add(OGCoin3.get(0));
                         avatarCoor.add(OGCoin3.get(1));
 
-                        copyPlayingGame(world, avatarCoor, rand, false, numTrial, seed, numTrialCoinsPickedUp, trialBool);
+                        copyPlayingGame(world, avatarCoor, rand, false, numTrial, seed, numTrialCoinsPickedUp,
+                                trialBool);
                     } else if (numLoops == 7) {
                         numLoops = 0;
                         numTrial++;
@@ -341,10 +310,9 @@ public class AutograderBuddy {
                 // Av coor is av coor, OGCoin1 coor, OGCoin2 Coor, and OGCoin3 coor
 
 
-                //world = updatedWorld.generateWorld(world, seed, WIDTH, HEIGHT);
-                //character.takeInput();
-                copyPlayingGame(world, avatarCoor, rand, false,0, seed, 0, 0);
-                //endGame.callEndGame(world);
+
+                copyPlayingGame(world, avatarCoor, rand, false,0, seed, 0,
+                        0);
             }
             return world;
 
@@ -353,7 +321,8 @@ public class AutograderBuddy {
 
 
 
-    public static TETile[][] copyWhilePlayingTrial(TETile[][] world, ArrayList<Integer> avatarCoor, Random rand, Boolean trial, int numTrial, long seed) {
+    public static TETile[][] copyWhilePlayingTrial(TETile[][] world, ArrayList<Integer> avatarCoor, Random rand,
+                                                   Boolean trial, int numTrial, long seed) {
         Character avatar = new Character();
         Boolean playingGame = true;
         SavedGame loadGame = new SavedGame();
@@ -392,7 +361,7 @@ public class AutograderBuddy {
                     initMouseYCoor = currMouseYCoor;
                 }
 
-                if (isIbound()){
+                if (isIbound()) {
                     key = getNextChar();
                     ifColon = true;
 
@@ -450,18 +419,19 @@ public class AutograderBuddy {
 
 
                     }
-//                    if (OGCoins == 4) {
-//                        endGame.callEndGame(world);
-//                    }
+//
 
                     if (key == ':') {
                         while (ifColon) {
                             key = getNextChar();
                                 loadGame.saveIfTrial(true);
-                                ArrayList<Integer> trialCoinsCoor = loadGame.readTrialCoinsCoor("trialCoinsCoor");
+                                ArrayList<Integer> trialCoinsCoor =
+                                        loadGame.readTrialCoinsCoor("trialCoinsCoor");
 
-                                ArrayList<Boolean> trialCoinsBool = loadGame.readTrialCoinsBool("trialCoinsBool");
-                                avatar.ifExitObjective(key, world, avatarCoor, seed, OGCoin1, OGCoin2, OGCoin3, numCoinsPickedUpInTrial, trialCoinsCoor, trialCoinsBool);
+                                ArrayList<Boolean> trialCoinsBool =
+                                        loadGame.readTrialCoinsBool("trialCoinsBool");
+                                avatar.ifExitObjective(key, world, avatarCoor, seed, OGCoin1, OGCoin2, OGCoin3,
+                                        numCoinsPickedUpInTrial, trialCoinsCoor, trialCoinsBool);
                                 ifColon = false;
                             }
                         }
@@ -475,12 +445,12 @@ public class AutograderBuddy {
     }
 
 
-    public static int copyObjectives(TETile[][] world, int coinCountOG, Random rand, int numLoops, int x, int y, long seed) {
-        //EndGame endGame = new EndGame();
+    public static int copyObjectives(TETile[][] world, int coinCountOG, Random rand, int numLoops, int x, int y,
+                                     long seed) {
         Objectives objective = new Objectives();
         Coins coin = new Coins();
         boolean complete = objective.complete;
-        if (complete){
+        if (complete) {
             return copyTrialPickUpCoin(world, x, y, numLoops, coinCountOG);
         }
         else if (coinCountOG == 1 && numLoops == 0) {
@@ -505,9 +475,7 @@ public class AutograderBuddy {
         else if (coinCountOG == 3) {
             return copyTrialPickUpCoin(world, x, y, numLoops, coinCountOG);
         }
-//        if (coinCountOG == 4) {
-//            endGame.callEndGame(world);
-//        }
+
         return 0;
     }
     public static void copyObjective1 (TETile[][] world, Random rand, long seed, int x, int y) {
@@ -517,13 +485,9 @@ public class AutograderBuddy {
         Coins coins = new Coins();
 
         Character newAvatar = new Character();
-        //save.saveAVCoorWorld(x, y);
         coins.removeCoin(world, x, y);
-        //World updatedWorld = new World(seed);
         objective.trialRoom(world);
-        //objective.trialRoomIntro();
-        //objective.trialContinue(world);
-        //objective.trialRoom(world);
+
         coins.generateCoins(world, rand, true, 1);
         save.saveTrialCoin1Bool(false);
         save.saveTrialCoin2Bool(false);
@@ -534,16 +498,9 @@ public class AutograderBuddy {
 
 
         ArrayList<Integer> avatarCoor = newAvatar.generateAvatar(world, rand);
-//        ter.renderFrame(world);
 
         copyWhilePlayingTrial(world, avatarCoor, rand, true, 1, seed);
-        //trial1Colors(world, avatarCoor.getFirst(), avatarCoor.get(1));
-
-
-
     }
-
-
 
     public static void copyObjective2(TETile[][] world, Random rand, long seed, int x, int y) {
         PlayingGame playGame = new PlayingGame();
@@ -551,13 +508,10 @@ public class AutograderBuddy {
         Objectives objective = new Objectives();
 
         Coins coins = new Coins();
-        //save.saveAVCoorWorld(x, y);
 
         Character newAvatar = new Character();
-        //World updatedWorld = new World(seed);
         objective.trialRoom(world);
-        //objective.trialRoomIntro();
-        //objective.trialContinue(world);
+
         coins.generateCoins(world, rand, true, 2);
         save.saveTrialCoin1Bool(false);
         save.saveTrialCoin2Bool(false);
@@ -572,17 +526,13 @@ public class AutograderBuddy {
 
     public static void copyObjective3(TETile[][] world, Random rand, long seed, int x, int y) {
         PlayingGame playGame = new PlayingGame();
-        //EndGame endGame = new EndGame();
         SavedGame save = new SavedGame();
         Objectives objective = new Objectives();
         Coins coins = new Coins();
         Character newAvatar = new Character();
-        //save.saveAVCoorWorld(x, y);
 
-        //World updatedWorld = new World(seed);
         objective.trialRoom(world);
-        //objective.trialRoomIntro();
-        //objective.trialContinue(world);
+
 
         coins.generateCoins(world, rand, true, 3);
         save.saveTrialCoin1Bool(false);
@@ -593,39 +543,28 @@ public class AutograderBuddy {
         save.saveTrialCoin6Bool(false);
 
         ArrayList<Integer> avatarCoor = newAvatar.generateAvatar(world, rand);
-        //ter.renderFrame(world);
 
         copyWhilePlayingTrial(world, avatarCoor, rand, true, 3, seed);
-        //endGame.callEndGame(world);
     }
-
 
     public static void copyTrialComplete(TETile[][] world, int trialNum) {
         EndGame endGame = new EndGame();
         ReadFiles readSeed = new ReadFiles();
         long seed = readSeed.readFileSeed();
-        if (trialNum == 3){
+        if (trialNum == 3) {
             copyEndGame(world);
         }
 
         endGame.endObjective(world, trialNum);
 
-        //ter.renderFrame(world);
     }
-
 
     public static TETile[][] copyEndGame(TETile[][] world) {
         boolean waiting = true;
         char key;
         while (waiting) {
-//            StdDraw.setPenColor(Color.black);
-//            StdDraw.filledRectangle(45, 25, 60, 60);
-//            StdDraw.setPenColor(Color.green);
-//            StdDraw.text(45, 26, "Congratulations! You win!");
-//            StdDraw.text(45, 23, "Press Q to Quit");
-//            StdDraw.text(45, 20, "Press N to start new game");
-//            StdDraw.show();
-            if(isIbound()){
+
+            if(isIbound()) {
                 key = getNextChar();
                 if ((key == 'q') || (key == 'Q')) {
                     //System.exit(0);
@@ -638,7 +577,6 @@ public class AutograderBuddy {
                     ArrayList<Integer> avatarCoor = new ArrayList<>();
                     EndGame endGame = new EndGame();
 
-                   // titleScreen.generateTitleScreen(world, 94, 55);
                     long seed = titleScreen.onTitlePage(world, 94, 55);
                     SavedGame saveFiles = new SavedGame();
 
@@ -646,21 +584,14 @@ public class AutograderBuddy {
                     World updatedWorld = new World(seed);
 
                     avatarCoor = updatedWorld.generateWorld(world, seed, 94, 55);
-                    //world = updatedWorld.generateWorld(world, seed, WIDTH, HEIGHT);
-                    //ter.renderFrame(world);
-                    //character.takeInput();
                     int numTrialCoinsPickedUp = avatarCoor.get(2);
                     int numTrial = avatarCoor.get(3);
                     Random rand = updatedWorld.rand;
-                    copyPlayingGame(world, avatarCoor, rand, false, numTrialCoinsPickedUp, seed, numTrial, 0);
-                    //endGame.callEndGame(world);
-                    //ter.renderFrame(world);
+                    copyPlayingGame(world, avatarCoor, rand, false, numTrialCoinsPickedUp, seed, numTrial,
+                            0);
+
                 }
-
-
             }
-
-
         }
         return world;
     }
@@ -701,7 +632,4 @@ public class AutograderBuddy {
         //|| t.character() == Tileset.LOCKED_DOOR.character()
         //|| t.character() == Tileset.UNLOCKED_DOOR.character();
     }
-
 }
-
-

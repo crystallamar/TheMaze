@@ -22,34 +22,27 @@ public class Objectives {
     public int objectives(TETile[][] world, int coinCountOG, Random rand, int numLoops, int x, int y, long seed) {
         EndGame endGame = new EndGame();
         Coins coin = new Coins();
-        if (complete){
+        if (complete) {
             return trialPickUpCoin(world, x, y, numLoops, coinCountOG);
-        }
-        else if (coinCountOG == 1 && numLoops == 0) {
+        } else if (coinCountOG == 1 && numLoops == 0) {
             objective1(world, rand, seed, x, y);
             complete = true;
             return 0;
-        }
-        else if (coinCountOG == 1) { // and it isn't the first loop
+        } else if (coinCountOG == 1) { // and it isn't the first loop
             return trialPickUpCoin(world, x, y, numLoops, coinCountOG);
         }
         if (coinCountOG == 2 && numLoops == 0) {
             objective2(world, rand, seed, x, y);
             return 0;
-        }
-        else if (coinCountOG == 2) {
+        } else if (coinCountOG == 2) {
             return trialPickUpCoin(world, x, y, numLoops, coinCountOG);
         }
         if (coinCountOG == 3 && numLoops == 0) {
             objective3(world, rand, seed, x, y);
             return 0;
-        }
-        else if (coinCountOG == 3) {
+        } else if (coinCountOG == 3) {
             return trialPickUpCoin(world, x, y, numLoops, coinCountOG);
         }
-//        if (coinCountOG == 4) {
-//            endGame.callEndGame(world);
-//        }
         return 0;
     }
     public void objective1 (TETile[][] world, Random rand, long seed, int x, int y) {
@@ -58,9 +51,7 @@ public class Objectives {
         Coins coins = new Coins();
 
         Character newAvatar = new Character();
-        //save.saveAVCoorWorld(x, y);
         coins.removeCoin(world, x, y);
-        //World updatedWorld = new World(seed);
         trialRoom(world);
         trialRoomIntro();
         trialContinue(world);
@@ -77,7 +68,6 @@ public class Objectives {
         ter.renderFrame(world);
 
         whilePlayingTrial(world, avatarCoor, rand, true, 1, seed);
-        //trial1Colors(world, avatarCoor.getFirst(), avatarCoor.get(1));
 
 
 
@@ -181,7 +171,7 @@ public class Objectives {
         EndGame endGame = new EndGame();
         ReadFiles readSeed = new ReadFiles();
         long seed = readSeed.readFileSeed();
-        if (trialNum == 3){
+        if (trialNum == 3) {
             endGame.endGame(world);
         }
 
@@ -205,7 +195,8 @@ public class Objectives {
         return numTrialCoins;
     }
 
-    public void whilePlayingTrial(TETile[][] world, ArrayList<Integer> avatarCoor, Random rand, Boolean trial, int numTrial, long seed){
+    public void whilePlayingTrial(TETile[][] world, ArrayList<Integer> avatarCoor, Random rand, Boolean trial,
+                                  int numTrial, long seed) {
         Character avatar = new Character();
         Boolean playingGame = true;
         TERenderer ter = new TERenderer();
@@ -252,15 +243,6 @@ public class Objectives {
                 if (StdDraw.hasNextKeyTyped()) {
                     ifColon = true;
                     key = StdDraw.nextKeyTyped();
-
-
-
-//                    OGCoin1.add(avatarCoor.get(2));
-//                    OGCoin1.add(avatarCoor.get(3));
-//                    OGCoin2.add(avatarCoor.get(4));
-//                    OGCoin2.add(avatarCoor.get(5));
-//                    OGCoin3.add(avatarCoor.get(6));
-//                    OGCoin3.add(avatarCoor.get(7));
 
                     avatarCoor = avatar.moveChar(key, world, avatarCoor, rand, trial, numTrial, seed);
                     if (avatarCoor.size() != 11) {
@@ -312,24 +294,23 @@ public class Objectives {
                         avatarCoor.add(OGCoin2.get(1));
                         avatarCoor.add(OGCoin3.get(0));
                         avatarCoor.add(OGCoin3.get(1));
-                        //trialBool = 0;
 
 
 
                     }
-//                    if (OGCoins == 4) {
-//                        endGame.callEndGame(world);
-//                    }
 
                     if (key == ':') {
                         while (ifColon) {
                             if (StdDraw.hasNextKeyTyped()) {
                                 key = StdDraw.nextKeyTyped();
                                 loadGame.saveIfTrial(true);
-                                ArrayList<Integer> trialCoinsCoor = loadGame.readTrialCoinsCoor("trialCoinsCoor");
+                                ArrayList<Integer> trialCoinsCoor =
+                                        loadGame.readTrialCoinsCoor("trialCoinsCoor");
 
-                                ArrayList<Boolean> trialCoinsBool = loadGame.readTrialCoinsBool("trialCoinsBool");
-                                avatar.ifExitObjective(key, world, avatarCoor, seed, OGCoin1, OGCoin2, OGCoin3, numCoinsPickedUpInTrial, trialCoinsCoor, trialCoinsBool);
+                                ArrayList<Boolean> trialCoinsBool =
+                                        loadGame.readTrialCoinsBool("trialCoinsBool");
+                                avatar.ifExitObjective(key, world, avatarCoor, seed, OGCoin1, OGCoin2, OGCoin3,
+                                        numCoinsPickedUpInTrial, trialCoinsCoor, trialCoinsBool);
                                 ifColon = false;
                             }
                         }
@@ -342,13 +323,6 @@ public class Objectives {
             }
         }
     }
-
-    public Random getRand() {
-        Random rand = this.rand;
-        return rand;
-    }
-
-
-    }
+}
 
 

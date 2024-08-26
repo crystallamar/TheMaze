@@ -19,7 +19,8 @@ public class Paint {
 
         if (typeToPaint.equals("Sand")) {
             Sand sand = new Sand();
-            if ((sand.isTouchingGrassBottom(world, rightX, bottomY)) && (sand.isTouchingGrassLeft(world, leftX, bottomY))) {
+            if ((sand.isTouchingGrassBottom(world, rightX, bottomY)) && (sand.isTouchingGrassLeft(world, leftX,
+                    bottomY))) {
                 if ((sand.isTouchingGrassRight(world, rightX, topY)) && (sand.isTouchingGrassTop(world, leftX, topY))) {
                     for (int x = rightX; x > leftX; x--) {
                         for (int y = topY; y > bottomY; y--) {
@@ -35,7 +36,6 @@ public class Paint {
         }
 
 
-        //if (typeToPaint == ...)
     return buildWorld;
     }
     

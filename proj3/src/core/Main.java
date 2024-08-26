@@ -27,7 +27,7 @@ public class Main {
     public static void main(String[] args) {
         FileUtils files = new FileUtils();
         File savedGame = new File("Saved Game");
-        boolean runningAutograder = true;
+        boolean runningAutograder = false;
 
         TERenderer ter = new TERenderer();
         ter.initialize(WIDTH, HEIGHT); // Creates screen
@@ -35,10 +35,17 @@ public class Main {
 
         if (runningAutograder) {
             //AutograderBuddy auto = new AutograderBuddy();
-            //world = auto.getWorldFromInput("n1ssdddddddddddwww"); //gets it to first coin - not running the correct seed
-            world = AutograderBuddy.getWorldFromInput("n1724641833626swwddddddddddddwwwwwaaaaaaaaaaaaawwwwwwwwwdwwwwwwwwwwwwwwwwwaaaadddddddddddddddddddddddddddddddssssssssssssssssddwwaaaaaawwwwwwwaaaaaaaaaaaasssdddddddddddssssssssssssdddddddddddddddssswwwwwwwwwwaaawwwwwwwwwwwwaawdwwwwwwddddaaaaaaaaaaawwwwaaaaaaassssssaawwwwwwwwwwwwwwaaaaaaaaassssssssa"); //AFTER WWWWW is first Trial
-            //world = AutograderBuddy.getWorldFromInput("n1724641833626swwddddddddddddwwwwwaaaaaaaaaaaaa1234wwwwwwwwwdwwwwgfwwwwwwwwwwwwwaaaadddddddddddddddddddddddddddddddssssssssssssssssddwwaaaaaawwwwwwwaaaaaaaaaaaasssdddddddddddssssssssssssdddddddddddddddssswwwwwwwwwwaaawwwwwwwwwwwwaawdwwwwwwddddaaaaaaaaaaawwwwaaaaaaassssssaawwwwwwwwwwwwwwaaaaaaaaassssssssa");
-            ter.renderFrame(world); // EASY WORLD 1724641833626
+            //world = auto.getWorldFromInput("n1ssdddddddddddwww");
+
+            //world = AutograderBuddy.getWorldFromInput("n1724641833626swwddddddddddddwwwwwaaaaaaaaaaaaawwwwwwwwwdwwwww
+            // wwwwwwwwwwwwaaaadddddddddddddddddddddddddddddddssssssssssssssssddwwaaaaaawwwwwwwaaaaaaaaaaaasssddddddddd
+            // ddssssssssssssdddddddddddddddssswwwwwwwwwwaaawwwwwwwwwwwwaawdwwwwwwddddaaaaaaaaaaawwwwaaaaaaassssssaawww
+            // wwwwwwwwwwwaaaaaaaaassssssssa"); //AFTER WWWWW is first Trial
+            //world = AutograderBuddy.getWorldFromInput("n1724641833626swwddddddddddddwwwwwaaaaaaaaaaaaa1234wwwwwwwwwd
+            // wwwwgfwwwwwwwwwwwwwaaaadddddddddddddddddddddddddddddddssssssssssssssssddwwaaaaaawwwwwwwaaaaaaaaaaaasssddd
+            // ddddddddssssssssssssdddddddddddddddssswwwwwwwwwwaaawwwwwwwwwwwwaawdwwwwwwddddaaaaaaaaaaawwwwaaaaaaassssss
+            // aawwwwwwwwwwwwwwaaaaaaaaassssssssa");
+            //ter.renderFrame(world); // EASY WORLD 1724641833626
 
         } else {
             //long seed = 12345;
@@ -78,8 +85,6 @@ public class Main {
                 } else {
                     updatedWorld.callObjectivePlayGame(world, avatarCoor, true, numTrial, seed);
                 }
-                //world = updatedWorld.generateSavedWorld(world, avatarCoor, OGCoin1, OGCoin2, OGCoin3, trialCoinsPickedUp, trialBool, numOGCoins);
-                //ter.renderFrame(world);
                 ter.renderFrame(world);
             } else {
                 SavedGame saveFiles = new SavedGame();
@@ -91,13 +96,9 @@ public class Main {
                 // Av coor is av coor, OGCoin1 coor, OGCoin2 Coor, and OGCoin3 coor
 
 
-                //world = updatedWorld.generateWorld(world, seed, WIDTH, HEIGHT);
                 ter.renderFrame(world);
-                //character.takeInput();
                 updatedWorld.callPlayGame(world, avatarCoor, seed, 0, 0, 0);
-                //endGame.callEndGame(world);
                 ter.renderFrame(world);
-                //playingGame.playingGame(z);
             }
         }
     }
