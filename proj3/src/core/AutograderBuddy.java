@@ -1,5 +1,6 @@
 package core;
 
+import org.apache.pdfbox.contentstream.operator.state.Save;
 import tileengine.TETile;
 import tileengine.Tileset;
 
@@ -160,8 +161,8 @@ public class AutograderBuddy {
                 trial = false;
             } else if (didCharMove) {
                 trial = true;
-                processTrial(world, avatarCoor, rand, seed, saveGame, originalCoinPositions1, originalCoinPositions2,
-                        originalCoinPositions3, numLoops, x, y, numTrial, numTrialCoinsPickedUp);
+                processTrial(world, avatarCoor, rand, seed, originalCoinPositions1, originalCoinPositions2,
+                        originalCoinPositions3);
             }
 
             if (key == ':') {
@@ -213,9 +214,12 @@ public class AutograderBuddy {
     }
 
     private static void processTrial(TETile[][] world, ArrayList<Integer> avatarCoor, Random rand, long seed,
-                                     SavedGame saveGame,
-                                     ArrayList<Integer> coin1, ArrayList<Integer> coin2, ArrayList<Integer> coin3,
-                                     int numLoops, int x, int y, int numTrial, int numTrialCoinsPickedUp) {
+                                     ArrayList<Integer> coin1, ArrayList<Integer> coin2, ArrayList<Integer> coin3) {
+        SavedGame saveGame = new SavedGame();
+        int numLoops = avatarCoor.get(2);
+        int numTrial = avatarCoor.get(3);
+        int x = avatarCoor.get(0);
+        int y = avatarCoor.get(1);
         if (numLoops == 0) {
             saveGame.saveAvatarCoor(avatarCoor);
             saveGame.saveAVCoorWorld(x, y);
