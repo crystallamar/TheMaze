@@ -224,7 +224,8 @@ public class Objectives {
 
                     if (numCoinsPickedUpInTrial != 7) {
                         numCoinsPickedUpInTrial = trialPickUpCoin(world, x, y, numCoinsPickedUpInTrial, numTrial);
-                        updateAvatarCoor(avatarCoor, x, y, numCoinsPickedUpInTrial, oGCoin1, oGCoin2, oGCoin3, numTrial);
+                        updateAvatarCoor(avatarCoor, x, y, numCoinsPickedUpInTrial, oGCoin1, oGCoin2, oGCoin3,
+                                numTrial);
                     } if (numCoinsPickedUpInTrial == 7) {
                         prepareForNextStage(loadGame, avatarCoor, oGCoin1, oGCoin2, oGCoin3, numTrial);
                         playingGame = false;
@@ -232,7 +233,8 @@ public class Objectives {
                     }
 
                     if (key == ':') {
-                        handleColonKey(loadGame, avatar, world, avatarCoor, seed, oGCoin1, oGCoin2, oGCoin3, numCoinsPickedUpInTrial);
+                        handleColonKey(loadGame, avatar, world, avatarCoor, seed, oGCoin1, oGCoin2, oGCoin3,
+                                numCoinsPickedUpInTrial);
                     }
 
                     ter.renderFrame(world);
@@ -260,7 +262,9 @@ public class Objectives {
         }
     }
 
-    private void updateAvatarCoor(ArrayList<Integer> avatarCoor, int x, int y, int numCoinsPickedUpInTrial, ArrayList<Integer> oGCoin1, ArrayList<Integer> oGCoin2, ArrayList<Integer> oGCoin3, int numTrial) {
+    private void updateAvatarCoor(ArrayList<Integer> avatarCoor, int x, int y, int numCoinsPickedUpInTrial,
+                                  ArrayList<Integer> oGCoin1, ArrayList<Integer> oGCoin2, ArrayList<Integer> oGCoin3,
+                                  int numTrial) {
         avatarCoor.clear();
         avatarCoor.add(x);
         avatarCoor.add(y);
@@ -274,7 +278,8 @@ public class Objectives {
         //addOGCoinsToAvatarCoor(avatarCoor, oGCoin1, oGCoin2, oGCoin3);
     }
 
-    private void prepareForNextStage(SavedGame loadGame, ArrayList<Integer> avatarCoor, ArrayList<Integer> oGCoin1, ArrayList<Integer> oGCoin2, ArrayList<Integer> oGCoin3, int numTrial) {
+    private void prepareForNextStage(SavedGame loadGame, ArrayList<Integer> avatarCoor, ArrayList<Integer> oGCoin1,
+                                     ArrayList<Integer> oGCoin2, ArrayList<Integer> oGCoin3, int numTrial) {
         ArrayList<Integer> avXY = loadGame.readAVCoorWorld();
 
         avatarCoor.clear();
@@ -283,12 +288,15 @@ public class Objectives {
         addOGCoinsToAvatarCoor(avatarCoor, oGCoin1, oGCoin2, oGCoin3);
     }
 
-    private void handleColonKey(SavedGame loadGame, Character avatar, TETile[][] world, ArrayList<Integer> avatarCoor, long seed, ArrayList<Integer> oGCoin1, ArrayList<Integer> oGCoin2, ArrayList<Integer> oGCoin3, int numCoinsPickedUpInTrial) {
+    private void handleColonKey(SavedGame loadGame, Character avatar, TETile[][] world, ArrayList<Integer> avatarCoor,
+                                long seed, ArrayList<Integer> oGCoin1, ArrayList<Integer> oGCoin2,
+                                ArrayList<Integer> oGCoin3, int numCoinsPickedUpInTrial) {
         while (true) {
             if (StdDraw.hasNextKeyTyped()) {
                 char key = StdDraw.nextKeyTyped();
                 loadGame.saveIfTrial(true);
-                avatar.ifExitObjective(key, world, avatarCoor, seed, oGCoin1, oGCoin2, oGCoin3, numCoinsPickedUpInTrial);
+                avatar.ifExitObjective(key, world, avatarCoor, seed, oGCoin1, oGCoin2, oGCoin3,
+                        numCoinsPickedUpInTrial);
                 break;
             }
         }
