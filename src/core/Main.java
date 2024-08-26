@@ -36,7 +36,7 @@ public class Main {
 
         if (runningAutograder) {
             AutograderBuddy auto = new AutograderBuddy();
-            world = auto.getWorldFromInput("n123sdddw"); //gets it to first coin - not running the correct seed
+            world = auto.getWorldFromInput("n1ssdddddddddddwww"); //gets it to first coin - not running the correct seed
             ter.renderFrame(world);
 
         } else {

@@ -87,7 +87,7 @@ public class TitleScreen {
         long seedToReturn = seed;
         char key;
         String stringKey = "";
-        char prevKey = '0';
+        //char prevKey = '0';
 
 
         while (enteringSeed) {
@@ -96,8 +96,8 @@ public class TitleScreen {
                 if ((key != 's') || (key != 'S')) {
 
                     if (java.lang.Character.isDigit(key)) {
-                        seedToReturn = prevKey + key;
-                        prevKey = key;
+//                        seedToReturn = prevKey + key;
+//                        prevKey = key;
 
                         stringKey += String.valueOf(key).toString();
                         StdDraw.setPenColor(Color.white);
@@ -107,8 +107,12 @@ public class TitleScreen {
                         StdDraw.text(45, 25, stringKey);
                         StdDraw.show();
                     }
+
                 }
                 if ((key == 's') || (key == 'S')) {
+                    if (stringKey != "") {
+                        seedToReturn = Integer.parseInt(stringKey);
+                    }
                     enteringSeed = false;
                 }
             }

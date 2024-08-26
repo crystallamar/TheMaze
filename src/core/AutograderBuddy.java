@@ -111,10 +111,9 @@ public class AutograderBuddy {
         long seedToReturn = seed;
         char key;
         String stringKey = "";
-        char prevKey = '0';
 
-
-        while ((sArray[i + 1] != 's') && sArray[i + 1] != 'S') {
+        //int n = i;
+        while ((sArray[i] != 's') && sArray[i] != 'S') {
             if (isIbound()) {
                 key = getNextChar();
             }
@@ -122,9 +121,6 @@ public class AutograderBuddy {
                 return seed;
             }
             if (java.lang.Character.isDigit(key)) {
-                seedToReturn = prevKey + key;
-                prevKey = key;
-
                 stringKey += String.valueOf(key).toString();
                 StdDraw.setPenColor(Color.white);
                 StdDraw.filledRectangle(45, 25, 20, 10);
@@ -134,7 +130,9 @@ public class AutograderBuddy {
                 StdDraw.show();
             }
         }
-
+        if (stringKey != "") {
+            seedToReturn = Integer.parseInt(stringKey);
+        }
         try {
             ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("Seed.data"));
             output.writeLong(seedToReturn);
@@ -194,7 +192,6 @@ public class AutograderBuddy {
             save.saveIfTrial(false);
             Boolean didCharMove = true;
 
-
             while (expectingInput) {
                 mouseCoor = mousePointer.mouseMoves();
 
@@ -212,7 +209,6 @@ public class AutograderBuddy {
                 ifColon = true;
                 if (isIbound()) {
                     key = getNextChar();
-
 
                     ArrayList<Integer> temp = new ArrayList<>();
                     temp.addAll(avatarCoor);
@@ -264,9 +260,13 @@ public class AutograderBuddy {
                             saveGame.saveAVCoorWorld(avatarCoor.get(0), avatarCoor.get(1));
                             numTrial = avatarCoor.get(3);
                             numLoops = objectives.objectives(world, numTrial, rand, numLoops, x, y, seed);
-                            //int newAvatarCoorOGCoins = avatarCoor.get(2) + 1;
-                            //avX = avatarCoor.get(0);
-                            //avY = avatarCoor.get(1);
+//
+                            //maybe copy objectives method
+
+
+
+
+
                             while (!avatarCoor.isEmpty()) {
                                 avatarCoor.remove(0);
                             }
@@ -490,6 +490,127 @@ public class AutograderBuddy {
     }
 
 
+    public int copyObjectives(TETile[][] world, int coinCountOG, Random rand, int numLoops, int x, int y, long seed) {
+        EndGame endGame = new EndGame();
+        Objectives objective = new Objectives();
+        Coins coin = new Coins();
+        boolean complete = objective.complete;
+        if (complete){
+            return objective.trialPickUpCoin(world, x, y, numLoops, coinCountOG);
+        }
+        else if (coinCountOG == 1 && numLoops == 0) {
+            objective1(world, rand, seed, x, y);
+            complete = true;
+            return 0;
+        }
+        else if (coinCountOG == 1) { // and it isn't the first loop
+            return objective.trialPickUpCoin(world, x, y, numLoops, coinCountOG);
+        }
+        if (coinCountOG == 2 && numLoops == 0) {
+            objective2(world, rand, seed, x, y);
+            return 0;
+        }
+        else if (coinCountOG == 2) {
+            return objective.trialPickUpCoin(world, x, y, numLoops, coinCountOG);
+        }
+        if (coinCountOG == 3 && numLoops == 0) {
+            objective3(world, rand, seed, x, y);
+            return 0;
+        }
+        else if (coinCountOG == 3) {
+            return objective.trialPickUpCoin(world, x, y, numLoops, coinCountOG);
+        }
+//        if (coinCountOG == 4) {
+//            endGame.callEndGame(world);
+//        }
+        return 0;
+    }
+    public void objective1 (TETile[][] world, Random rand, long seed, int x, int y) {
+        PlayingGame playGame = new PlayingGame();
+        Objectives objective = new Objectives();
+        SavedGame save = new SavedGame();
+        Coins coins = new Coins();
+
+        Character newAvatar = new Character();
+        //save.saveAVCoorWorld(x, y);
+        coins.removeCoin(world, x, y);
+        //World updatedWorld = new World(seed);
+        objective.trialRoom(world);
+        objective.trialRoomIntro();
+        objective.trialContinue(world);
+        coins.generateCoins(world, rand, true, 1);
+        save.saveTrialCoin1Bool(false);
+        save.saveTrialCoin2Bool(false);
+        save.saveTrialCoin3Bool(false);
+        save.saveTrialCoin4Bool(false);
+        save.saveTrialCoin5Bool(false);
+        save.saveTrialCoin6Bool(false);
+
+
+        ArrayList<Integer> avatarCoor = newAvatar.generateAvatar(world, rand);
+//        ter.renderFrame(world);
+
+        copyWhilePlayingTrial(world, avatarCoor, rand, true, 1, seed);
+        //trial1Colors(world, avatarCoor.getFirst(), avatarCoor.get(1));
+
+
+
+    }
+
+
+
+    public void objective2(TETile[][] world, Random rand, long seed, int x, int y) {
+        PlayingGame playGame = new PlayingGame();
+        SavedGame save = new SavedGame();
+        Objectives objective = new Objectives();
+
+        Coins coins = new Coins();
+        //save.saveAVCoorWorld(x, y);
+
+        Character newAvatar = new Character();
+        //World updatedWorld = new World(seed);
+        objective.trialRoom(world);
+        objective.trialRoomIntro();
+        objective.trialContinue(world);
+        coins.generateCoins(world, rand, true, 2);
+        save.saveTrialCoin1Bool(false);
+        save.saveTrialCoin2Bool(false);
+        save.saveTrialCoin3Bool(false);
+        save.saveTrialCoin4Bool(false);
+        save.saveTrialCoin5Bool(false);
+        save.saveTrialCoin6Bool(false);
+        ArrayList<Integer> avatarCoor = newAvatar.generateAvatar(world, rand);
+
+        copyWhilePlayingTrial(world, avatarCoor, rand, true, 2, seed);
+    }
+
+    public void objective3(TETile[][] world, Random rand, long seed, int x, int y) {
+        PlayingGame playGame = new PlayingGame();
+        EndGame endGame = new EndGame();
+        SavedGame save = new SavedGame();
+        Objectives objective = new Objectives();
+        Coins coins = new Coins();
+        Character newAvatar = new Character();
+        //save.saveAVCoorWorld(x, y);
+
+        //World updatedWorld = new World(seed);
+        objective.trialRoom(world);
+        objective.trialRoomIntro();
+        objective.trialContinue(world);
+        coins.generateCoins(world, rand, true, 3);
+        save.saveTrialCoin1Bool(false);
+        save.saveTrialCoin2Bool(false);
+        save.saveTrialCoin3Bool(false);
+        save.saveTrialCoin4Bool(false);
+        save.saveTrialCoin5Bool(false);
+        save.saveTrialCoin6Bool(false);
+
+        ArrayList<Integer> avatarCoor = newAvatar.generateAvatar(world, rand);
+        //ter.renderFrame(world);
+
+        copyWhilePlayingTrial(world, avatarCoor, rand, true, 3, seed);
+        endGame.callEndGame(world);
+    }
 
 
 
