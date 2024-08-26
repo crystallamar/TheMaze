@@ -84,8 +84,7 @@ public class Character {
 
     public void ifExitObjective(char input, TETile[][] world, ArrayList<Integer> avatarCoor, long seed,
                                 ArrayList<Integer> oGCoin1, ArrayList<Integer> oGCoin2, ArrayList<Integer> oGCoin3,
-                                int numCoinsPickedUp, ArrayList<Integer> trialCoinCoor,
-                                ArrayList<Boolean> trialCoinBool) {
+                                int numCoinsPickedUp) {
         SavedGame saveGame = new SavedGame();
         if ((input == 'q') || (input == 'Q')) {
             saveGame.createSavedFile(world, avatarCoor, seed, oGCoin1, oGCoin2, oGCoin3, numCoinsPickedUp, true);
@@ -267,7 +266,8 @@ public class Character {
     public ArrayList<Integer> avatarPickedUpCoin(TETile[][] world, int x, int y, Boolean trial,
                                                  int oGCoins, long seed) {
 
-        // Returns numberOfCoinsPickedUpInTrial, 1 if it is a trial, and og coins, AND WHICH COIN IN TRIAL HAS BEEN PICKED UP
+        // Returns numberOfCoinsPickedUpInTrial, 1 if it is a trial, and og coins,
+        // AND WHICH COIN IN TRIAL HAS BEEN PICKED UP
         boolean isCoin = coins.isCoin(world, x, y);
         ArrayList<Integer> numCoinsAndBool = new ArrayList<>();
         SavedGame save = new SavedGame();

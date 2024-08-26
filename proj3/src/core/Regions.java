@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Regions {
-    ArrayList<ArrayList<Integer>> region = new ArrayList<>(); // (X1,Y1)(X1,Y2)(X2,Y1)(X2,Y2)
+    //ArrayList<ArrayList<Integer>> region = new ArrayList<>(); // (X1,Y1)(X1,Y2)(X2,Y1)(X2,Y2)
     RandomGenerator randGen = new RandomGenerator();
 
     // Generate Region generates a region for any purpose (i.e. size of rooms, mountains, flowewrs, etc.)

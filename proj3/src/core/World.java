@@ -94,6 +94,7 @@ public class World implements Serializable {
         int height = 55;
         Grass genGrass = new Grass();
         Random rand = this.rand;
+        long seeds = this.seed;
         Hallways hallways = new Hallways();
         Mountains addMountains = new Mountains();
         Sand addSand = new Sand();
@@ -110,7 +111,7 @@ public class World implements Serializable {
         numOGCoinsPickedUp = savedAvatarCoor.get(3);
         ArrayList<ArrayList<Integer>> centerCoorOfSand = new ArrayList<>();
         genGrass.generateGrass(world, width, height);
-        addMountains.generateMountains(world, seed, width, height, rand);
+        addMountains.generateMountains(world, seeds, width, height, rand);
         centerCoorOfSand = addSand.generateSand(world, rand);
         hallways.generateHallways(world, rand, centerCoorOfSand);
         coins.generateSavedCoins(world, oGCoin1, oGCoin2, oGCoin3);
@@ -142,7 +143,7 @@ public class World implements Serializable {
         SavedGame readFile = new SavedGame();
         Coins coin = new Coins();
         Character avatar = new Character();
-        Random random = this.rand;
+        //Random random = this.rand;
 
         genGrass.generateGrass(world, 94, 55);
         objective.trialRoom(world); // build background of trial room
@@ -213,13 +214,12 @@ public class World implements Serializable {
 
     public void callObjectivePlayGame(TETile[][] world, ArrayList<Integer> avatarCoor, Boolean trial, int numTrial,
                                       long seed) {
-        Random random = this.rand;
         Objectives objective = new Objectives();
         PlayingGame playGame = new PlayingGame();
 
         objective.whilePlayingTrial(world, avatarCoor, seed, numTrial);
         if (numTrial != 3) {
-            playGame.playingGame(world, avatarCoor, random, false, numTrial, seed, 0, 0);
+            playGame.playingGame(world, avatarCoor, this.rand, false, numTrial, seed, 0, 0);
         }
     }
 }

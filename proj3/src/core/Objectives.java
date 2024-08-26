@@ -14,7 +14,7 @@ import tileengine.TERenderer;
 
 public class Objectives {
     TERenderer ter = new TERenderer();
-    boolean trial = false;
+    //boolean trial = false;
     //Random rand;
     Boolean complete = false;
 
@@ -196,12 +196,9 @@ public class Objectives {
     public void whilePlayingTrial(TETile[][] world, ArrayList<Integer> avatarCoor, long seed, int numTrial) {
         Character avatar = new Character();
         Boolean playingGame = true;
-        TERenderer ter = new TERenderer();
-        EndGame endGame = new EndGame();
         SavedGame loadGame = new SavedGame();
         loadGame.saveIfTrial(true);
         boolean trial = true;
-        //int numTrial = avatarCoor.get(3);
 
         Hover mousePointer = new Hover();
         //int numLoops = 0;
@@ -309,7 +306,7 @@ public class Objectives {
                                 ArrayList<Boolean> trialCoinsBool =
                                         loadGame.readTrialCoinsBool("trialCoinsBool");
                                 avatar.ifExitObjective(key, world, avatarCoor, seed, oGCoin1, oGCoin2, oGCoin3,
-                                        numCoinsPickedUpInTrial, trialCoinsCoor, trialCoinsBool);
+                                        numCoinsPickedUpInTrial);
                                 ifColon = false;
                             }
                         }

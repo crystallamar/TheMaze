@@ -11,7 +11,6 @@ import java.util.Random;
 
 public class AutograderBuddy {
 
-
     /**
      * Simulates a game, but doesn't render anything or call any StdDraw
      * methods. Instead, returns the world that would result if the input string
@@ -116,16 +115,12 @@ public class AutograderBuddy {
 
 
     public static TETile[][] copyPlayingGame(TETile[][] world, ArrayList<Integer> avatarCoor, Random rand, long seed) {
-        //copyPlayingGame
         Character avatar = new Character();
         Boolean playingGame = true;
-        boolean trial = false;
+        Boolean trial = false;
         int numTrial = avatarCoor.get(3);
         int numTrialCoinsPickedUp = avatarCoor.get(2);
         SavedGame saveGame = new SavedGame();
-
-
-        Hover mousePointer = new Hover();
         SavedGame save = new SavedGame();
         ArrayList<Integer> oGCoin1 = new ArrayList<>();
         ArrayList<Integer> oGCoin2 = new ArrayList<>();
@@ -148,24 +143,11 @@ public class AutograderBuddy {
             oGCoin3.add(avatarCoor.get(6));
             oGCoin3.add(avatarCoor.get(7));
         }
-        ArrayList<Integer> mouseCoor;
         while (playingGame) {
             boolean ifColon;
             char key;
-            int initMouseXCoor = 0;
-            int initMouseYCoor = 0;
-            int currMouseXCoor;
-            int currMouseYCoor;
             save.saveIfTrial(false);
             Boolean didCharMove = true;
-            mouseCoor = mousePointer.mouseMoves();
-            currMouseXCoor = mouseCoor.get(0);
-            currMouseYCoor = mouseCoor.get(1);
-            String tileTitle = mousePointer.convertCoor(world, mouseCoor);
-            if ((initMouseXCoor != currMouseXCoor) || (initMouseYCoor != currMouseYCoor)) {
-                mousePointer.displayNothing();
-                mousePointer.displayTile(tileTitle);
-            }
             ifColon = true;
             if (isIbound()) {
                 key = getNextChar();
@@ -202,12 +184,11 @@ public class AutograderBuddy {
                     trial = false; // if numCoins == 0, don't call objective
                 } else if (didCharMove) {
                     trial = true;
-                    //numCoins = avatarCoor.get(2);
                     if (numLoops == 0) {
                         saveGame.saveAvatarCoor(avatarCoor);
                         saveGame.saveAVCoorWorld(avatarCoor.get(0), avatarCoor.get(1));
                         numTrial = avatarCoor.get(3);
-                        copyObjectives(world, numTrial, rand, numLoops, x, y, seed);
+                        copyObjectives(world, avatarCoor.get(3), rand, numLoops, x, y, seed);
                         while (!avatarCoor.isEmpty()) {
                             avatarCoor.remove(0);
                         }
@@ -221,13 +202,10 @@ public class AutograderBuddy {
                         avatarCoor.addAll(oGCoin3);
                         copyPlayingGame(world, avatarCoor, rand, seed);
                     } else if (numLoops == 7) {
-                        numLoops = 0;
                         numTrial++;
                         ArrayList<Integer> arrayForSecondCoinPickedUp = new ArrayList<>();
-                        int xx = avatarCoor.get(0);
-                        int yy = avatarCoor.get(1);
-                        arrayForSecondCoinPickedUp.add(xx);
-                        arrayForSecondCoinPickedUp.add(yy);
+                        arrayForSecondCoinPickedUp.add(avatarCoor.get(0));
+                        arrayForSecondCoinPickedUp.add(avatarCoor.get(1));
                         savedGame.saveCoinPickedUpSecond(arrayForSecondCoinPickedUp);
                     } else {
                         copyObjectives(world, numTrial, rand, numLoops, x, y, seed);
@@ -283,7 +261,7 @@ public class AutograderBuddy {
         return world;
     }
 
-    public static TETile[][] copyPT(TETile[][] world, ArrayList<Integer> avatarCoor, long seed) { //Copywhileplayingtrial
+    public static TETile[][] copyPT(TETile[][] world, ArrayList<Integer> avatarCoor, long seed) {
         Character avatar = new Character();
         Boolean playingGame = true;
         SavedGame loadGame = new SavedGame();
@@ -389,7 +367,7 @@ public class AutograderBuddy {
 
                             ArrayList<Boolean> trialCoinsBool = loadGame.readTrialCoinsBool("trialCoinsBool");
                             avatar.ifExitObjective(key, world, avatarCoor, seed, oGCoin1, oGCoin2, oGCoin3,
-                                    numCoinsPickedUpInTrial, trialCoinsCoor, trialCoinsBool);
+                                    numCoinsPickedUpInTrial);
                             ifColon = false;
                         }
                     }
