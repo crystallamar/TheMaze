@@ -9,47 +9,47 @@ import tileengine.Tileset;
 public class Hover {
 
     public void displayTile (String area) {
-        if (area == "Sand") {
+        if (area.equals("Sand")) {
             StdDraw.setPenColor(Color.black);
             StdDraw.filledRectangle(7, 52, 6, 2);
             StdDraw.setPenColor(Color.green);
             StdDraw.text(7, 52, "Sand");
             StdDraw.show();
         }
-        if (area == "Mountain") {
+        if (area.equals("Mountain")) {
             StdDraw.setPenColor(Color.black);
             StdDraw.filledRectangle(7, 52, 6, 2);
             StdDraw.setPenColor(Color.green);
             StdDraw.text(7, 52, "Mountain");
             StdDraw.show();
         }
-        if (area == "Coin") {
+        if (area.equals("Coin")) {
             StdDraw.setPenColor(Color.black);
             StdDraw.filledRectangle(7, 52, 6, 2);
             StdDraw.setPenColor(Color.green);
             StdDraw.text(7, 52, "Coin");
             StdDraw.show();
         }
-        if (area == "Grass") {
+        if (area.equals("Grass")) {
             StdDraw.setPenColor(Color.black);
             StdDraw.filledRectangle(7, 52, 6, 2);
             StdDraw.setPenColor(Color.green);
             StdDraw.text(7, 52, "Grass");
             StdDraw.show();
         }
-        if (area == "Avatar") {
+        if (area.equals("Avatar")) {
             StdDraw.setPenColor(Color.black);
             StdDraw.filledRectangle(7, 52, 6, 2);
             StdDraw.setPenColor(Color.green);
             StdDraw.text(7, 52, "Avatar");
             StdDraw.show();
-        } else if (area == "Out of bounds") {
+        } else if (area.equals("Out of bounds")) {
             StdDraw.setPenColor(Color.black);
             StdDraw.filledRectangle(7, 52, 6, 2);
             StdDraw.setPenColor(Color.green);
             StdDraw.text(7, 52, "Out of bounds");
             StdDraw.show();
-        } else if (area == "Still need to write") {
+        } else if (area.equals("Still need to write")) {
             StdDraw.setPenColor(Color.black);
             StdDraw.filledRectangle(7, 52, 6, 2);
             StdDraw.setPenColor(Color.green);
@@ -91,19 +91,19 @@ public class Hover {
         if (xCoor == 0 && yCoor == 0) {
             return "Out of bounds";
         } else {
-            if (world[xCoor][yCoor] == Tileset.SAND) {
+            if (world[xCoor][yCoor].equals(Tileset.SAND)) {
                 return "Sand";
             }
-            if (world[xCoor][yCoor] == Tileset.MOUNTAIN) {
+            if (world[xCoor][yCoor].equals(Tileset.MOUNTAIN)) {
                 return "Mountain";
             }
-            if (world[xCoor][yCoor] == Tileset.AVATAR) {
+            if (world[xCoor][yCoor].equals(Tileset.AVATAR)) {
                 return "Avatar";
             }
-            if (world[xCoor][yCoor] == Tileset.CELL) {
+            if (world[xCoor][yCoor].equals(Tileset.CELL)) {
                 return "Coin";
             }
-            if (world[xCoor][yCoor] == Tileset.GRASS) {
+            if (world[xCoor][yCoor].equals(Tileset.GRASS)) {
                 return "Grass";
             } else {
                 return "Still need to write";

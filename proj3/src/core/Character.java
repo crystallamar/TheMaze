@@ -43,18 +43,18 @@ public class Character {
         int yCoor = avatarCoor.get(1);
         int trialNum = oGCoins;
         if (input == 'w') {
-            avatarCoor = moveCharUp(world, avatarCoor, rand, trial, trialNum, seed);
+            avatarCoor = moveCharUp(world, avatarCoor, trial, trialNum, seed);
         }
         if (input == 'a') {
-            avatarCoor = moveCharLeft(world, avatarCoor, rand, trial, trialNum, seed);
+            avatarCoor = moveCharLeft(world, avatarCoor, trial, trialNum, seed);
 
         }
         if (input == 's') {
-            avatarCoor = moveCharDown(world, avatarCoor, rand, trial, trialNum, seed);
+            avatarCoor = moveCharDown(world, avatarCoor, trial, trialNum, seed);
 
         }
         if (input == 'd') {
-            avatarCoor = moveCharRight(world, avatarCoor, rand, trial, trialNum, seed);
+            avatarCoor = moveCharRight(world, avatarCoor, trial, trialNum, seed);
         }
 
         return avatarCoor;
@@ -83,13 +83,13 @@ public class Character {
         }
     }
 
-    public ArrayList<Integer> moveCharUp(TETile[][] world, ArrayList<Integer> avatarCoor, Random rand, Boolean trial,
+    public ArrayList<Integer> moveCharUp(TETile[][] world, ArrayList<Integer> avatarCoor, Boolean trial,
                                          int trialNum, long seed) {
         int xCoor = avatarCoor.get(0);
         int yCoor = avatarCoor.get(1);
         int numCoinsPickedUp;
 
-        ArrayList<Integer> avatarPickedUpCoinArray = avatarPickedUpCoin(world, xCoor, yCoor + 1, rand, trial,
+        ArrayList<Integer> avatarPickedUpCoinArray = avatarPickedUpCoin(world, xCoor, yCoor + 1, trial,
                 trialNum, seed);
         numCoinsPickedUp = avatarPickedUpCoinArray.get(0);
         int trialHappening = avatarPickedUpCoinArray.get(1);
@@ -120,7 +120,7 @@ public class Character {
         }
         return avatarCoor;
     }
-    public ArrayList<Integer> moveCharLeft(TETile[][] world, ArrayList<Integer> avatarCoor, Random rand, Boolean trial,
+    public ArrayList<Integer> moveCharLeft(TETile[][] world, ArrayList<Integer> avatarCoor, Boolean trial,
                                            int trialNum, long seed) {
         // RETURNS XY COOR, numCoinsPickedUp, OG Coins, if Trial True (0 false, 1 true)
 
@@ -128,7 +128,7 @@ public class Character {
         int yCoor = avatarCoor.get(1);
         int numCoinsPickedUp;
 
-        ArrayList<Integer> avatarPickedUpCoinArray = avatarPickedUpCoin(world, xCoor - 1, yCoor, rand, trial,
+        ArrayList<Integer> avatarPickedUpCoinArray = avatarPickedUpCoin(world, xCoor - 1, yCoor, trial,
                 trialNum, seed);
 
         numCoinsPickedUp = avatarPickedUpCoinArray.get(0);
@@ -162,7 +162,7 @@ public class Character {
         return avatarCoor;
     }
 
-    public ArrayList<Integer> moveCharDown(TETile[][] world, ArrayList<Integer> avatarCoor, Random rand, Boolean trial,
+    public ArrayList<Integer> moveCharDown(TETile[][] world, ArrayList<Integer> avatarCoor, Boolean trial,
                                            int trialNum, long seed) {
         // RETURNS XY COOR, numCoinsPickedUp, OG Coins, if Trial True (0 false, 1 true)
 
@@ -171,7 +171,7 @@ public class Character {
         int yCoor = avatarCoor.get(1);
         int numCoinsPickedUp;
 
-        ArrayList<Integer> avatarPickedUpCoinArray = avatarPickedUpCoin(world, xCoor, yCoor - 1, rand, trial,
+        ArrayList<Integer> avatarPickedUpCoinArray = avatarPickedUpCoin(world, xCoor, yCoor - 1, trial,
                 trialNum, seed);
         numCoinsPickedUp = avatarPickedUpCoinArray.get(0);
         int trialHappening = avatarPickedUpCoinArray.get(1);
@@ -208,7 +208,7 @@ public class Character {
 
         return avatarCoor;
     }
-    public ArrayList<Integer> moveCharRight(TETile[][] world, ArrayList<Integer> avatarCoor, Random rand, Boolean trial,
+    public ArrayList<Integer> moveCharRight(TETile[][] world, ArrayList<Integer> avatarCoor, Boolean trial,
                                             int trialNum, long seed) {
         // RETURNS XY COOR, numCoinsPickedUp, OG Coins, if Trial True (0 false, 1 true)
 
@@ -218,7 +218,7 @@ public class Character {
         int numCoinsPickedUp;
         // int trialNum;
 
-        ArrayList<Integer> avatarPickedUpCoinArray = avatarPickedUpCoin(world, xCoor + 1, yCoor, rand, trial,
+        ArrayList<Integer> avatarPickedUpCoinArray = avatarPickedUpCoin(world, xCoor + 1, yCoor, trial,
                 trialNum, seed);
         numCoinsPickedUp = avatarPickedUpCoinArray.get(0);
         int trialHappening = avatarPickedUpCoinArray.get(1);
@@ -252,7 +252,7 @@ public class Character {
         return avatarCoor;
     }
 
-    public ArrayList<Integer> avatarPickedUpCoin(TETile[][] world, int x, int y, Random rand, Boolean trial,
+    public ArrayList<Integer> avatarPickedUpCoin(TETile[][] world, int x, int y, Boolean trial,
                                                  int oGCoins, long seed) {
 
 // Returns numberOfCoinsPickedUpInTrial, 1 if it is a trial, and og coins, AND WHICH COIN IN TRIAL HAS BEEN PICKED UP

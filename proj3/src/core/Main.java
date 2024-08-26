@@ -1,25 +1,12 @@
 package core;
-//package utils;
 
-import edu.princeton.cs.algs4.ST;
-import edu.princeton.cs.algs4.StdDraw;
-//import org.apache.logging.log4j.core.util.FileUtils;
-import org.apache.pdfbox.contentstream.operator.text.SetFontAndSize;
 import tileengine.TERenderer;
 import tileengine.TETile;
-import tileengine.Tileset;
 import utils.FileUtils;
-import javax.imageio.*;
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 
-
-import java.awt.*;
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
+
 public class Main {
     private static final int WIDTH = 94;
     private static final int HEIGHT = 55;
@@ -67,18 +54,15 @@ public class Main {
                 loadGame.saveIfLoadedGame(true);
                 world = loadGame.openSavedFile();
                 ter.renderFrame(world);
-                //Random rand = objective.getRand();
                 seed = loadGame.readSeed("seed");
                 World updatedWorld = new World(seed);
                 avatarCoor = loadGame.readAvatarCoor("avatarCoor");
-                ArrayList<Integer> OGCoin1 = loadGame.readOGCoin1("OGCoin1");
-                ArrayList<Integer> OGCoin2 = loadGame.readOGCoin1("OGCoin2");
-                ArrayList<Integer> OGCoin3 = loadGame.readOGCoin1("OGCoin3");
+                ArrayList<Integer> oGCoin1 = loadGame.readOGCoin1("OGCoin1");
+                ArrayList<Integer> oGCoin2 = loadGame.readOGCoin1("OGCoin2");
+                ArrayList<Integer> oGCoin3 = loadGame.readOGCoin1("OGCoin3");
                 int numTrial = avatarCoor.get(3);
-                //int numTrial = loadGame.readNumOGCoinsPickedUp("numOGCoinsPickedUp");
                 int trialCoinsPickedUp = avatarCoor.get(2);
                 int trialBool = avatarCoor.get(4);
-                //int numOGCoins = avatarCoor.get(4);
                 Boolean ifTrial = loadGame.readIfTrial("ifTrial");
                 if (!ifTrial) {
                     updatedWorld.callPlayGame(world, avatarCoor, seed, numTrial, trialCoinsPickedUp, trialBool);

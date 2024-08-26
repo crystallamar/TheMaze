@@ -146,7 +146,7 @@ public class EndGame {
                 avatar.setAvatarCoor(world, avatarCoor);
 
             }
-        } else if (trialNum == 2) {//NOT SURE NEEDED
+        } else if (trialNum == 2) { //NOT SURE NEEDED
             if (oGCoin1.equals(avXY)) {
                 firstCoinPickedUp = retrieveGame.readFirstCoinPickedUp("FirstCoinPickedUp");
                 avatar.removeOGCoin(world, firstCoinPickedUp);

@@ -1,6 +1,5 @@
 package core;
 
-import org.checkerframework.checker.units.qual.A;
 import tileengine.TETile;
 import tileengine.Tileset;
 
@@ -47,7 +46,7 @@ public class Mountains {
     }
 
     public void generateTopWall(TETile[][] world, long seed, int width, int height, Random random) {
-        int topWallY2 = randGen.generateYCoorInReg(random, region.mountainTopWall()) -1;
+        int topWallY2 = randGen.generateYCoorInReg(random, region.mountainTopWall()) - 1;
         for (int x = 0; x < width; x++) {
             for (int y = topWallY2; y < height; y++) {
                 world[x][y] = Tileset.MOUNTAIN;

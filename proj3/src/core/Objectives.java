@@ -15,30 +15,30 @@ import tileengine.TERenderer;
 public class Objectives {
     TERenderer ter = new TERenderer();
     boolean trial = false;
-    Random rand;
+    //Random rand;
     Boolean complete = false;
 
 
-    public int objectives(TETile[][] world, int coinCountOG, Random rand, int numLoops, int x, int y, long seed) {
+    public int objectives(TETile[][] world, int coinCountOG, Random random, int numLoops, int x, int y, long seed) {
         EndGame endGame = new EndGame();
         Coins coin = new Coins();
         if (complete) {
             return trialPickUpCoin(world, x, y, numLoops, coinCountOG);
         } else if (coinCountOG == 1 && numLoops == 0) {
-            objective1(world, rand, seed, x, y);
+            objective1(world, random, seed, x, y);
             complete = true;
             return 0;
         } else if (coinCountOG == 1) { // and it isn't the first loop
             return trialPickUpCoin(world, x, y, numLoops, coinCountOG);
         }
         if (coinCountOG == 2 && numLoops == 0) {
-            objective2(world, rand, seed, x, y);
+            objective2(world, random, seed, x, y);
             return 0;
         } else if (coinCountOG == 2) {
             return trialPickUpCoin(world, x, y, numLoops, coinCountOG);
         }
         if (coinCountOG == 3 && numLoops == 0) {
-            objective3(world, rand, seed, x, y);
+            objective3(world, random, seed, x, y);
             return 0;
         } else if (coinCountOG == 3) {
             return trialPickUpCoin(world, x, y, numLoops, coinCountOG);

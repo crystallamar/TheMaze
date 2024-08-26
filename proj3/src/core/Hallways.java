@@ -22,7 +22,7 @@ public class Hallways {
 
         for (int i = 1; i < sortedArrayOfCoor.size(); i++) {
 
-            coorRoom1 = sortedArrayOfCoor.get(i-1);
+            coorRoom1 = sortedArrayOfCoor.get(i - 1);
             coorRoom2 = sortedArrayOfCoor.get(i);
             connectRooms(world, coorRoom1, coorRoom2, random);
         }
@@ -30,8 +30,8 @@ public class Hallways {
         //Connect Random rooms together
         int numRandRoomsToConnect = random.nextInt(5, 10);
 
-        for(int i = 0; i < numRandRoomsToConnect; i++) {
-            int randomRoom2 = random.nextInt(0, sortedArrayOfCoor.size()-1);
+        for (int i = 0; i < numRandRoomsToConnect; i++) {
+            int randomRoom2 = random.nextInt(0, sortedArrayOfCoor.size() - 1);
             coorRoom1 = sortedArrayOfCoor.get(i);
             coorRoom2 = sortedArrayOfCoor.get(randomRoom2);
             if (coorRoom1 == coorRoom2) {
@@ -39,8 +39,8 @@ public class Hallways {
             }
             connectRooms(world, coorRoom1, coorRoom2, random);
             numRandRoomsToConnect--;
-            }
         }
+    }
 
 
 
@@ -66,7 +66,7 @@ public class Hallways {
     }
 
     public void moveLeft(TETile[][] world, int x, int y, int rand) {
-        for(int i = 0; i < rand; i++) {
+        for (int i = 0; i < rand; i++) {
             x--;
             world[x][y] = Tileset.SAND;
         }
@@ -80,7 +80,7 @@ public class Hallways {
         centerCoorCOPY.addAll(centerCoor);
 
         // CREATE LIST OF XCOOR
-        for (int i = centerCoor.size()-1; i >= 0; i--) {
+        for (int i = centerCoor.size() - 1; i >= 0; i--) {
             xCoor.add(centerCoorCOPY.get(i).get(0));
             centerCoorCOPY.remove(i);
         }
@@ -91,9 +91,9 @@ public class Hallways {
         // ADD SORTED ELEMENTS TO NEW SORTED ARRAY
         centerCoorCOPY.addAll(centerCoor);
 
-        for(int i = 0; i < xCoor.size(); i++) {
+        for (int i = 0; i < xCoor.size(); i++) {
             int currXCoor = xCoor.get(i);
-            for(int m = 0; m < centerCoorCOPY.size(); m++) {
+            for (int m = 0; m < centerCoorCOPY.size(); m++) {
                 if (currXCoor == centerCoorCOPY.get(m).get(0)) {
                     sortedArray.add(centerCoorCOPY.get(m));
                     centerCoorCOPY.remove(m);
@@ -115,7 +115,7 @@ public class Hallways {
         int tempX2 = room2Coor.get(0);
         int tempY2 = room2Coor.get(1);
 
-        while(tempX1 != tempX2 || tempY1 != tempY2) {
+        while (tempX1 != tempX2 || tempY1 != tempY2) {
             if(tempX1 != tempX2) {
                 if (tempX1 > tempX2) {
                     int howMuchLeftToMoveXLeft = tempX1 - tempX2;
@@ -136,7 +136,7 @@ public class Hallways {
                     tempX1 += toMoveXRight;
                 }
             }
-            if(tempY1 != tempY2) {
+            if (tempY1 != tempY2) {
                 if (tempY1 > tempY2) {
                     int howMuchLeftToMoveYDown = tempY1 - tempY2;
                     int toMoveYDown = random.nextInt(howMuchLeftToMoveYDown);
@@ -146,7 +146,7 @@ public class Hallways {
                     moveDown(world, tempX1, tempY1, toMoveYDown);
                     tempY1 -= toMoveYDown;
                 }
-                else if(tempY1 < tempY2){
+                else if (tempY1 < tempY2){
                     int howMuchLeftToMoveYUp = tempY2 - tempY1;
                     int toMoveYUp = random.nextInt(howMuchLeftToMoveYUp);
                     if (toMoveYUp == 0) {
