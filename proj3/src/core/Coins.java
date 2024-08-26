@@ -60,121 +60,139 @@ public class Coins {
                 world[x][y] = Tileset.CELL;
                 placedCoin = true;
             }
-        } else if (trialNum == 1) {
-            if (numCoinsTotal == 1) {
-                if (world[x][y] == Tileset.SAND) {
-                    world[x][y] = Tileset.CELLRED;
-                    placedCoin = true;
-                }
-            }
-            if (numCoinsTotal == 2) {
-                if (world[x][y] == Tileset.SAND) {
-                    world[x][y] = Tileset.CELLOrange;
-                    placedCoin = true;
-                }
-            }
-            if (numCoinsTotal == 3) {
-                if (world[x][y] == Tileset.SAND) {
-                    world[x][y] = Tileset.CELLYellow;
-                    placedCoin = true;
-                }
-            }
-            if (numCoinsTotal == 4) {
-                if (world[x][y] == Tileset.SAND) {
-                    world[x][y] = Tileset.CELLGreen;
-                    placedCoin = true;
-                }
-            }
-            if (numCoinsTotal == 5) {
-                if (world[x][y] == Tileset.SAND) {
-                    world[x][y] = Tileset.CELLBlue;
-                    placedCoin = true;
-                }
-            }
-            if (numCoinsTotal == 6) {
-                if (world[x][y] == Tileset.SAND) {
-                    world[x][y] = Tileset.CELLViolet;
-                    placedCoin = true;
-                }
-            }
-        } else if (trialNum == 2) {
-            if (numCoinsTotal == 1) {
-                if (world[x][y] == Tileset.SAND) {
-                    world[x][y] = Tileset.num1;
-                    placedCoin = true;
-                }
-            }
-            if (numCoinsTotal == 2) {
-                if (world[x][y] == Tileset.SAND) {
-                    world[x][y] = Tileset.num2;
-                    placedCoin = true;
-                }
-            }
-            if (numCoinsTotal == 3) {
-                if (world[x][y] == Tileset.SAND) {
-                    world[x][y] = Tileset.num3;
-                    placedCoin = true;
-                }
-            }
-            if (numCoinsTotal == 4) {
-                if (world[x][y] == Tileset.SAND) {
-                    world[x][y] = Tileset.num4;
-                    placedCoin = true;
-                }
-            }
-            if (numCoinsTotal == 5) {
-                if (world[x][y] == Tileset.SAND) {
-                    world[x][y] = Tileset.num5;
-                    placedCoin = true;
-                }
-            }
-            if (numCoinsTotal == 6) {
-                if (world[x][y] == Tileset.SAND) {
-                    world[x][y] = Tileset.num6;
-                    placedCoin = true;
-                }
-            }
-        } else if (trialNum == 3) {
-            if (numCoinsTotal == 1) {
-                if (world[x][y] == Tileset.SAND) {
-                    world[x][y] = Tileset.letterA;
-                    placedCoin = true;
-                }
-            }
-            if (numCoinsTotal == 2) {
-                if (world[x][y] == Tileset.SAND) {
-                    world[x][y] = Tileset.letterB;
-                    placedCoin = true;
-                }
-            }
-            if (numCoinsTotal == 3) {
-                if (world[x][y] == Tileset.SAND) {
-                    world[x][y] = Tileset.letterC;
-                    placedCoin = true;
-                }
-            }
-            if (numCoinsTotal == 4) {
-                if (world[x][y] == Tileset.SAND) {
-                    world[x][y] = Tileset.letterD;
-                    placedCoin = true;
-                }
-            }
-            if (numCoinsTotal == 5) {
-                if (world[x][y] == Tileset.SAND) {
-                    world[x][y] = Tileset.letterE;
-                    placedCoin = true;
-                }
-            }
-            if (numCoinsTotal == 6) {
-                if (world[x][y] == Tileset.SAND) {
-                    world[x][y] = Tileset.letterF;
-                    placedCoin = true;
-                }
+        }
+        else {
+            if (trialNum == 1) {
+                placedCoin = placeCoinIfTrial1(world, x, y, numCoinsTotal);
+            } else if (trialNum == 2) {
+                placedCoin = placeCoinIfTrial2(world, x, y, numCoinsTotal);
+            } else if (trialNum == 3) {
+                placedCoin = placeCoinIfTrial3(world, x, y, numCoinsTotal);
             }
         }
         return placedCoin;
     }
 
+    public boolean placeCoinIfTrial1(TETile[][] world, int x, int y, int numCoinsTotal) {
+        boolean placedCoin = false;
+        if (numCoinsTotal == 1) {
+            if (world[x][y] == Tileset.SAND) {
+                world[x][y] = Tileset.CELLRED;
+                placedCoin = true;
+            }
+        }
+        if (numCoinsTotal == 2) {
+            if (world[x][y] == Tileset.SAND) {
+                world[x][y] = Tileset.CELLOrange;
+                placedCoin = true;
+            }
+        }
+        if (numCoinsTotal == 3) {
+            if (world[x][y] == Tileset.SAND) {
+                world[x][y] = Tileset.CELLYellow;
+                placedCoin = true;
+            }
+        }
+        if (numCoinsTotal == 4) {
+            if (world[x][y] == Tileset.SAND) {
+                world[x][y] = Tileset.CELLGreen;
+                placedCoin = true;
+            }
+        }
+        if (numCoinsTotal == 5) {
+            if (world[x][y] == Tileset.SAND) {
+                world[x][y] = Tileset.CELLBlue;
+                placedCoin = true;
+            }
+        }
+        if (numCoinsTotal == 6) {
+            if (world[x][y] == Tileset.SAND) {
+                world[x][y] = Tileset.CELLViolet;
+                placedCoin = true;
+            }
+        }
+        return placedCoin;
+    }
+    public boolean placeCoinIfTrial2(TETile[][] world, int x, int y, int numCoinsTotal) {
+        boolean placedCoin = false;
+        if (numCoinsTotal == 1) {
+            if (world[x][y] == Tileset.SAND) {
+                world[x][y] = Tileset.num1;
+                placedCoin = true;
+            }
+        }
+        if (numCoinsTotal == 2) {
+            if (world[x][y] == Tileset.SAND) {
+                world[x][y] = Tileset.num2;
+                placedCoin = true;
+            }
+        }
+        if (numCoinsTotal == 3) {
+            if (world[x][y] == Tileset.SAND) {
+                world[x][y] = Tileset.num3;
+                placedCoin = true;
+            }
+        }
+        if (numCoinsTotal == 4) {
+            if (world[x][y] == Tileset.SAND) {
+                world[x][y] = Tileset.num4;
+                placedCoin = true;
+            }
+        }
+        if (numCoinsTotal == 5) {
+            if (world[x][y] == Tileset.SAND) {
+                world[x][y] = Tileset.num5;
+                placedCoin = true;
+            }
+        }
+        if (numCoinsTotal == 6) {
+            if (world[x][y] == Tileset.SAND) {
+                world[x][y] = Tileset.num6;
+                placedCoin = true;
+            }
+        }
+        return placedCoin;
+    }
+    public boolean placeCoinIfTrial3(TETile[][] world, int x, int y, int numCoinsTotal) {
+        boolean placedCoin = false;
+        if (numCoinsTotal == 1) {
+            if (world[x][y] == Tileset.SAND) {
+                world[x][y] = Tileset.letterA;
+                placedCoin = true;
+            }
+        }
+        if (numCoinsTotal == 2) {
+            if (world[x][y] == Tileset.SAND) {
+                world[x][y] = Tileset.letterB;
+                placedCoin = true;
+            }
+        }
+        if (numCoinsTotal == 3) {
+            if (world[x][y] == Tileset.SAND) {
+                world[x][y] = Tileset.letterC;
+                placedCoin = true;
+            }
+        }
+        if (numCoinsTotal == 4) {
+            if (world[x][y] == Tileset.SAND) {
+                world[x][y] = Tileset.letterD;
+                placedCoin = true;
+            }
+        }
+        if (numCoinsTotal == 5) {
+            if (world[x][y] == Tileset.SAND) {
+                world[x][y] = Tileset.letterE;
+                placedCoin = true;
+            }
+        }
+        if (numCoinsTotal == 6) {
+            if (world[x][y] == Tileset.SAND) {
+                world[x][y] = Tileset.letterF;
+                placedCoin = true;
+            }
+        }
+        return placedCoin;
+    }
     public int removeCoin(TETile[][] world, int x, int y) {
         if (world[x][y] == Tileset.CELL) {
             world[x][y] = Tileset.SAND;
