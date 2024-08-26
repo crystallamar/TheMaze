@@ -315,10 +315,9 @@ public class Coins {
         world[oGCoin3X][oGCoin3Y] = Tileset.CELL;
     }
 
-    public void placeTrialCoins(TETile[][] world, int trialNum, ArrayList<Integer> coin1Coor,
-                                ArrayList<Integer> coin2Coor, ArrayList<Integer> coin3Coor,
-                                ArrayList<Integer> coin4Coor, ArrayList<Integer> coin5Coor,
-                                ArrayList<Integer> coin6Coor) {
+    public void placeTC(TETile[][] world, int trialNum, ArrayList<Integer> coin1Coor, ArrayList<Integer> coin2Coor,
+                        ArrayList<Integer> coin3Coor, ArrayList<Integer> coin4Coor, ArrayList<Integer> coin5Coor,
+                        ArrayList<Integer> coin6Coor) {
         SavedGame loadGame = new SavedGame();
         boolean place1 = loadGame.readTrialCoin1Bool("trialCoin1Bool");
         boolean place2 = loadGame.readTrialCoin2Bool("trialCoin2Bool");

@@ -558,40 +558,19 @@ public class SavedGame {
         String[] stringArray = sTrialCoins.split(" ");
         int trialCoin1X = Integer.parseInt(stringArray[0]);
         int trialCoin1Y = Integer.parseInt(stringArray[1]);
-        // int trialCoin2X = Integer.parseInt(stringArray[2]);
-        // int trialCoin2Y = Integer.parseInt(stringArray[3]);
-        // int trialCoin3X = Integer.parseInt(stringArray[4]);
-        // int trialCoin3Y = Integer.parseInt(stringArray[5]);
-        // int trialCoin4X = Integer.parseInt(stringArray[6]);
-        // int trialCoin4Y = Integer.parseInt(stringArray[7]);
-        // int trialCoin5X = Integer.parseInt(stringArray[8]);
-        // int trialCoin5Y = Integer.parseInt(stringArray[9]);
-        // int trialCoin6X = Integer.parseInt(stringArray[10]);
-        // int trialCoin6Y = Integer.parseInt(stringArray[11]);
 
         trialCoins.add(trialCoin1X);
         trialCoins.add(trialCoin1Y);
-//      trialCoins.add(trialCoin2X);
-//      trialCoins.add(trialCoin2Y);
-//      trialCoins.add(trialCoin3X);
-//      trialCoins.add(trialCoin3Y);
-//      trialCoins.add(trialCoin4X);
-//      trialCoins.add(trialCoin4Y);
-//      trialCoins.add(trialCoin5X);
-//      trialCoins.add(trialCoin5Y);
-//      trialCoins.add(trialCoin6X);
-//      trialCoins.add(trialCoin6Y);
-
         return trialCoins;
     }
 
     public void saveTrialCoinsBool() {
-        Boolean bool1 = readTrialCoin1Bool("trialCoin1Bool");
-        Boolean bool2 = readTrialCoin1Bool("trialCoin2Bool");
-        Boolean bool3 = readTrialCoin1Bool("trialCoin3Bool");
-        Boolean bool4 = readTrialCoin1Bool("trialCoin4Bool");
-        Boolean bool5 = readTrialCoin1Bool("trialCoin5Bool");
-        Boolean bool6 = readTrialCoin1Bool("trialCoin6Bool");
+        boolean bool1 = readTrialCoin1Bool("trialCoin1Bool");
+        boolean bool2 = readTrialCoin1Bool("trialCoin2Bool");
+        boolean bool3 = readTrialCoin1Bool("trialCoin3Bool");
+        boolean bool4 = readTrialCoin1Bool("trialCoin4Bool");
+        boolean bool5 = readTrialCoin1Bool("trialCoin5Bool");
+        boolean bool6 = readTrialCoin1Bool("trialCoin6Bool");
 
         String sBool1 = Boolean.toString(bool1);
         String sBool2 = Boolean.toString(bool2);

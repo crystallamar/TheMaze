@@ -199,7 +199,7 @@ public class World implements Serializable {
         boolean coin5Bool = trialCoinBool.get(4);
         boolean coin6Bool = trialCoinBool.get(5);
 
-        coin.placeTrialCoins(world, trialNum, coin1Coor, coin2Coor, coin3Coor, coin4Coor, coin5Coor, coin6Coor);
+        coin.placeTC(world, trialNum, coin1Coor, coin2Coor, coin3Coor, coin4Coor, coin5Coor, coin6Coor);
         coin.removeTrialCoinsPickedUp(world, trialCoinCoor, coin1Bool, coin2Bool, coin3Bool, coin4Bool, coin5Bool,
                 coin6Bool);
 
