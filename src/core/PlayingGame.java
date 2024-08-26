@@ -130,7 +130,7 @@ public class PlayingGame {
                         while (!avatarCoor.isEmpty()) {
                             avatarCoor.remove(0);
                         }
-                        avatarCoor.add(avY);
+                        avatarCoor.add(avX);
                         avatarCoor.add(avY);
                         avatarCoor.add(0);
                         avatarCoor.add(0);

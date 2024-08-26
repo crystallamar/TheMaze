@@ -64,25 +64,25 @@ public class TitleScreen {
                         save.saveSeed(seedFromEnterSeed);
                         return seedFromEnterSeed;
                     }
-                return seedFromEnterSeed;
-            } else if ((key == 'l') || (key == 'L')) {
-                //String savedGame = files.readFile("Saved Game")
+                    return seedFromEnterSeed;
+                } else if ((key == 'l') || (key == 'L')) {
+                    //String savedGame = files.readFile("Saved Game")
 
-                //ter.renderFrame(world);
-                //call saved
-                titleOn = false;
-                return 'a';
+                    //ter.renderFrame(world);
+                    //call saved
+                    titleOn = false;
+                    return 'a';
 
                     //  LOAD GAME //
-            } else if ((key == 'q') || (key == 'Q')) {
-                System.exit(0);
+                } else if ((key == 'q') || (key == 'Q')) {
+                    System.exit(0);
+                }
             }
         }
-    }
         return seed;
     }
 
-    public long enterSeed (long seed) {
+    public long enterSeed(long seed) {
         boolean enteringSeed = true;
         long seedToReturn = seed;
         char key;
@@ -126,48 +126,12 @@ public class TitleScreen {
         return seedToReturn;
 
     }
+
     public String forAutoGrader() {
         long seedToConvert = enterSeed(seed);
         return Long.toString(seedToConvert);
 
 
-
-    }
-
-    public static void copyMain(TETile[][] world, long seed){
-        ArrayList<Integer> avatarCoor = new ArrayList<>();
-        if (seed == 'a') {
-//          File savedGame = new File("Saved Game");
-            SavedGame loadGame = new SavedGame();
-
-            loadGame.saveIfLoadedGame(true);
-            world = loadGame.openSavedFile();
-            seed = loadGame.readSeed("seed");
-            World updatedWorld = new World(seed);
-            avatarCoor = loadGame.readAvatarCoor("avatarCoor");
-            int numTrial = avatarCoor.get(3);
-            int trialCoinsPickedUp = avatarCoor.get(2);
-            int trialBool = avatarCoor.get(4);
-            Boolean ifTrial = loadGame.readIfTrial("ifTrial");
-            if (!ifTrial) {
-                updatedWorld.callPlayGame(world, avatarCoor, seed, numTrial, trialCoinsPickedUp, trialBool);
-            }
-            else
-            {
-                updatedWorld.callObjectivePlayGame(world, avatarCoor, true, numTrial, seed);
-            }
-        }
-        else {
-            SavedGame saveFiles = new SavedGame();
-            saveFiles.saveIfLoadedGame(false);
-            saveFiles.saveSeed(seed);
-            World updatedWorld = new World(seed);
-
-            avatarCoor = updatedWorld.generateWorld(world, seed, 94, 55);
-            // Av coor is av coor, OGCoin1 coor, OGCoin2 Coor, and OGCoin3 coor
-            updatedWorld.callPlayGame(world, avatarCoor, seed, 0, 0, 0);
-
-        }
     }
 
 }
