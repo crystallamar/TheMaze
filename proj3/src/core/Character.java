@@ -60,10 +60,22 @@ public class Character {
         return avatarCoor;
     }
 
-    public void ifExitMain(char input, TETile[][] world, ArrayList<Integer> avatarCoor, long seed,
-                           ArrayList<Integer> oGCoin1, ArrayList<Integer> oGCoin2, ArrayList<Integer> oGCoin3,
-                           int numCoinsPickedUp) {
+    public void ifExitMain(char input, TETile[][] world, ArrayList<Integer> avatarCoor, long seed) {
         SavedGame saveGame = new SavedGame();
+        int numCoinsPickedUp = avatarCoor.get(2);
+
+        ArrayList<Integer> oGCoin1 = new ArrayList<>();
+        oGCoin1.add(avatarCoor.get(5));
+        oGCoin1.add(avatarCoor.get(6));
+
+        ArrayList<Integer> oGCoin2 = new ArrayList<>();
+        oGCoin2.add(avatarCoor.get(7));
+        oGCoin2.add(avatarCoor.get(8));
+
+        ArrayList<Integer> oGCoin3 = new ArrayList<>();
+        oGCoin3.add(avatarCoor.get(9));
+        oGCoin3.add(avatarCoor.get(10));
+
         if ((input == 'q') || (input == 'Q')) {
             saveGame.createSavedFile(world, avatarCoor, seed, oGCoin1, oGCoin2, oGCoin3, numCoinsPickedUp, false);
             System.exit(0);

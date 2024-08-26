@@ -154,7 +154,7 @@ public class PlayingGame {
                             if (StdDraw.hasNextKeyTyped()) {
                                 key = StdDraw.nextKeyTyped();
                                 save.saveIfTrial(false);
-                                avatar.ifExitMain(key, world, avatarCoor, seed, oGCoin1, oGCoin2, oGCoin3, numTrial);
+                                avatar.ifExitMain(key, world, avatarCoor, seed);
                                 ifColon = false;
                             }
                         }
