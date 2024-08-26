@@ -159,7 +159,7 @@ public class Objectives {
                 world[i][n] = Tileset.SAND;
             }
         }
-        ter.renderFrame(world);
+        //ter.renderFrame(world);
 
     }
 

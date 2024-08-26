@@ -305,14 +305,14 @@ public class Character {
 
         if (isCoin && trial) {
             if (coinsPickedUp == 6) {
-                if (OGCoins == 3) {
-                    endGame.callEndGame(world);
-                }
-                else {
+//                if (OGCoins == 3) {
+//                    endGame.callEndGame(world);
+//                }
+//                else {
                     numCoinsAndBool.add(coinsPickedUp);
                     numCoinsAndBool.add(0);
                     numCoinsAndBool.add(OGCoins);
-                }
+                //}
             }
             else {
                 numCoinsAndBool.add(coinsPickedUp);

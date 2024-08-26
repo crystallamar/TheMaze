@@ -28,16 +28,18 @@ public class Main {
         //Random randWorld = new Random();
         FileUtils files = new FileUtils();
         File savedGame = new File("Saved Game");
-        boolean runningAutograder = true;
+        boolean runningAutograder = false;
 
         TERenderer ter = new TERenderer();
         ter.initialize(WIDTH, HEIGHT); // Creates screen
         TETile[][] world = new TETile[WIDTH][HEIGHT]; // creates the world to build in
 
         if (runningAutograder) {
-            AutograderBuddy auto = new AutograderBuddy();
-            world = auto.getWorldFromInput("n1ssdddddddddddwww"); //gets it to first coin - not running the correct seed
-            ter.renderFrame(world);
+            //AutograderBuddy auto = new AutograderBuddy();
+            //world = auto.getWorldFromInput("n1ssdddddddddddwww"); //gets it to first coin - not running the correct seed
+            world = AutograderBuddy.getWorldFromInput("n1724641833626swwddddddddddddwwwwwaaaaaaaaaaaaawwwwwwwwwdwwwwwwwwwwwwwwwwwaaaadddddddddddddddddddddddddddddddssssssssssssssssddwwaaaaaawwwwwwwaaaaaaaaaaaasssdddddddddddssssssssssssdddddddddddddddssswwwwwwwwwwaaawwwwwwwwwwwwaawdwwwwwwddddaaaaaaaaaaawwwwaaaaaaassssssaawwwwwwwwwwwwwwaaaaaaaaassssssssa"); //AFTER WWWWW is first Trial
+            //world = AutograderBuddy.getWorldFromInput("n1724641833626swwddddddddddddwwwwwaaaaaaaaaaaaa1234wwwwwwwwwdwwwwgfwwwwwwwwwwwwwaaaadddddddddddddddddddddddddddddddssssssssssssssssddwwaaaaaawwwwwwwaaaaaaaaaaaasssdddddddddddssssssssssssdddddddddddddddssswwwwwwwwwwaaawwwwwwwwwwwwaawdwwwwwwddddaaaaaaaaaaawwwwaaaaaaassssssaawwwwwwwwwwwwwwaaaaaaaaassssssssa");
+            ter.renderFrame(world); // EASY WORLD 1724641833626
 
         } else {
             //long seed = 12345;
