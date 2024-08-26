@@ -300,7 +300,8 @@ public class AutograderBuddy {
             if (isIbound()) {
                 char key = getNextChar();
 
-                avatarCoor = updateAvatarCoordinates(avatar, key, world, avatarCoor, trial, numTrial, seed, oGCoin1, oGCoin2, oGCoin3);
+                avatarCoor = updateAvatarCoordinates(key, world, avatarCoor, trial, seed, oGCoin1,
+                        oGCoin2, oGCoin3);
 
                 int numCoinsPickedUpInTrial = avatarCoor.get(2);
                 if (numCoinsPickedUpInTrial == 7) {
@@ -309,7 +310,8 @@ public class AutograderBuddy {
                 }
 
                 if (key == ':') {
-                    handleColonKey(loadGame, avatar, world, avatarCoor, seed, oGCoin1, oGCoin2, oGCoin3, numCoinsPickedUpInTrial);
+                    handleColonKey(loadGame, world, avatarCoor, seed, oGCoin1, oGCoin2, oGCoin3,
+                            numCoinsPickedUpInTrial);
                 }
             } else {
                 return world;
@@ -318,7 +320,8 @@ public class AutograderBuddy {
         return world;
     }
 
-    private static void handleMouseMovement(Hover mousePointer, TETile[][] world, int initMouseXCoor, int initMouseYCoor) {
+    private static void handleMouseMovement(Hover mousePointer, TETile[][] world, int initMouseXCoor,
+                                            int initMouseYCoor) {
         ArrayList<Integer> mouseCoor = mousePointer.mouseMoves();
         int currMouseXCoor = mouseCoor.get(0);
         int currMouseYCoor = mouseCoor.get(1);
@@ -332,7 +335,12 @@ public class AutograderBuddy {
         }
     }
 
-    private static ArrayList<Integer> updateAvatarCoordinates(Character avatar, char key, TETile[][] world, ArrayList<Integer> avatarCoor, boolean trial, int numTrial, long seed, ArrayList<Integer> oGCoin1, ArrayList<Integer> oGCoin2, ArrayList<Integer> oGCoin3) {
+    private static ArrayList<Integer> updateAvatarCoordinates(char key, TETile[][] world,
+                                                              ArrayList<Integer> avatarCoor, boolean trial,
+                                                              long seed, ArrayList<Integer> oGCoin1,
+                                                              ArrayList<Integer> oGCoin2, ArrayList<Integer> oGCoin3) {
+        Character avatar = new Character();
+        int numTrial = avatarCoor.get(3);
         avatarCoor = avatar.moveChar(key, world, avatarCoor, trial, numTrial, seed);
 
         if (avatarCoor.size() != 11) {
@@ -351,7 +359,8 @@ public class AutograderBuddy {
         return avatarCoor;
     }
 
-    private static void addCoinsToAvatarCoor(ArrayList<Integer> avatarCoor, ArrayList<Integer> oGCoin1, ArrayList<Integer> oGCoin2, ArrayList<Integer> oGCoin3) {
+    private static void addCoinsToAvatarCoor(ArrayList<Integer> avatarCoor, ArrayList<Integer> oGCoin1,
+                                             ArrayList<Integer> oGCoin2, ArrayList<Integer> oGCoin3) {
         avatarCoor.add(oGCoin1.get(0));
         avatarCoor.add(oGCoin1.get(1));
         avatarCoor.add(oGCoin2.get(0));
@@ -360,7 +369,9 @@ public class AutograderBuddy {
         avatarCoor.add(oGCoin3.get(1));
     }
 
-    private static void resetAvatarCoorWithCoins(ArrayList<Integer> avatarCoor, int x, int y, int numCoinsPickedUpInTrial, ArrayList<Integer> oGCoin1, ArrayList<Integer> oGCoin2, ArrayList<Integer> oGCoin3) {
+    private static void resetAvatarCoorWithCoins(ArrayList<Integer> avatarCoor, int x, int y,
+                                                 int numCoinsPickedUpInTrial, ArrayList<Integer> oGCoin1,
+                                                 ArrayList<Integer> oGCoin2, ArrayList<Integer> oGCoin3) {
         avatarCoor.clear();
         avatarCoor.add(x);
         avatarCoor.add(y);
@@ -369,7 +380,9 @@ public class AutograderBuddy {
         addCoinsToAvatarCoor(avatarCoor, oGCoin1, oGCoin2, oGCoin3);
     }
 
-    private static ArrayList<Integer> resetAvatarCoordinates(SavedGame loadGame, ArrayList<Integer> avatarCoor, ArrayList<Integer> oGCoin1, ArrayList<Integer> oGCoin2, ArrayList<Integer> oGCoin3) {
+    private static ArrayList<Integer> resetAvatarCoordinates(SavedGame loadGame, ArrayList<Integer> avatarCoor,
+                                                             ArrayList<Integer> oGCoin1, ArrayList<Integer> oGCoin2,
+                                                             ArrayList<Integer> oGCoin3) {
         ArrayList<Integer> avXY = loadGame.readAVCoorWorld();
         avatarCoor.clear();
         avatarCoor.addAll(avXY);
@@ -379,18 +392,15 @@ public class AutograderBuddy {
         return avatarCoor;
     }
 
-    private static void handleColonKey(SavedGame loadGame, Character avatar, TETile[][] world, ArrayList<Integer> avatarCoor, long seed, ArrayList<Integer> oGCoin1, ArrayList<Integer> oGCoin2, ArrayList<Integer> oGCoin3, int numCoinsPickedUpInTrial) {
+    private static void handleColonKey(SavedGame loadGame, TETile[][] world,
+                                       ArrayList<Integer> avatarCoor, long seed, ArrayList<Integer> oGCoin1,
+                                       ArrayList<Integer> oGCoin2, ArrayList<Integer> oGCoin3,
+                                       int numCoinsPickedUpInTrial) {
         boolean ifColon = true;
+        Character avatar = new Character();
         while (ifColon) {
             char key = getNextChar();
             loadGame.saveIfTrial(true);
-            ArrayList<Integer> trialCoinsCoorRED = loadGame.readTrialCoinsCoor("trialCoinsCoorRED");
-            ArrayList<Integer> trialCoinsCoorORANGE = loadGame.readTrialCoinsCoor("trialCoinsCoorORANGE");
-            ArrayList<Integer> trialCoinsCoorYELLOW = loadGame.readTrialCoinsCoor("trialCoinsCoorYELLOW");
-            ArrayList<Integer> trialCoinsCoorGREEN = loadGame.readTrialCoinsCoor("trialCoinsCoorGREEN");
-            ArrayList<Integer> trialCoinsCoorBLUE = loadGame.readTrialCoinsCoor("trialCoinsCoorBLUE");
-            ArrayList<Integer> trialCoinsCoorVIOLET = loadGame.readTrialCoinsCoor("trialCoinsCoorVIOLET");
-            ArrayList<Boolean> trialCoinsBool = loadGame.readTrialCoinsBool("trialCoinsBool");
             avatar.ifExitObjective(key, world, avatarCoor, seed, oGCoin1, oGCoin2, oGCoin3, numCoinsPickedUpInTrial);
             ifColon = false;
         }
