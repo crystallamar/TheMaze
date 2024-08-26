@@ -148,23 +148,31 @@ public class World implements Serializable {
         genGrass.generateGrass(world, 94, 55);
         objective.trialRoom(world); // build background of trial room
 
-        ArrayList<Integer> trialCoinCoor = readFile.readTrialCoinsCoor("trialCoinsCoor");
+        ArrayList<Integer> trialCoinCoor = new ArrayList<>();
+
+        ArrayList<Integer> trialCoinCoorRED = readFile.readTrialCoinsCoor("trialCoinsCoorRED");
+        ArrayList<Integer> trialCoinCoorORANGE = readFile.readTrialCoinsCoor("trialCoinsCoorORANGE");
+        ArrayList<Integer> trialCoinCoorYELLOW = readFile.readTrialCoinsCoor("trialCoinsCoorYELLOW");
+        ArrayList<Integer> trialCoinCoorGREEN = readFile.readTrialCoinsCoor("trialCoinsCoorGREEN");
+        ArrayList<Integer> trialCoinCoorBLUE = readFile.readTrialCoinsCoor("trialCoinsCoorBLUE");
+        ArrayList<Integer> trialCoinCoorVIOLET = readFile.readTrialCoinsCoor("trialCoinsCoorVIOLET");
+
         ArrayList<Boolean> trialCoinBool = readFile.readTrialCoinsBool("trialCoinsBool");
         ArrayList<Integer> avatarCoor = readFile.readAvatarCoor("avatarCoor");
         int trialNum = avatarCoor.get(3);
 
-        int coin1X = trialCoinCoor.get(0);
-        int coin1Y = trialCoinCoor.get(1);
-        int coin2X = trialCoinCoor.get(2);
-        int coin2Y = trialCoinCoor.get(3);
-        int coin3X = trialCoinCoor.get(4);
-        int coin3Y = trialCoinCoor.get(5);
-        int coin4X = trialCoinCoor.get(6);
-        int coin4Y = trialCoinCoor.get(7);
-        int coin5X = trialCoinCoor.get(8);
-        int coin5Y = trialCoinCoor.get(9);
-        int coin6X = trialCoinCoor.get(10);
-        int coin6Y = trialCoinCoor.get(11);
+        int coin1X = trialCoinCoorRED.get(0);
+        int coin1Y = trialCoinCoorRED.get(1);
+        int coin2X = trialCoinCoorORANGE.get(0);
+        int coin2Y = trialCoinCoorORANGE.get(1);
+        int coin3X = trialCoinCoorYELLOW.get(0);
+        int coin3Y = trialCoinCoorYELLOW.get(1);
+        int coin4X = trialCoinCoorGREEN.get(0);
+        int coin4Y = trialCoinCoorGREEN.get(1);
+        int coin5X = trialCoinCoorBLUE.get(0);
+        int coin5Y = trialCoinCoorBLUE.get(1);
+        int coin6X = trialCoinCoorVIOLET.get(0);
+        int coin6Y = trialCoinCoorVIOLET.get(1);
 
         ArrayList<Integer> coin1Coor = new ArrayList<>();
         ArrayList<Integer> coin2Coor = new ArrayList<>();
@@ -192,6 +200,14 @@ public class World implements Serializable {
 
         coin6Coor.add(coin6X);
         coin6Coor.add(coin6Y);
+
+        trialCoinCoor.addAll(trialCoinCoorRED);
+        trialCoinCoor.addAll(trialCoinCoorORANGE);
+        trialCoinCoor.addAll(trialCoinCoorYELLOW);
+        trialCoinCoor.addAll(trialCoinCoorGREEN);
+        trialCoinCoor.addAll(trialCoinCoorBLUE);
+        trialCoinCoor.addAll(trialCoinCoorVIOLET);
+
 
 
         boolean coin1Bool = trialCoinBool.get(0);

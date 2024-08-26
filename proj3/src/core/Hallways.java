@@ -96,8 +96,8 @@ public class Hallways {
             for (int m = 0; m < centerCoorCOPY.size(); m++) {
                 if (currXCoor == centerCoorCOPY.get(m).get(0)) {
                     sortedArray.add(centerCoorCOPY.get(m));
-                    centerCoorCOPY.remove(m);
-                    m--;
+                    //centerCoorCOPY.remove(m);
+                    //m--;
                 }
             }
         }

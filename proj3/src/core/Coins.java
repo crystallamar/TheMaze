@@ -34,7 +34,12 @@ public class Coins {
             }
         }
         if (toSaveTrialCoins == 6) {
-            save.saveTrialCoinsPosition(world, coinCoor, numTrials);
+            save.saveTrialCoinPositionRed(world, coinCoor);
+            save.saveTrialCoinsPositionOrange(world, coinCoor, numTrials);
+            save.saveTrialCoinsPositionYellow(world, coinCoor, numTrials);
+            save.saveTrialCoinsPositionGreen(world, coinCoor, numTrials);
+            save.saveTrialCoinsPositionBlue(world, coinCoor, numTrials);
+            save.saveTrialCoinsPositionViolet(world, coinCoor, numTrials);
             save.saveTrialCoin1Bool(false);
             save.saveTrialCoin2Bool(false);
             save.saveTrialCoin3Bool(false);
