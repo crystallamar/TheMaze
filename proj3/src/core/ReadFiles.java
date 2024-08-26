@@ -11,7 +11,7 @@ public class ReadFiles {
         try {
             ObjectInputStream input = new ObjectInputStream(new FileInputStream("Seed.data"));
             savedSeed = input.readLong();
-        } catch(IOException ioe) {
+        } catch (IOException ioe) {
             System.err.println("Issue retrieving Seed.data");
         }
         return savedSeed;

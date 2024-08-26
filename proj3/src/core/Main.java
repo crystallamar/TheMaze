@@ -35,8 +35,7 @@ public class Main {
             // aawwwwwwwwwwwwwwaaaaaaaaassssssssa");
             //ter.renderFrame(world); // EASY WORLD 1724641833626
 
-        }
-        else {
+        } else {
             TitleScreen titleScreen = new TitleScreen();
             Character character = new Character();
             PlayingGame playingGame = new PlayingGame();

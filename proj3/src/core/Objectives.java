@@ -255,7 +255,7 @@ public class Objectives {
                     int x = avatarCoor.get(0);
                     int y = avatarCoor.get(1);
                     numCoinsPickedUpInTrial = avatarCoor.get(2);
-                    int OGCoins = avatarCoor.get(3);
+                    int oGCoins = avatarCoor.get(3);
                     int trialBool = 1;
                     if (numCoinsPickedUpInTrial != 7) {
                         numCoinsPickedUpInTrial = trialPickUpCoin(world, x, y, numCoinsPickedUpInTrial, numTrial);
@@ -266,7 +266,7 @@ public class Objectives {
                         avatarCoor.add(x); //wrong but okay
                         avatarCoor.add(y); // wrong but okay
                         avatarCoor.add(numCoinsPickedUpInTrial);
-                        avatarCoor.add(OGCoins);
+                        avatarCoor.add(oGCoins);
                         avatarCoor.add(trialBool);
                         avatarCoor.add(oGCoin1.get(0));
                         avatarCoor.add(oGCoin1.get(1));
@@ -285,7 +285,7 @@ public class Objectives {
                         avatarCoor.addAll(avXY);
                         //avatarCoor.add(y);
                         avatarCoor.add(0);
-                        avatarCoor.add(OGCoins);
+                        avatarCoor.add(oGCoins);
                         avatarCoor.add(0);
                         avatarCoor.add(oGCoin1.get(0));
                         avatarCoor.add(oGCoin1.get(1));

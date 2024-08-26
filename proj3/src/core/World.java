@@ -17,7 +17,7 @@ public class World implements Serializable {
         rand = new Random(seed);
     }
 
-    public ArrayList<Integer> generateWorld (TETile[][] world, long seed, int width, int height) {
+    public ArrayList<Integer> generateWorld(TETile[][] world, long seed, int width, int height) {
         //rand.setSeed(seed);
         //Random rand = new Random(seed);
         Random rand = this.rand;
@@ -73,7 +73,7 @@ public class World implements Serializable {
         //return world;
     }
 
-    public void callPlayGame (TETile[][] world, ArrayList<Integer> avatarCoor, long seed, int numTrial,
+    public void callPlayGame(TETile[][] world, ArrayList<Integer> avatarCoor, long seed, int numTrial,
                               int numTrialCoinsPickedUp, int trialBool) {
         PlayingGame playingGame = new PlayingGame();
         SavedGame savedGame = new SavedGame();
@@ -85,7 +85,7 @@ public class World implements Serializable {
         playingGame.playingGame(world, avatarCoor, rand, trial, numTrial, seed, numTrialCoinsPickedUp, trialBool);
     }
 
-    public TETile[][] generateSavedWorld (TETile[][] world, ArrayList<Integer> savedAvatarCoor,
+    public TETile[][] generateSavedWorld(TETile[][] world, ArrayList<Integer> savedAvatarCoor,
                                           ArrayList<Integer> oGCoin1, ArrayList<Integer> oGCoin2,
                                           ArrayList<Integer> oGCoin3, int numTrialCoinsPickedUp, int trialBool,
                                           int numOGCoinsPickedUp) {

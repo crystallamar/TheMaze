@@ -255,7 +255,7 @@ public class Character {
     public ArrayList<Integer> avatarPickedUpCoin(TETile[][] world, int x, int y, Boolean trial,
                                                  int oGCoins, long seed) {
 
-// Returns numberOfCoinsPickedUpInTrial, 1 if it is a trial, and og coins, AND WHICH COIN IN TRIAL HAS BEEN PICKED UP
+        // Returns numberOfCoinsPickedUpInTrial, 1 if it is a trial, and og coins, AND WHICH COIN IN TRIAL HAS BEEN PICKED UP
         boolean isCoin = coins.isCoin(world, x, y);
         ArrayList<Integer> numCoinsAndBool = new ArrayList<>();
         SavedGame save = new SavedGame();
@@ -273,9 +273,9 @@ public class Character {
 
         if (isCoin && trial) {
             if (coinsPickedUp == 6) {
-                    numCoinsAndBool.add(coinsPickedUp);
-                    numCoinsAndBool.add(0);
-                    numCoinsAndBool.add(oGCoins);
+                numCoinsAndBool.add(coinsPickedUp);
+                numCoinsAndBool.add(0);
+                numCoinsAndBool.add(oGCoins);
 
             } else {
                 numCoinsAndBool.add(coinsPickedUp);

@@ -73,7 +73,7 @@ public class Hover {
         int mouseXCoor = (int) Math.round(mouseX);
         int mouseYCoor = (int) Math.round(mouseY);
 
-        if ((mouseXCoor <= 93) && (mouseXCoor >= 0) && (mouseYCoor <= 54) && (mouseYCoor >= 0)){
+        if ((mouseXCoor <= 93) && (mouseXCoor >= 0) && (mouseYCoor <= 54) && (mouseYCoor >= 0)) {
             mouseCoor.add(mouseXCoor);
             mouseCoor.add(mouseYCoor);
             return mouseCoor;
