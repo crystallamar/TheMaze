@@ -363,12 +363,18 @@ public class AutograderBuddy {
                         while (ifColon) {
                             key = getNextChar();
                             loadGame.saveIfTrial(true);
-                            ArrayList<Integer> trialCoinsCoorRED = loadGame.readTrialCoinsCoor("trialCoinsCoorRED");
-                            ArrayList<Integer> trialCoinsCoorORANGE = loadGame.readTrialCoinsCoor("trialCoinsCoorORANGE");
-                            ArrayList<Integer> trialCoinsCoorYELLOW = loadGame.readTrialCoinsCoor("trialCoinsCoorYELLOW");
-                            ArrayList<Integer> trialCoinsCoorGREEN = loadGame.readTrialCoinsCoor("trialCoinsCoorGREEN");
-                            ArrayList<Integer> trialCoinsCoorBLUE = loadGame.readTrialCoinsCoor("trialCoinsCoorBLUE");
-                            ArrayList<Integer> trialCoinsCoorVIOLET = loadGame.readTrialCoinsCoor("trialCoinsCoorVIOLET");
+                            ArrayList<Integer> trialCoinsCoorRED =
+                                    loadGame.readTrialCoinsCoor("trialCoinsCoorRED");
+                            ArrayList<Integer> trialCoinsCoorORANGE =
+                                    loadGame.readTrialCoinsCoor("trialCoinsCoorORANGE");
+                            ArrayList<Integer> trialCoinsCoorYELLOW =
+                                    loadGame.readTrialCoinsCoor("trialCoinsCoorYELLOW");
+                            ArrayList<Integer> trialCoinsCoorGREEN =
+                                    loadGame.readTrialCoinsCoor("trialCoinsCoorGREEN");
+                            ArrayList<Integer> trialCoinsCoorBLUE =
+                                    loadGame.readTrialCoinsCoor("trialCoinsCoorBLUE");
+                            ArrayList<Integer> trialCoinsCoorVIOLET =
+                                    loadGame.readTrialCoinsCoor("trialCoinsCoorVIOLET");
 
 
                             ArrayList<Boolean> trialCoinsBool = loadGame.readTrialCoinsBool("trialCoinsBool");

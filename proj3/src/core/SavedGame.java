@@ -4,7 +4,6 @@ import tileengine.TETile;
 import tileengine.Tileset;
 import utils.FileUtils;
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class SavedGame {
@@ -820,23 +819,22 @@ public class SavedGame {
 //                + " " + trialCoin5X + " " + trialCoin5Y + " " + trialCoin6X + " " + trialCoin6Y;
 //        FileUtils.writeFile("trialCoinsCoor", stringTrialCoins);
 //    }
-
     public ArrayList<Integer> readTrialCoinsCoor(String fileName) {
         ArrayList<Integer> trialCoins = new ArrayList<>();
         String sTrialCoins = FileUtils.readFile(fileName);
         String[] stringArray = sTrialCoins.split(" ");
         int trialCoin1X = Integer.parseInt(stringArray[0]);
         int trialCoin1Y = Integer.parseInt(stringArray[1]);
-//        int trialCoin2X = Integer.parseInt(stringArray[2]);
-//        int trialCoin2Y = Integer.parseInt(stringArray[3]);
-//        int trialCoin3X = Integer.parseInt(stringArray[4]);
-//        int trialCoin3Y = Integer.parseInt(stringArray[5]);
-//        int trialCoin4X = Integer.parseInt(stringArray[6]);
-//        int trialCoin4Y = Integer.parseInt(stringArray[7]);
-//        int trialCoin5X = Integer.parseInt(stringArray[8]);
-//        int trialCoin5Y = Integer.parseInt(stringArray[9]);
-//        int trialCoin6X = Integer.parseInt(stringArray[10]);
-//        int trialCoin6Y = Integer.parseInt(stringArray[11]);
+        // int trialCoin2X = Integer.parseInt(stringArray[2]);
+        // int trialCoin2Y = Integer.parseInt(stringArray[3]);
+        // int trialCoin3X = Integer.parseInt(stringArray[4]);
+        // int trialCoin3Y = Integer.parseInt(stringArray[5]);
+        // int trialCoin4X = Integer.parseInt(stringArray[6]);
+        // int trialCoin4Y = Integer.parseInt(stringArray[7]);
+        // int trialCoin5X = Integer.parseInt(stringArray[8]);
+        // int trialCoin5Y = Integer.parseInt(stringArray[9]);
+        // int trialCoin6X = Integer.parseInt(stringArray[10]);
+        // int trialCoin6Y = Integer.parseInt(stringArray[11]);
 
         trialCoins.add(trialCoin1X);
         trialCoins.add(trialCoin1Y);

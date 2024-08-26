@@ -143,24 +143,18 @@ public class World implements Serializable {
         SavedGame readFile = new SavedGame();
         Coins coin = new Coins();
         Character avatar = new Character();
-        //Random random = this.rand;
-
         genGrass.generateGrass(world, 94, 55);
         objective.trialRoom(world); // build background of trial room
-
         ArrayList<Integer> trialCoinCoor = new ArrayList<>();
-
         ArrayList<Integer> trialCoinCoorRED = readFile.readTrialCoinsCoor("trialCoinsCoorRED");
         ArrayList<Integer> trialCoinCoorORANGE = readFile.readTrialCoinsCoor("trialCoinsCoorORANGE");
         ArrayList<Integer> trialCoinCoorYELLOW = readFile.readTrialCoinsCoor("trialCoinsCoorYELLOW");
         ArrayList<Integer> trialCoinCoorGREEN = readFile.readTrialCoinsCoor("trialCoinsCoorGREEN");
         ArrayList<Integer> trialCoinCoorBLUE = readFile.readTrialCoinsCoor("trialCoinsCoorBLUE");
         ArrayList<Integer> trialCoinCoorVIOLET = readFile.readTrialCoinsCoor("trialCoinsCoorVIOLET");
-
         ArrayList<Boolean> trialCoinBool = readFile.readTrialCoinsBool("trialCoinsBool");
         ArrayList<Integer> avatarCoor = readFile.readAvatarCoor("avatarCoor");
         int trialNum = avatarCoor.get(3);
-
         int coin1X = trialCoinCoorRED.get(0);
         int coin1Y = trialCoinCoorRED.get(1);
         int coin2X = trialCoinCoorORANGE.get(0);
@@ -173,42 +167,30 @@ public class World implements Serializable {
         int coin5Y = trialCoinCoorBLUE.get(1);
         int coin6X = trialCoinCoorVIOLET.get(0);
         int coin6Y = trialCoinCoorVIOLET.get(1);
-
         ArrayList<Integer> coin1Coor = new ArrayList<>();
         ArrayList<Integer> coin2Coor = new ArrayList<>();
-
         ArrayList<Integer> coin3Coor = new ArrayList<>();
         ArrayList<Integer> coin4Coor = new ArrayList<>();
-
         ArrayList<Integer> coin5Coor = new ArrayList<>();
         ArrayList<Integer> coin6Coor = new ArrayList<>();
-
         coin1Coor.add(coin1X);
         coin1Coor.add(coin1Y);
-
         coin2Coor.add(coin2X);
         coin2Coor.add(coin2Y);
-
         coin3Coor.add(coin3X);
         coin3Coor.add(coin3Y);
-
         coin4Coor.add(coin4X);
         coin4Coor.add(coin4Y);
-
         coin5Coor.add(coin5X);
         coin5Coor.add(coin5Y);
-
         coin6Coor.add(coin6X);
         coin6Coor.add(coin6Y);
-
         trialCoinCoor.addAll(trialCoinCoorRED);
         trialCoinCoor.addAll(trialCoinCoorORANGE);
         trialCoinCoor.addAll(trialCoinCoorYELLOW);
         trialCoinCoor.addAll(trialCoinCoorGREEN);
         trialCoinCoor.addAll(trialCoinCoorBLUE);
         trialCoinCoor.addAll(trialCoinCoorVIOLET);
-
-
 
         boolean coin1Bool = trialCoinBool.get(0);
         boolean coin2Bool = trialCoinBool.get(1);
@@ -217,14 +199,12 @@ public class World implements Serializable {
         boolean coin5Bool = trialCoinBool.get(4);
         boolean coin6Bool = trialCoinBool.get(5);
 
-        //coin.generateCoins(world, rand, true, trialNum);
         coin.placeTrialCoins(world, trialNum, coin1Coor, coin2Coor, coin3Coor, coin4Coor, coin5Coor, coin6Coor);
         coin.removeTrialCoinsPickedUp(world, trialCoinCoor, coin1Bool, coin2Bool, coin3Bool, coin4Bool, coin5Bool,
                 coin6Bool);
 
         avatar.setAvatarCoor(world, avatarCoor);
-        //objective.whilePlayingTrial(world, avatarCoor, rand, true, trialNum, seed);
-        //ter.renderFrame(world);
+
         return world;
     }
 
