@@ -116,117 +116,132 @@ public class AutograderBuddy {
 
     public static TETile[][] copyPlayingGame(TETile[][] world, ArrayList<Integer> avatarCoor, Random rand, long seed) {
         Character avatar = new Character();
-        Boolean playingGame = true;
-        Boolean trial = false;
+        boolean playingGame = true;
+        boolean trial = false;
         int numTrial = avatarCoor.get(3);
         int numTrialCoinsPickedUp = avatarCoor.get(2);
         SavedGame saveGame = new SavedGame();
         SavedGame save = new SavedGame();
-
-        ArrayList<Integer> oGCoin1 = new ArrayList<>();
-        ArrayList<Integer> oGCoin2 = new ArrayList<>();
-        ArrayList<Integer> oGCoin3 = new ArrayList<>();
         int avX = avatarCoor.get(0);
         int avY = avatarCoor.get(1);
-        SavedGame savedGame = new SavedGame();
-        if (avatarCoor.size() == 11) {
-            oGCoin1.add(avatarCoor.get(5));
-            oGCoin1.add(avatarCoor.get(6));
-            oGCoin2.add(avatarCoor.get(7));
-            oGCoin2.add(avatarCoor.get(8));
-            oGCoin3.add(avatarCoor.get(9));
-            oGCoin3.add(avatarCoor.get(10));
-        } else {
-            oGCoin1.add(avatarCoor.get(2));
-            oGCoin1.add(avatarCoor.get(3));
-            oGCoin2.add(avatarCoor.get(4));
-            oGCoin2.add(avatarCoor.get(5));
-            oGCoin3.add(avatarCoor.get(6));
-            oGCoin3.add(avatarCoor.get(7));
-        }
+
+        // Initialize original coin positions
+        ArrayList<Integer> originalCoinPositions1 = new ArrayList<>();
+        ArrayList<Integer> originalCoinPositions2 = new ArrayList<>();
+        ArrayList<Integer> originalCoinPositions3 = new ArrayList<>();
+        initializeCoinPositions(avatarCoor, originalCoinPositions1, originalCoinPositions2, originalCoinPositions3);
+
         while (playingGame) {
-            boolean ifColon;
-            char key;
             save.saveIfTrial(false);
-            Boolean didCharMove = true;
-            ifColon = true;
-            if (isIbound()) {
-                key = getNextChar();
-                ArrayList<Integer> temp = new ArrayList<>();
-                temp.addAll(avatarCoor);
-                avatarCoor = avatar.moveChar(key, world, avatarCoor, trial, numTrial, seed);
-                if (temp.equals(avatarCoor)) {
-                    didCharMove = false;
-                }
-                if (avatarCoor.size() == 8) {
-                    while (!avatarCoor.isEmpty()) {
-                        avatarCoor.remove(0);
-                    }
-                    avatarCoor.add(avX);
-                    avatarCoor.add(avY);
-                    avatarCoor.add(0);
-                    avatarCoor.add(0);
-                    avatarCoor.add(0);
-                    avatarCoor.addAll(oGCoin1);
-                    avatarCoor.addAll(oGCoin2);
-                    avatarCoor.addAll(oGCoin3);
-                }
-                if (avatarCoor.size() != 11) {
-                    avatarCoor.addAll(oGCoin1);
-                    avatarCoor.addAll(oGCoin2);
-                    avatarCoor.addAll(oGCoin3);
-                }
-                int x = avatarCoor.get(0);
-                int y = avatarCoor.get(1);
-                int numLoops = avatarCoor.get(2);
-                int trialBool = avatarCoor.get(4);
-                numTrial = avatarCoor.get(3);
-                if (trialBool == 0) {
-                    trial = false; // if numCoins == 0, don't call objective
-                } else if (didCharMove) {
-                    trial = true;
-                    if (numLoops == 0) {
-                        saveGame.saveAvatarCoor(avatarCoor);
-                        saveGame.saveAVCoorWorld(avatarCoor.get(0), avatarCoor.get(1));
-                        numTrial = avatarCoor.get(3);
-                        copyObjectives(world, avatarCoor.get(3), rand, numLoops, x, y, seed);
-                        while (!avatarCoor.isEmpty()) {
-                            avatarCoor.remove(0);
-                        }
-                        avatarCoor.add(x);
-                        avatarCoor.add(y);
-                        avatarCoor.add(numTrialCoinsPickedUp);
-                        avatarCoor.add(numTrial);
-                        avatarCoor.add(0);
-                        avatarCoor.addAll(oGCoin1);
-                        avatarCoor.addAll(oGCoin2);
-                        avatarCoor.addAll(oGCoin3);
-                        copyPlayingGame(world, avatarCoor, rand, seed);
-                    } else if (numLoops == 7) {
-                        numTrial++;
-                        ArrayList<Integer> arrayForSecondCoinPickedUp = new ArrayList<>();
-                        arrayForSecondCoinPickedUp.add(avatarCoor.get(0));
-                        arrayForSecondCoinPickedUp.add(avatarCoor.get(1));
-                        savedGame.saveCoinPickedUpSecond(arrayForSecondCoinPickedUp);
-                    } else {
-                        copyObjectives(world, numTrial, rand, numLoops, x, y, seed);
-                    }
-                }
-                if (key == ':') {
-                    while (ifColon) {
-                        if (isIbound()) {
-                            key = getNextChar();
-                            save.saveIfTrial(false);
-                            avatar.ifExitMain(key, world, avatarCoor, seed);
-                            ifColon = false;
-                        }
-                    }
-                }
-            } else {
+            if (!isIbound()) {
                 return world;
             }
+
+            char key = getNextChar();
+            ArrayList<Integer> tempCoor = new ArrayList<>(avatarCoor);
+            avatarCoor = avatar.moveChar(key, world, avatarCoor, trial, numTrial, seed);
+
+            boolean didCharMove = !tempCoor.equals(avatarCoor);
+            if (avatarCoor.size() == 8) {
+                resetAvatarCoordinates(avatarCoor, avX, avY, originalCoinPositions1, originalCoinPositions2,
+                        originalCoinPositions3);
+            } else if (avatarCoor.size() != 11) {
+                addOriginalCoinPositions(avatarCoor, originalCoinPositions1, originalCoinPositions2,
+                        originalCoinPositions3);
+            }
+
+            int x = avatarCoor.get(0);
+            int y = avatarCoor.get(1);
+            int numLoops = avatarCoor.get(2);
+            int trialBool = avatarCoor.get(4);
+            numTrial = avatarCoor.get(3);
+
+            if (trialBool == 0) {
+                trial = false;
+            } else if (didCharMove) {
+                trial = true;
+                processTrial(world, avatarCoor, rand, seed, saveGame, originalCoinPositions1, originalCoinPositions2,
+                        originalCoinPositions3, numLoops, x, y, numTrial, numTrialCoinsPickedUp);
+            }
+
+            if (key == ':') {
+                processColonKey(world, avatarCoor, seed, save);
+            }
         }
+
         return world;
+    }
+
+    private static void initializeCoinPositions(ArrayList<Integer> avatarCoor, ArrayList<Integer> coin1,
+                                                ArrayList<Integer> coin2, ArrayList<Integer> coin3) {
+        if (avatarCoor.size() == 11) {
+            coin1.add(avatarCoor.get(5));
+            coin1.add(avatarCoor.get(6));
+            coin2.add(avatarCoor.get(7));
+            coin2.add(avatarCoor.get(8));
+            coin3.add(avatarCoor.get(9));
+            coin3.add(avatarCoor.get(10));
+        } else {
+            coin1.add(avatarCoor.get(2));
+            coin1.add(avatarCoor.get(3));
+            coin2.add(avatarCoor.get(4));
+            coin2.add(avatarCoor.get(5));
+            coin3.add(avatarCoor.get(6));
+            coin3.add(avatarCoor.get(7));
+        }
+    }
+
+    private static void resetAvatarCoordinates(ArrayList<Integer> avatarCoor, int avX, int avY,
+                                               ArrayList<Integer> coin1, ArrayList<Integer> coin2,
+                                               ArrayList<Integer> coin3) {
+        avatarCoor.clear();
+        avatarCoor.add(avX);
+        avatarCoor.add(avY);
+        avatarCoor.add(0); // reset numTrialCoinsPickedUp
+        avatarCoor.add(0); // reset numTrial
+        avatarCoor.add(0); // reset trialBool
+        avatarCoor.addAll(coin1);
+        avatarCoor.addAll(coin2);
+        avatarCoor.addAll(coin3);
+    }
+
+    private static void addOriginalCoinPositions(ArrayList<Integer> avatarCoor, ArrayList<Integer> coin1,
+                                                 ArrayList<Integer> coin2, ArrayList<Integer> coin3) {
+        avatarCoor.addAll(coin1);
+        avatarCoor.addAll(coin2);
+        avatarCoor.addAll(coin3);
+    }
+
+    private static void processTrial(TETile[][] world, ArrayList<Integer> avatarCoor, Random rand, long seed,
+                                     SavedGame saveGame,
+                                     ArrayList<Integer> coin1, ArrayList<Integer> coin2, ArrayList<Integer> coin3,
+                                     int numLoops, int x, int y, int numTrial, int numTrialCoinsPickedUp) {
+        if (numLoops == 0) {
+            saveGame.saveAvatarCoor(avatarCoor);
+            saveGame.saveAVCoorWorld(x, y);
+            copyObjectives(world, avatarCoor.get(3), rand, numLoops, x, y, seed);
+            resetAvatarCoordinates(avatarCoor, x, y, coin1, coin2, coin3);
+            copyPlayingGame(world, avatarCoor, rand, seed);
+        } else if (numLoops == 7) {
+            numTrial++;
+            ArrayList<Integer> arrayForSecondCoinPickedUp = new ArrayList<>();
+            arrayForSecondCoinPickedUp.add(x);
+            arrayForSecondCoinPickedUp.add(y);
+            saveGame.saveCoinPickedUpSecond(arrayForSecondCoinPickedUp);
+        } else {
+            copyObjectives(world, numTrial, rand, numLoops, x, y, seed);
+        }
+    }
+
+    private static void processColonKey(TETile[][] world, ArrayList<Integer> avatarCoor, long seed, SavedGame save) {
+        while (true) {
+            if (isIbound()) {
+                char key = getNextChar();
+                save.saveIfTrial(false);
+                new Character().ifExitMain(key, world, avatarCoor, seed);
+                break;
+            }
+        }
     }
 
     public static TETile[][] copyMain(TETile[][] world, long seed) {
