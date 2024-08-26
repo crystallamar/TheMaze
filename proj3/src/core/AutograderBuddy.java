@@ -279,132 +279,121 @@ public class AutograderBuddy {
 
     public static TETile[][] copyPT(TETile[][] world, ArrayList<Integer> avatarCoor, long seed) {
         Character avatar = new Character();
-        Boolean playingGame = true;
         SavedGame loadGame = new SavedGame();
         loadGame.saveIfTrial(true);
-        Objectives objective = new Objectives();
+
+        Hover mousePointer = new Hover();
+        boolean playingGame = true;
         boolean trial = true;
         int numTrial = avatarCoor.get(3);
 
-        Hover mousePointer = new Hover();
-        int numCoinsPickedUpInTrial;
         ArrayList<Integer> oGCoin1 = loadGame.readOGCoin1("OGCoin1");
         ArrayList<Integer> oGCoin2 = loadGame.readOGCoin1("OGCoin2");
         ArrayList<Integer> oGCoin3 = loadGame.readOGCoin1("OGCoin3");
 
+        int initMouseXCoor = 0;
+        int initMouseYCoor = 0;
 
-        ArrayList<Integer> mouseCoor;
         while (playingGame) {
-            boolean expectingInput = true;
-            boolean ifColon;
-            char key;
-            int initMouseXCoor = 0;
-            int initMouseYCoor = 0;
-            int currMouseXCoor;
-            int currMouseYCoor;
+            handleMouseMovement(mousePointer, world, initMouseXCoor, initMouseYCoor);
 
+            if (isIbound()) {
+                char key = getNextChar();
 
-            while (expectingInput) {
-                // AvatarCoor: x, y, numCoinsPickedUp, OG Coins, if Trial True (0 false, 1 true)
-                mouseCoor = mousePointer.mouseMoves();
+                avatarCoor = updateAvatarCoordinates(avatar, key, world, avatarCoor, trial, numTrial, seed, oGCoin1, oGCoin2, oGCoin3);
 
-                currMouseXCoor = mouseCoor.get(0);
-                currMouseYCoor = mouseCoor.get(1);
-                String tileTitle = mousePointer.convertCoor(world, mouseCoor);
-                if ((initMouseXCoor != currMouseXCoor) || (initMouseYCoor != currMouseYCoor)) {
-                    mousePointer.displayNothing();
-                    mousePointer.displayTile(tileTitle);
-                    initMouseXCoor = currMouseXCoor;
-                    initMouseYCoor = currMouseYCoor;
+                int numCoinsPickedUpInTrial = avatarCoor.get(2);
+                if (numCoinsPickedUpInTrial == 7) {
+                    playingGame = false;
+                    avatarCoor = resetAvatarCoordinates(loadGame, avatarCoor, oGCoin1, oGCoin2, oGCoin3);
                 }
 
-                if (isIbound()) {
-                    key = getNextChar();
-                    ifColon = true;
-
-                    avatarCoor = avatar.moveChar(key, world, avatarCoor, trial, numTrial, seed);
-                    if (avatarCoor.size() != 11) {
-                        avatarCoor.add(oGCoin1.get(0));
-                        avatarCoor.add(oGCoin1.get(1));
-                        avatarCoor.add(oGCoin2.get(0));
-                        avatarCoor.add(oGCoin2.get(1));
-                        avatarCoor.add(oGCoin3.get(0));
-                        avatarCoor.add(oGCoin3.get(1));
-                    }
-                    int x = avatarCoor.get(0);
-                    int y = avatarCoor.get(1);
-                    numCoinsPickedUpInTrial = avatarCoor.get(2);
-                    int oGCoins = avatarCoor.get(3);
-                    int trialBool = 1;
-                    if (numCoinsPickedUpInTrial != 7) {
-                        numCoinsPickedUpInTrial = copyTrialPickUpCoin(world, x, y, numCoinsPickedUpInTrial, numTrial);
-
-                        while (!avatarCoor.isEmpty()) {
-                            avatarCoor.remove(0);
-                        }
-                        avatarCoor.add(x); //wrong but okay
-                        avatarCoor.add(y); // wrong but okay
-                        avatarCoor.add(numCoinsPickedUpInTrial);
-                        avatarCoor.add(oGCoins);
-                        avatarCoor.add(trialBool);
-                        avatarCoor.add(oGCoin1.get(0));
-                        avatarCoor.add(oGCoin1.get(1));
-                        avatarCoor.add(oGCoin2.get(0));
-                        avatarCoor.add(oGCoin2.get(1));
-                        avatarCoor.add(oGCoin3.get(0));
-                        avatarCoor.add(oGCoin3.get(1));
-                    }
-                    if (numCoinsPickedUpInTrial == 7) {
-                        playingGame = false;
-                        expectingInput = false;
-                        ArrayList<Integer> avXY = loadGame.readAVCoorWorld();
-                        while (!avatarCoor.isEmpty()) {
-                            avatarCoor.remove(0);
-                        }
-                        avatarCoor.addAll(avXY);
-                        //avatarCoor.add(y);
-                        avatarCoor.add(0);
-                        avatarCoor.add(oGCoins);
-                        avatarCoor.add(0);
-                        avatarCoor.add(oGCoin1.get(0));
-                        avatarCoor.add(oGCoin1.get(1));
-                        avatarCoor.add(oGCoin2.get(0));
-                        avatarCoor.add(oGCoin2.get(1));
-                        avatarCoor.add(oGCoin3.get(0));
-                        avatarCoor.add(oGCoin3.get(1));
-                        //trialBool = 0;
-                    }
-
-                    if (key == ':') {
-                        while (ifColon) {
-                            key = getNextChar();
-                            loadGame.saveIfTrial(true);
-                            ArrayList<Integer> trialCoinsCoorRED =
-                                    loadGame.readTrialCoinsCoor("trialCoinsCoorRED");
-                            ArrayList<Integer> trialCoinsCoorORANGE =
-                                    loadGame.readTrialCoinsCoor("trialCoinsCoorORANGE");
-                            ArrayList<Integer> trialCoinsCoorYELLOW =
-                                    loadGame.readTrialCoinsCoor("trialCoinsCoorYELLOW");
-                            ArrayList<Integer> trialCoinsCoorGREEN =
-                                    loadGame.readTrialCoinsCoor("trialCoinsCoorGREEN");
-                            ArrayList<Integer> trialCoinsCoorBLUE =
-                                    loadGame.readTrialCoinsCoor("trialCoinsCoorBLUE");
-                            ArrayList<Integer> trialCoinsCoorVIOLET =
-                                    loadGame.readTrialCoinsCoor("trialCoinsCoorVIOLET");
-
-
-                            ArrayList<Boolean> trialCoinsBool = loadGame.readTrialCoinsBool("trialCoinsBool");
-                            avatar.ifExitObjective(key, world, avatarCoor, seed, oGCoin1, oGCoin2, oGCoin3,
-                                    numCoinsPickedUpInTrial);
-                            ifColon = false;
-                        }
-                    }
-                } else {
-                    return world;
+                if (key == ':') {
+                    handleColonKey(loadGame, avatar, world, avatarCoor, seed, oGCoin1, oGCoin2, oGCoin3, numCoinsPickedUpInTrial);
                 }
+            } else {
+                return world;
             }
         }
         return world;
+    }
+
+    private static void handleMouseMovement(Hover mousePointer, TETile[][] world, int initMouseXCoor, int initMouseYCoor) {
+        ArrayList<Integer> mouseCoor = mousePointer.mouseMoves();
+        int currMouseXCoor = mouseCoor.get(0);
+        int currMouseYCoor = mouseCoor.get(1);
+        String tileTitle = mousePointer.convertCoor(world, mouseCoor);
+
+        if ((initMouseXCoor != currMouseXCoor) || (initMouseYCoor != currMouseYCoor)) {
+            mousePointer.displayNothing();
+            mousePointer.displayTile(tileTitle);
+            initMouseXCoor = currMouseXCoor;
+            initMouseYCoor = currMouseYCoor;
+        }
+    }
+
+    private static ArrayList<Integer> updateAvatarCoordinates(Character avatar, char key, TETile[][] world, ArrayList<Integer> avatarCoor, boolean trial, int numTrial, long seed, ArrayList<Integer> oGCoin1, ArrayList<Integer> oGCoin2, ArrayList<Integer> oGCoin3) {
+        avatarCoor = avatar.moveChar(key, world, avatarCoor, trial, numTrial, seed);
+
+        if (avatarCoor.size() != 11) {
+            addCoinsToAvatarCoor(avatarCoor, oGCoin1, oGCoin2, oGCoin3);
+        }
+
+        int x = avatarCoor.get(0);
+        int y = avatarCoor.get(1);
+        int numCoinsPickedUpInTrial = avatarCoor.get(2);
+
+        if (numCoinsPickedUpInTrial != 7) {
+            numCoinsPickedUpInTrial = copyTrialPickUpCoin(world, x, y, numCoinsPickedUpInTrial, numTrial);
+            resetAvatarCoorWithCoins(avatarCoor, x, y, numCoinsPickedUpInTrial, oGCoin1, oGCoin2, oGCoin3);
+        }
+
+        return avatarCoor;
+    }
+
+    private static void addCoinsToAvatarCoor(ArrayList<Integer> avatarCoor, ArrayList<Integer> oGCoin1, ArrayList<Integer> oGCoin2, ArrayList<Integer> oGCoin3) {
+        avatarCoor.add(oGCoin1.get(0));
+        avatarCoor.add(oGCoin1.get(1));
+        avatarCoor.add(oGCoin2.get(0));
+        avatarCoor.add(oGCoin2.get(1));
+        avatarCoor.add(oGCoin3.get(0));
+        avatarCoor.add(oGCoin3.get(1));
+    }
+
+    private static void resetAvatarCoorWithCoins(ArrayList<Integer> avatarCoor, int x, int y, int numCoinsPickedUpInTrial, ArrayList<Integer> oGCoin1, ArrayList<Integer> oGCoin2, ArrayList<Integer> oGCoin3) {
+        avatarCoor.clear();
+        avatarCoor.add(x);
+        avatarCoor.add(y);
+        avatarCoor.add(numCoinsPickedUpInTrial);
+        avatarCoor.add(1); // trialBool
+        addCoinsToAvatarCoor(avatarCoor, oGCoin1, oGCoin2, oGCoin3);
+    }
+
+    private static ArrayList<Integer> resetAvatarCoordinates(SavedGame loadGame, ArrayList<Integer> avatarCoor, ArrayList<Integer> oGCoin1, ArrayList<Integer> oGCoin2, ArrayList<Integer> oGCoin3) {
+        ArrayList<Integer> avXY = loadGame.readAVCoorWorld();
+        avatarCoor.clear();
+        avatarCoor.addAll(avXY);
+        avatarCoor.add(0);
+        avatarCoor.add(0);
+        addCoinsToAvatarCoor(avatarCoor, oGCoin1, oGCoin2, oGCoin3);
+        return avatarCoor;
+    }
+
+    private static void handleColonKey(SavedGame loadGame, Character avatar, TETile[][] world, ArrayList<Integer> avatarCoor, long seed, ArrayList<Integer> oGCoin1, ArrayList<Integer> oGCoin2, ArrayList<Integer> oGCoin3, int numCoinsPickedUpInTrial) {
+        boolean ifColon = true;
+        while (ifColon) {
+            char key = getNextChar();
+            loadGame.saveIfTrial(true);
+            ArrayList<Integer> trialCoinsCoorRED = loadGame.readTrialCoinsCoor("trialCoinsCoorRED");
+            ArrayList<Integer> trialCoinsCoorORANGE = loadGame.readTrialCoinsCoor("trialCoinsCoorORANGE");
+            ArrayList<Integer> trialCoinsCoorYELLOW = loadGame.readTrialCoinsCoor("trialCoinsCoorYELLOW");
+            ArrayList<Integer> trialCoinsCoorGREEN = loadGame.readTrialCoinsCoor("trialCoinsCoorGREEN");
+            ArrayList<Integer> trialCoinsCoorBLUE = loadGame.readTrialCoinsCoor("trialCoinsCoorBLUE");
+            ArrayList<Integer> trialCoinsCoorVIOLET = loadGame.readTrialCoinsCoor("trialCoinsCoorVIOLET");
+            ArrayList<Boolean> trialCoinsBool = loadGame.readTrialCoinsBool("trialCoinsBool");
+            avatar.ifExitObjective(key, world, avatarCoor, seed, oGCoin1, oGCoin2, oGCoin3, numCoinsPickedUpInTrial);
+            ifColon = false;
+        }
     }
 
     public static int copyObjectives(TETile[][] world, int coinCountOG, Random rand, int numLoops, int x, int y,
