@@ -1,9 +1,7 @@
 package core;
 
-import edu.princeton.cs.algs4.StdDraw;
 import tileengine.TETile;
 import tileengine.Tileset;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -15,7 +13,7 @@ public class Character {
     Objectives trials = new Objectives();
     Random rand;
 
-    public ArrayList<Integer> generateAvatar (TETile[][] world, Random random) {
+    public ArrayList<Integer> generateAvatar(TETile[][] world, Random random) {
         ArrayList<Integer> avatarCoor = new ArrayList<>();
         Boolean placeCharacter = false;
         int randX;
@@ -40,10 +38,10 @@ public class Character {
     }
 
     public ArrayList<Integer> moveChar(char input, TETile[][] world, ArrayList<Integer> avatarCoor, Random rand,
-                                       Boolean trial, int OGCoins, long seed) {
+                                       Boolean trial, int oGCoins, long seed) {
         int xCoor = avatarCoor.get(0);
         int yCoor = avatarCoor.get(1);
-        int trialNum = OGCoins;
+        int trialNum = oGCoins;
         if (input == 'w') {
             avatarCoor = moveCharUp(world, avatarCoor, rand, trial, trialNum, seed);
         }
@@ -63,22 +61,22 @@ public class Character {
     }
 
     public void ifExitMain(char input, TETile[][] world, ArrayList<Integer> avatarCoor, long seed,
-                           ArrayList<Integer> OGCoin1, ArrayList<Integer> OGCoin2, ArrayList<Integer> OGCoin3,
+                           ArrayList<Integer> oGCoin1, ArrayList<Integer> OGCoin2, ArrayList<Integer> oGCoin3,
                            int numCoinsPickedUp) {
         SavedGame saveGame = new SavedGame();
         if ((input == 'q') || (input == 'Q')) {
-            saveGame.createSavedFile(world, avatarCoor, seed, OGCoin1, OGCoin2, OGCoin3, numCoinsPickedUp, false);
+            saveGame.createSavedFile(world, avatarCoor, seed, oGCoin1, OGCoin2, oGCoin3, numCoinsPickedUp, false);
             System.exit(0);
         }
     }
 
     public void ifExitObjective(char input, TETile[][] world, ArrayList<Integer> avatarCoor, long seed,
-                                ArrayList<Integer> OGCoin1, ArrayList<Integer> OGCoin2, ArrayList<Integer> OGCoin3,
+                                ArrayList<Integer> oGCoin1, ArrayList<Integer> oGCoin2, ArrayList<Integer> oGCoin3,
                                 int numCoinsPickedUp, ArrayList<Integer> trialCoinCoor,
                                 ArrayList<Boolean> trialCoinBool) {
         SavedGame saveGame = new SavedGame();
         if ((input == 'q') || (input == 'Q')) {
-            saveGame.createSavedFile(world, avatarCoor, seed, OGCoin1, OGCoin2, OGCoin3, numCoinsPickedUp, true);
+            saveGame.createSavedFile(world, avatarCoor, seed, oGCoin1, oGCoin2, oGCoin3, numCoinsPickedUp, true);
             saveGame.saveTrialCoinsBool();
 
             System.exit(0);
@@ -146,7 +144,7 @@ public class Character {
         avatarCoor.add(numCoinsPickedUp);
         avatarCoor.add(trialNum);
         avatarCoor.add(trialHappening);
-        if (world[xCoor - 1][yCoor] == Tileset.SAND || coins.isCoin(world, xCoor -1, yCoor)) {
+        if (world[xCoor - 1][yCoor] == Tileset.SAND || coins.isCoin(world, xCoor - 1, yCoor)) {
             world[xCoor][yCoor] = Tileset.SAND;
 
             while (!avatarCoor.isEmpty()) {
@@ -190,7 +188,7 @@ public class Character {
         avatarCoor.add(trialNum);
         avatarCoor.add(trialHappening);
 
-        if (world[xCoor][yCoor - 1] == Tileset.SAND || coins.isCoin(world, xCoor, yCoor -1)) {
+        if (world[xCoor][yCoor - 1] == Tileset.SAND || coins.isCoin(world, xCoor, yCoor - 1)) {
             world[xCoor][yCoor] = Tileset.SAND;
 
             avatarCoor.remove(0);
@@ -255,7 +253,7 @@ public class Character {
     }
 
     public ArrayList<Integer> avatarPickedUpCoin(TETile[][] world, int x, int y, Random rand, Boolean trial,
-                                                 int OGCoins, long seed) {
+                                                 int oGCoins, long seed) {
 
 // Returns numberOfCoinsPickedUpInTrial, 1 if it is a trial, and og coins, AND WHICH COIN IN TRIAL HAS BEEN PICKED UP
         boolean isCoin = coins.isCoin(world, x, y);
@@ -277,26 +275,26 @@ public class Character {
             if (coinsPickedUp == 6) {
                     numCoinsAndBool.add(coinsPickedUp);
                     numCoinsAndBool.add(0);
-                    numCoinsAndBool.add(OGCoins);
+                    numCoinsAndBool.add(oGCoins);
 
             } else {
                 numCoinsAndBool.add(coinsPickedUp);
                 numCoinsAndBool.add(1);
-                numCoinsAndBool.add(OGCoins);
+                numCoinsAndBool.add(oGCoins);
             }
         } else if (!isCoin && trial) {
             numCoinsAndBool.add(coinsPickedUp);
             numCoinsAndBool.add(1);
-            numCoinsAndBool.add(OGCoins);
+            numCoinsAndBool.add(oGCoins);
         } else if (isCoin && !trial) {
             numCoinsAndBool.add(0);
             numCoinsAndBool.add(1);
-            OGCoins++;
-            numCoinsAndBool.add(OGCoins);
+            oGCoins++;
+            numCoinsAndBool.add(oGCoins);
         } else { //Not a coin and !trial
             numCoinsAndBool.add(coinsPickedUp);
             numCoinsAndBool.add(0);
-            numCoinsAndBool.add(OGCoins);
+            numCoinsAndBool.add(oGCoins);
         }
 
         if (whichCoin == 1) {

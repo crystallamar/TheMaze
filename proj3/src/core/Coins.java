@@ -13,7 +13,6 @@ public class Coins {
         //return coinCoor: Coin1(x,y), coin 2 (x,y) etc.... coin 6 (x, y)
         ArrayList<Integer> coinCoor = new ArrayList<>();
         int toSaveTrialCoins = 0;
-
         int tempX;
         int tempY;
         int numCoinsTotal;
@@ -25,7 +24,7 @@ public class Coins {
         }
 
 
-        while(numCoinsTotal != 0) {
+        while (numCoinsTotal != 0) {
             tempX = random.nextInt(1, 94);
             tempY = random.nextInt(1, 53);
             if (ifSandPlaceCoin(world, tempX, tempY, trial, numCoinsTotal, numTrials)) {
@@ -43,7 +42,6 @@ public class Coins {
             save.saveTrialCoin5Bool(false);
             save.saveTrialCoin6Bool(false);
             save.saveTrialCoinsBool();
-
         }
         return coinCoor;
     }
@@ -56,44 +54,43 @@ public class Coins {
                 world[x][y] = Tileset.CELL;
                 placedCoin = true;
             }
-        } else if (trialNum ==1 ){
-                if (numCoinsTotal == 1) {
-                    if (world[x][y] == Tileset.SAND) {
-                        world[x][y] = Tileset.CELLRED;
-                        placedCoin = true;
-                    }
+        } else if (trialNum == 1) {
+            if (numCoinsTotal == 1) {
+                if (world[x][y] == Tileset.SAND) {
+                    world[x][y] = Tileset.CELLRED;
+                    placedCoin = true;
                 }
-                if (numCoinsTotal == 2) {
-                    if (world[x][y] == Tileset.SAND) {
-                        world[x][y] = Tileset.CELLOrange;
-                        placedCoin = true;
-                    }
+            }
+            if (numCoinsTotal == 2) {
+                if (world[x][y] == Tileset.SAND) {
+                    world[x][y] = Tileset.CELLOrange;
+                    placedCoin = true;
                 }
-                if (numCoinsTotal == 3) {
-                    if (world[x][y] == Tileset.SAND) {
-                        world[x][y] = Tileset.CELLYellow;
-                        placedCoin = true;
-                    }
+            }
+            if (numCoinsTotal == 3) {
+                if (world[x][y] == Tileset.SAND) {
+                    world[x][y] = Tileset.CELLYellow;
+                    placedCoin = true;
                 }
-                if (numCoinsTotal == 4) {
-                    if (world[x][y] == Tileset.SAND) {
-                        world[x][y] = Tileset.CELLGreen;
-                        placedCoin = true;
-                    }
+            }
+            if (numCoinsTotal == 4) {
+                if (world[x][y] == Tileset.SAND) {
+                    world[x][y] = Tileset.CELLGreen;
+                    placedCoin = true;
                 }
-                if (numCoinsTotal == 5) {
-                    if (world[x][y] == Tileset.SAND) {
-                        world[x][y] = Tileset.CELLBlue;
-                        placedCoin = true;
-                    }
+            }
+            if (numCoinsTotal == 5) {
+                if (world[x][y] == Tileset.SAND) {
+                    world[x][y] = Tileset.CELLBlue;
+                    placedCoin = true;
                 }
-                if (numCoinsTotal == 6) {
-                    if (world[x][y] == Tileset.SAND) {
-                        world[x][y] = Tileset.CELLViolet;
-                        placedCoin = true;
-                    }
+            }
+            if (numCoinsTotal == 6) {
+                if (world[x][y] == Tileset.SAND) {
+                    world[x][y] = Tileset.CELLViolet;
+                    placedCoin = true;
                 }
-
+            }
         } else if (trialNum == 2) {
             if (numCoinsTotal == 1) {
                 if (world[x][y] == Tileset.SAND) {
@@ -130,8 +127,6 @@ public class Coins {
                     placedCoin = true;
                 }
             }
-
-
         } else if (trialNum == 3) {
             if (numCoinsTotal == 1) {
                 if (world[x][y] == Tileset.SAND) {
@@ -169,8 +164,6 @@ public class Coins {
                 }
             }
         }
-
-
         return placedCoin;
     }
 
@@ -253,8 +246,6 @@ public class Coins {
         }
 
         return 0;
-
-
     }
 
     public boolean isCoin(TETile[][] world, int x, int y) {
@@ -294,22 +285,23 @@ public class Coins {
             return true;
         } else if (world[x][y] == Tileset.letterD) {
             return true;
-        } else //world[x][y] = Tileset.SAND;
-            if (world[x][y] == Tileset.letterE) {
-                return true;
-        } else {return world[x][y] == Tileset.letterF;}
+        } else if (world[x][y] == Tileset.letterE) {
+            return true;
+        } else {
+            return world[x][y] == Tileset.letterF;
+        }
     }
 
-    public void generateSavedCoins(TETile[][] world, ArrayList<Integer> OGCoin1, ArrayList<Integer> OGCoin2,
-                                   ArrayList<Integer> OGCoin3) {
-        int OGCoin1X = OGCoin1.get(0);
-        int OGCoin1Y = OGCoin1.get(1);
+    public void generateSavedCoins(TETile[][] world, ArrayList<Integer> oGCoin1, ArrayList<Integer> oGCoin2,
+                                   ArrayList<Integer> oGCoin3) {
+        int OGCoin1X = oGCoin1.get(0);
+        int OGCoin1Y = oGCoin1.get(1);
 
-        int OGCoin2X = OGCoin2.get(0);
-        int OGCoin2Y = OGCoin2.get(1);
+        int OGCoin2X = oGCoin2.get(0);
+        int OGCoin2Y = oGCoin2.get(1);
 
-        int OGCoin3X = OGCoin3.get(0);
-        int OGCoin3Y = OGCoin3.get(1);
+        int OGCoin3X = oGCoin3.get(0);
+        int OGCoin3Y = oGCoin3.get(1);
         world[OGCoin1X][OGCoin1Y] = Tileset.CELL;
         world[OGCoin2X][OGCoin2Y] = Tileset.CELL;
         world[OGCoin3X][OGCoin3Y] = Tileset.CELL;
@@ -325,8 +317,6 @@ public class Coins {
         boolean place4 = loadGame.readTrialCoin4Bool("trialCoin4Bool");
         boolean place5 = loadGame.readTrialCoin5Bool("trialCoin5Bool");
         boolean place6 = loadGame.readTrialCoin6Bool("trialCoin6Bool");
-
-
 
         if (trialNum == 1) {
             if (!place1) {
@@ -352,40 +342,40 @@ public class Coins {
             if (!place1) {
                 world[coin1X][coin1Y] = Tileset.num1;
             }
-            if (!place2){
+            if (!place2) {
                 world[coin2X][coin2Y] = Tileset.num2;
             }
-            if (!place3){
+            if (!place3) {
                 world[coin3X][coin3Y] = Tileset.num3;
             }
-            if (!place4){
+            if (!place4) {
                 world[coin4X][coin4Y] = Tileset.num4;
             }
-            if (!place5){
+            if (!place5) {
                 world[coin5X][coin5Y] = Tileset.num5;
             }
-            if (!place6){
+            if (!place6) {
                 world[coin6X][coin6Y] = Tileset.num6;
             }
         }
 
         if (trialNum == 3) {
-            if (!place1){
+            if (!place1) {
                 world[coin1X][coin1Y] = Tileset.letterA;
             }
-            if (!place2){
+            if (!place2) {
                 world[coin2X][coin2Y] = Tileset.letterB;
             }
-            if (!place3){
+            if (!place3) {
                 world[coin3X][coin3Y] = Tileset.letterC;
             }
-            if (!place4){
+            if (!place4) {
                 world[coin4X][coin4Y] = Tileset.letterD;
             }
-            if (!place5){
+            if (!place5) {
                 world[coin5X][coin5Y] = Tileset.letterE;
             }
-            if (!place6){
+            if (!place6) {
                 world[coin6X][coin6Y] = Tileset.letterF;
             }
         }

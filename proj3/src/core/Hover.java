@@ -65,26 +65,24 @@ public class Hover {
     }
 
     public ArrayList<Integer> mouseMoves () {
-            ArrayList<Integer> mouseCoor = new ArrayList<>();
+        ArrayList<Integer> mouseCoor = new ArrayList<>();
 
-            double mouseX = StdDraw.mouseX();
-            double mouseY = StdDraw.mouseY();
+        double mouseX = StdDraw.mouseX();
+        double mouseY = StdDraw.mouseY();
 
-            int mouseXCoor = (int) Math.round(mouseX);
-            int mouseYCoor = (int) Math.round(mouseY);
+        int mouseXCoor = (int) Math.round(mouseX);
+        int mouseYCoor = (int) Math.round(mouseY);
 
-            if ((mouseXCoor <= 93) && (mouseXCoor >= 0) && (mouseYCoor <= 54) && (mouseYCoor >= 0)){
-                mouseCoor.add(mouseXCoor);
-                mouseCoor.add(mouseYCoor);
-                return mouseCoor;
-            } else {
-                mouseCoor.add(0);
-                mouseCoor.add(0);
-                return mouseCoor;
-            }
-
-
+        if ((mouseXCoor <= 93) && (mouseXCoor >= 0) && (mouseYCoor <= 54) && (mouseYCoor >= 0)){
+            mouseCoor.add(mouseXCoor);
+            mouseCoor.add(mouseYCoor);
+            return mouseCoor;
+        } else {
+            mouseCoor.add(0);
+            mouseCoor.add(0);
+            return mouseCoor;
         }
+    }
 
     public String convertCoor(TETile[][] world, ArrayList<Integer> coor) {
         int xCoor = coor.get(0);
