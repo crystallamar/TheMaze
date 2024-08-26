@@ -356,8 +356,7 @@ public class Coins {
             if (!place6) {
                 world[coin6X][coin6Y] = Tileset.CELLViolet;
             }
-        }
-        if (trialNum == 2) {
+        } else if (trialNum == 2) {
             if (!place1) {
                 world[coin1X][coin1Y] = Tileset.num1;
             }
@@ -376,8 +375,7 @@ public class Coins {
             if (!place6) {
                 world[coin6X][coin6Y] = Tileset.num6;
             }
-        }
-        if (trialNum == 3) {
+        } else if (trialNum == 3) {
             if (!place1) {
                 world[coin1X][coin1Y] = Tileset.letterA;
             }

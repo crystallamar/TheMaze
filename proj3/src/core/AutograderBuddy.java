@@ -122,6 +122,7 @@ public class AutograderBuddy {
         int numTrialCoinsPickedUp = avatarCoor.get(2);
         SavedGame saveGame = new SavedGame();
         SavedGame save = new SavedGame();
+
         ArrayList<Integer> oGCoin1 = new ArrayList<>();
         ArrayList<Integer> oGCoin2 = new ArrayList<>();
         ArrayList<Integer> oGCoin3 = new ArrayList<>();
