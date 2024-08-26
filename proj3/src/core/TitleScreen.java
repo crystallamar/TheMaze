@@ -72,9 +72,9 @@ public class TitleScreen {
         return seed;
     }
 
-    public long enterSeed(long seed) {
+    public long enterSeed(long seeds) {
         boolean enteringSeed = true;
-        long seedToReturn = seed;
+        long seedToReturn = seeds;
         char key;
         String stringKey = "";
         //char prevKey = '0';
@@ -96,7 +96,7 @@ public class TitleScreen {
                     }
                 }
                 if ((key == 's') || (key == 'S')) {
-                    if (stringKey != "") {
+                    if (!stringKey.equals("")) {
                         seedToReturn = Integer.parseInt(stringKey);
                     }
                     enteringSeed = false;

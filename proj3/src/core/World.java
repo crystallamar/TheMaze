@@ -238,7 +238,7 @@ public class World implements Serializable {
         Objectives objective = new Objectives();
         PlayingGame playGame = new PlayingGame();
 
-        objective.whilePlayingTrial(world, avatarCoor, seed);
+        objective.whilePlayingTrial(world, avatarCoor, seed, numTrial);
         if (numTrial != 3) {
             playGame.playingGame(world, avatarCoor, random, false, numTrial, seed, 0, 0);
         }

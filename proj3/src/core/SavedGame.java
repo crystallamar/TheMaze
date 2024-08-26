@@ -8,9 +8,9 @@ import java.util.ArrayList;
 
 public class SavedGame {
     FileUtils fileUtils = new FileUtils();
-    public static final String savedGameDirectory = (new File(System.getProperty("user.dir")).getPath());
+    public static final String SAVEDGAMEDIRECTORY = (new File(System.getProperty("user.dir")).getPath());
 
-    public void createSavedFile (TETile[][] world, ArrayList<Integer> avatarCoor, long seed,
+    public void createSavedFile(TETile[][] world, ArrayList<Integer> avatarCoor, long seed,
                                  ArrayList<Integer> oGCoin1, ArrayList<Integer> oGCoin2, ArrayList<Integer> oGCoin3,
                                  int numOGCoinsPickedUp, boolean trial) {
         saveSeed(seed);
@@ -145,14 +145,14 @@ public class SavedGame {
     }
 
     public ArrayList<Integer> readOGAvCoor(String fileName) {
-        ArrayList<Integer> OGavatarCoor = new ArrayList<>();
+        ArrayList<Integer> oGavatarCoor = new ArrayList<>();
         String stringAvatarCoor = FileUtils.readFile(fileName);
         String[] stringArray = stringAvatarCoor.split(" ");
         int xCoor = Integer.parseInt(stringArray[0]);
         int yCoor = Integer.parseInt(stringArray[1]);
-        OGavatarCoor.add(xCoor);
-        OGavatarCoor.add(yCoor);
-        return OGavatarCoor;
+        oGavatarCoor.add(xCoor);
+        oGavatarCoor.add(yCoor);
+        return oGavatarCoor;
     }
 
     public void saveOGCoin1(ArrayList<Integer> coin1Coor) {
@@ -273,7 +273,7 @@ public class SavedGame {
 
     public void saveTrialCoinsPosition(TETile[][] world, ArrayList<Integer> trialCoins, int trialNum) {
         boolean trialRedCoin = false;
-        boolean trialOrangeCoin= false;
+        boolean trialOrangeCoin = false;
         boolean trialYellowCoin = false;
         boolean trialGreenCoin = false;
         boolean trialBlueCoin = false;
@@ -495,13 +495,13 @@ public class SavedGame {
         while (!trialVioletCoin) {
             if (world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.CELLViolet
                     || world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.num6
-                    ||world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.letterF) {
+                    || world[trialCoins.get(0)][trialCoins.get(1)] == Tileset.letterF) {
                 trialCoin6X = trialCoins.get(0);
                 trialCoin6Y = trialCoins.get(1);
                 trialVioletCoin = true;
             } else if (world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.CELLViolet
                     || world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.num6
-                    ||world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.letterF) {
+                    || world[trialCoins.get(2)][trialCoins.get(3)] == Tileset.letterF) {
                 trialCoin6X = trialCoins.get(2);
                 trialCoin6Y = trialCoins.get(3);
                 trialVioletCoin = true;
@@ -538,7 +538,7 @@ public class SavedGame {
         FileUtils.writeFile("trialCoinsCoor", stringTrialCoins);
     }
 
-    public ArrayList<Integer> readTrialCoinsCoor (String fileName) {
+    public ArrayList<Integer> readTrialCoinsCoor(String fileName) {
         ArrayList<Integer> trialCoins = new ArrayList<>();
         String sTrialCoins = FileUtils.readFile(fileName);
         String[] stringArray = sTrialCoins.split(" ");
@@ -571,7 +571,7 @@ public class SavedGame {
         return trialCoins;
     }
 
-    public void saveTrialCoinsBool () {
+    public void saveTrialCoinsBool() {
         Boolean bool1 = readTrialCoin1Bool("trialCoin1Bool");
         Boolean bool2 = readTrialCoin1Bool("trialCoin2Bool");
         Boolean bool3 = readTrialCoin1Bool("trialCoin3Bool");
@@ -650,7 +650,7 @@ public class SavedGame {
         return Boolean.parseBoolean(s);
     }
 
-    public ArrayList<Boolean> readTrialCoinsBool (String fileName) {
+    public ArrayList<Boolean> readTrialCoinsBool(String fileName) {
         ArrayList<Boolean> trialCoinsBool = new ArrayList<>();
         String sTrialCoins = FileUtils.readFile(fileName);
         String[] stringArray = sTrialCoins.split(" ");
@@ -672,12 +672,12 @@ public class SavedGame {
         return trialCoinsBool;
     }
 
-    public void saveIfTrial (boolean trial) {
+    public void saveIfTrial(boolean trial) {
         String bool = Boolean.toString(trial);
         FileUtils.writeFile("ifTrial", bool);
     }
 
-    public Boolean readIfTrial (String fileName) {
+    public Boolean readIfTrial(String fileName) {
         String sTrial = FileUtils.readFile(fileName);
         boolean trial = Boolean.parseBoolean(sTrial);
         return trial;

@@ -67,7 +67,7 @@ public class Objectives {
         ArrayList<Integer> avatarCoor = newAvatar.generateAvatar(world, rand);
         ter.renderFrame(world);
 
-        whilePlayingTrial(world, avatarCoor, seed);
+        whilePlayingTrial(world, avatarCoor, seed, 1);
 
     }
 
@@ -95,7 +95,7 @@ public class Objectives {
         ArrayList<Integer> avatarCoor = newAvatar.generateAvatar(world, rand);
         ter.renderFrame(world);
 
-        whilePlayingTrial(world, avatarCoor, seed);
+        whilePlayingTrial(world, avatarCoor, seed, 2);
     }
 
     public void objective3(TETile[][] world, Random rand, long seed, int x, int y) {
@@ -122,7 +122,7 @@ public class Objectives {
         ArrayList<Integer> avatarCoor = newAvatar.generateAvatar(world, rand);
         ter.renderFrame(world);
 
-        whilePlayingTrial(world, avatarCoor, seed);
+        whilePlayingTrial(world, avatarCoor, seed, 3);
         endGame.callEndGame(world);
     }
 
@@ -193,7 +193,7 @@ public class Objectives {
         return numTrialCoins;
     }
 
-    public void whilePlayingTrial(TETile[][] world, ArrayList<Integer> avatarCoor, long seed) {
+    public void whilePlayingTrial(TETile[][] world, ArrayList<Integer> avatarCoor, long seed, int numTrial) {
         Character avatar = new Character();
         Boolean playingGame = true;
         TERenderer ter = new TERenderer();
@@ -201,7 +201,7 @@ public class Objectives {
         SavedGame loadGame = new SavedGame();
         loadGame.saveIfTrial(true);
         boolean trial = true;
-        int numTrial = avatarCoor.get(3);
+        //int numTrial = avatarCoor.get(3);
 
         Hover mousePointer = new Hover();
         //int numLoops = 0;
