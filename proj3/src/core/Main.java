@@ -27,7 +27,7 @@ public class Main {
     public static void main(String[] args) {
         FileUtils files = new FileUtils();
         File savedGame = new File("Saved Game");
-        boolean runningAutograder = false;
+        boolean runningAutograder = true;
 
         TERenderer ter = new TERenderer();
         ter.initialize(WIDTH, HEIGHT); // Creates screen
