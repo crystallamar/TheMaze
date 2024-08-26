@@ -326,26 +326,18 @@ public class Coins {
         boolean place4 = loadGame.readTrialCoin4Bool("trialCoin4Bool");
         boolean place5 = loadGame.readTrialCoin5Bool("trialCoin5Bool");
         boolean place6 = loadGame.readTrialCoin6Bool("trialCoin6Bool");
-
         int coin1X = coin1Coor.get(0);
         int coin1Y = coin1Coor.get(1);
-
         int coin2X = coin2Coor.get(0);
         int coin2Y = coin2Coor.get(1);
-
         int coin3X = coin3Coor.get(0);
         int coin3Y = coin3Coor.get(1);
-
         int coin4X = coin4Coor.get(0);
         int coin4Y = coin4Coor.get(1);
-
         int coin5X = coin5Coor.get(0);
         int coin5Y = coin5Coor.get(1);
-
         int coin6X = coin6Coor.get(0);
         int coin6Y = coin6Coor.get(1);
-
-
         if (trialNum == 1) {
             if (!place1) {
                 world[coin1X][coin1Y] = Tileset.CELLRED;
@@ -386,7 +378,6 @@ public class Coins {
                 world[coin6X][coin6Y] = Tileset.num6;
             }
         }
-
         if (trialNum == 3) {
             if (!place1) {
                 world[coin1X][coin1Y] = Tileset.letterA;
