@@ -65,7 +65,7 @@ public class EndGame {
                     saveFiles.saveSeed(seed);
                     World updatedWorld = new World(seed);
 
-                    avatarCoor = updatedWorld.generateWorld(world, seed, 94, 55);
+                    avatarCoor = updatedWorld.generateWorld(world, 94, 55);
                     ter.renderFrame(world);
                     updatedWorld.callPlayGame(world, avatarCoor, seed, 0, 0, 0);
                     ter.renderFrame(world);

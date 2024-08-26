@@ -301,7 +301,7 @@ public class AutograderBuddy {
             saveFiles.saveSeed(seed);
             World updatedWorld = new World(seed);
             Random rand = updatedWorld.rand;
-            avatarCoor = updatedWorld.generateWorld(world, seed, 94, 55);
+            avatarCoor = updatedWorld.generateWorld(world, 94, 55);
             // Av coor is av coor, OGCoin1 coor, OGCoin2 Coor, and OGCoin3 coor
             copyPlayingGame(world, avatarCoor, rand, seed);
         }
@@ -559,7 +559,7 @@ public class AutograderBuddy {
                     saveFiles.saveSeed(seed);
                     World updatedWorld = new World(seed);
 
-                    avatarCoor = updatedWorld.generateWorld(world, seed, 94, 55);
+                    avatarCoor = updatedWorld.generateWorld(world, 94, 55);
                     int numTrialCoinsPickedUp = avatarCoor.get(2);
                     int numTrial = avatarCoor.get(3);
                     Random rand = updatedWorld.rand;

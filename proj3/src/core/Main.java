@@ -75,7 +75,7 @@ public class Main {
                 saveFiles.saveSeed(seed);
                 World updatedWorld = new World(seed);
 
-                avatarCoor = updatedWorld.generateWorld(world, seed, WIDTH, HEIGHT);
+                avatarCoor = updatedWorld.generateWorld(world, WIDTH, HEIGHT);
                 // Av coor is av coor, OGCoin1 coor, OGCoin2 Coor, and OGCoin3 coor
 
 

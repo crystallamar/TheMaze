@@ -17,9 +17,8 @@ public class World implements Serializable {
         rand = new Random(seed);
     }
 
-    public ArrayList<Integer> generateWorld(TETile[][] world, long seed, int width, int height) {
-        //rand.setSeed(seed);
-        //Random rand = new Random(seed);
+    public ArrayList<Integer> generateWorld(TETile[][] world, int width, int height) {
+
         Random rand = this.rand;
         Hallways hallways = new Hallways();
         Mountains addMountains = new Mountains();
