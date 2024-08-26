@@ -60,8 +60,7 @@ public class Coins {
                 world[x][y] = Tileset.CELL;
                 placedCoin = true;
             }
-        }
-        else {
+        } else {
             if (trialNum == 1) {
                 placedCoin = placeCoinIfTrial1(world, x, y, numCoinsTotal);
             } else if (trialNum == 2) {
