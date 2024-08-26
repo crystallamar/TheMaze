@@ -90,12 +90,7 @@ public class World implements Serializable {
         //EndGame endGame = new EndGame();
         //boolean ifGameEnd = true;
         boolean trial;
-        if (trialBool == 0) {
-            trial = false;
-        }
-        else{
-            trial = true;
-        }
+        trial = trialBool != 0;
         playingGame.playingGame(world, avatarCoor, rand, trial, numTrial, seed, numTrialCoinsPickedUp, trialBool);
     }
 

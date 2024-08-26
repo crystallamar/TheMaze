@@ -561,7 +561,7 @@ public class SavedGame {
         trialCoins.add(trialCoin3X);
         trialCoins.add(trialCoin3Y);
         trialCoins.add(trialCoin4X);
-        trialCoins.add(trialCoin4Y);;
+        trialCoins.add(trialCoin4Y);
         trialCoins.add(trialCoin5X);
         trialCoins.add(trialCoin5Y);
         trialCoins.add(trialCoin6X);

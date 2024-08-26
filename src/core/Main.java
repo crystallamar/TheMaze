@@ -25,7 +25,6 @@ public class Main {
         private static final int HEIGHT = 55;
 
     public static void main(String[] args) {
-        //Random randWorld = new Random();
         FileUtils files = new FileUtils();
         File savedGame = new File("Saved Game");
         boolean runningAutograder = false;

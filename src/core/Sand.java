@@ -45,38 +45,18 @@ public class Sand {
     }
 
     public boolean isTouchingGrassBottom(TETile[][] world, int x, int y) {
-        if (world[x][y-1] == Tileset.GRASS) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return world[x][y - 1] == Tileset.GRASS;
     }
 
     public boolean isTouchingGrassLeft(TETile[][] world, int x, int y) {
-        if (world[x-1][y] == Tileset.GRASS) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return world[x - 1][y] == Tileset.GRASS;
     }
     public boolean isTouchingGrassTop(TETile[][] world, int x, int y) {
-        if (world[x][y + 1] == Tileset.GRASS) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return world[x][y + 1] == Tileset.GRASS;
     }
 
     public boolean isTouchingGrassRight(TETile[][] world, int x, int y) {
-        if (world[x+1][y] == Tileset.GRASS) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return world[x + 1][y] == Tileset.GRASS;
     }
 
 

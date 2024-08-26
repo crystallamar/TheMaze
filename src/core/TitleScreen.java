@@ -99,7 +99,7 @@ public class TitleScreen {
 //                        seedToReturn = prevKey + key;
 //                        prevKey = key;
 
-                        stringKey += String.valueOf(key).toString();
+                        stringKey += String.valueOf(key);
                         StdDraw.setPenColor(Color.white);
                         StdDraw.filledRectangle(45, 25, 20, 10);
                         StdDraw.setPenColor(Color.black);

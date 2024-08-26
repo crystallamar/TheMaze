@@ -58,10 +58,7 @@ public class AutograderBuddy {
 
     public static boolean isIbound() {
         int n = i;
-        if(n++ < sArray.length) {
-            return true;
-        }
-        return false;
+        return n++ < sArray.length;
     }
 
 
@@ -121,7 +118,7 @@ public class AutograderBuddy {
                 return seed;
             }
             if (java.lang.Character.isDigit(key)) {
-                stringKey += String.valueOf(key).toString();
+                stringKey += String.valueOf(key);
 //                StdDraw.setPenColor(Color.white);
 //                StdDraw.filledRectangle(45, 25, 20, 10);
 //                StdDraw.setPenColor(Color.black);

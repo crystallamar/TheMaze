@@ -339,27 +339,20 @@ public class Coins {
             return true;
         }
 
-        else if (world[x][y] == Tileset.letterE) {
+        else //world[x][y] = Tileset.SAND;
+            if (world[x][y] == Tileset.letterE) {
             //world[x][y] = Tileset.SAND;
             return true;
         }
 
-        else if (world[x][y] == Tileset.letterF) {
-            //world[x][y] = Tileset.SAND;
-            return true;
-        }
-
-        return false;
+        else return world[x][y] == Tileset.letterF;
     }
 
     public boolean triggerEndOfGame(int numCoinsPickedUp) {
         //EndGame endGame = new EndGame();
-        boolean ifGameEnd = false;
-        if (numCoinsPickedUp == 3) { //CHANGE BACK TO 10
-            //endGame.endGame();
-            ifGameEnd = true;
-
-        }
+        boolean ifGameEnd = numCoinsPickedUp == 3;
+        //CHANGE BACK TO 10
+        //endGame.endGame();
         return ifGameEnd;
     }
 
