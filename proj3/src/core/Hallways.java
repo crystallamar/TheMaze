@@ -98,7 +98,6 @@ public class Hallways {
                     sortedArray.add(centerCoorCOPY.get(m));
                     centerCoorCOPY.remove(m);
                     m--;
-
                 }
             }
         }

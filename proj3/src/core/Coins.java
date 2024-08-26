@@ -27,7 +27,7 @@ public class Coins {
         while (numCoinsTotal != 0) {
             tempX = random.nextInt(1, 94);
             tempY = random.nextInt(1, 53);
-            if (ifSandPlaceCoin(world, tempX, tempY, trial, numCoinsTotal, numTrials)) {
+            if (ifSPC(world, tempX, tempY, trial, numCoinsTotal, numTrials)) {
                 coinCoor.add(tempX);
                 coinCoor.add(tempY);
                 numCoinsTotal--;
@@ -46,8 +46,8 @@ public class Coins {
         return coinCoor;
     }
 
-    public boolean ifSandPlaceCoin(TETile[][] world, int x, int y, boolean trial, int numCoinsTotal,
-                                   int trialNum) {
+    public boolean ifSPC(TETile[][] world, int x, int y, boolean trial, int numCoinsTotal, int trialNum) {
+        //IFSandPlaceCoin
         boolean placedCoin = false;
 
         if (!trial) {
