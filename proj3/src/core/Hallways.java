@@ -116,7 +116,7 @@ public class Hallways {
         int tempY2 = room2Coor.get(1);
 
         while (tempX1 != tempX2 || tempY1 != tempY2) {
-            if(tempX1 != tempX2) {
+            if (tempX1 != tempX2) {
                 if (tempX1 > tempX2) {
                     int howMuchLeftToMoveXLeft = tempX1 - tempX2;
                     int toMoveXLeft = random.nextInt(howMuchLeftToMoveXLeft);
@@ -145,8 +145,7 @@ public class Hallways {
                     }
                     moveDown(world, tempX1, tempY1, toMoveYDown);
                     tempY1 -= toMoveYDown;
-                }
-                else if (tempY1 < tempY2){
+                } else if (tempY1 < tempY2) {
                     int howMuchLeftToMoveYUp = tempY2 - tempY1;
                     int toMoveYUp = random.nextInt(howMuchLeftToMoveYUp);
                     if (toMoveYUp == 0) {

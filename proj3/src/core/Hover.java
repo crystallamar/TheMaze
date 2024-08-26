@@ -8,7 +8,7 @@ import tileengine.Tileset;
 
 public class Hover {
 
-    public void displayTile (String area) {
+    public void displayTile(String area) {
         if (area.equals("Sand")) {
             StdDraw.setPenColor(Color.black);
             StdDraw.filledRectangle(7, 52, 6, 2);
@@ -58,13 +58,13 @@ public class Hover {
         }
     }
 
-    public void displayNothing () {
+    public void displayNothing() {
         StdDraw.setPenColor(Color.black);
         StdDraw.filledRectangle(7, 52, 6, 2);
         StdDraw.show();
     }
 
-    public ArrayList<Integer> mouseMoves () {
+    public ArrayList<Integer> mouseMoves() {
         ArrayList<Integer> mouseCoor = new ArrayList<>();
 
         double mouseX = StdDraw.mouseX();

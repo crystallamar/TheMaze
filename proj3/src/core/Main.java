@@ -21,8 +21,9 @@ public class Main {
         TETile[][] world = new TETile[WIDTH][HEIGHT]; // creates the world to build in
 
         if (runningAutograder) {
+
             //AutograderBuddy auto = new AutograderBuddy();
-            //world = auto.getWorldFromInput("n1ssdddddddddddwww");
+            world = AutograderBuddy.getWorldFromInput("n1ssdddddddddddwww");
 
             //world = AutograderBuddy.getWorldFromInput("n1724641833626swwddddddddddddwwwwwaaaaaaaaaaaaawwwwwwwwwdwwwww
             // wwwwwwwwwwwwaaaadddddddddddddddddddddddddddddddssssssssssssssssddwwaaaaaawwwwwwwaaaaaaaaaaaasssddddddddd
@@ -34,9 +35,8 @@ public class Main {
             // aawwwwwwwwwwwwwwaaaaaaaaassssssssa");
             //ter.renderFrame(world); // EASY WORLD 1724641833626
 
-        } else {
-            //long seed = 12345;
-            //long seed = System.currentTimeMillis();
+        }
+        else {
             TitleScreen titleScreen = new TitleScreen();
             Character character = new Character();
             PlayingGame playingGame = new PlayingGame();

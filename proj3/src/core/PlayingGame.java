@@ -65,17 +65,15 @@ public class PlayingGame {
                     mousePointer.displayTile(tileTitle);
                     initMouseXCoor = currMouseXCoor;
                     initMouseYCoor = currMouseYCoor;
-                    }
+                }
 
                 if (StdDraw.hasNextKeyTyped()) {
                     ifColon = true;
                     key = StdDraw.nextKeyTyped();
 
-
-
                     ArrayList<Integer> temp = new ArrayList<>();
                     temp.addAll(avatarCoor);
-                    avatarCoor = avatar.moveChar(key, world, avatarCoor, rand, trial, numTrial, seed);
+                    avatarCoor = avatar.moveChar(key, world, avatarCoor, trial, numTrial, seed);
                     if (temp.equals(avatarCoor)) {
                         didCharMove = false;
                     }
@@ -168,4 +166,5 @@ public class PlayingGame {
             }
         }
     }
+
 }

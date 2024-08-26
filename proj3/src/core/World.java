@@ -186,6 +186,34 @@ public class World implements Serializable {
         int coin6X = trialCoinCoor.get(10);
         int coin6Y = trialCoinCoor.get(11);
 
+        ArrayList<Integer> coin1Coor = new ArrayList<>();
+        ArrayList<Integer> coin2Coor = new ArrayList<>();
+
+        ArrayList<Integer> coin3Coor = new ArrayList<>();
+        ArrayList<Integer> coin4Coor = new ArrayList<>();
+
+        ArrayList<Integer> coin5Coor = new ArrayList<>();
+        ArrayList<Integer> coin6Coor = new ArrayList<>();
+
+        coin1Coor.add(coin1X);
+        coin1Coor.add(coin1Y);
+
+        coin2Coor.add(coin2X);
+        coin2Coor.add(coin2Y);
+
+        coin3Coor.add(coin3X);
+        coin3Coor.add(coin3Y);
+
+        coin4Coor.add(coin4X);
+        coin4Coor.add(coin4Y);
+
+        coin5Coor.add(coin5X);
+        coin5Coor.add(coin5Y);
+
+        coin6Coor.add(coin6X);
+        coin6Coor.add(coin6Y);
+
+
         boolean coin1Bool = trialCoinBool.get(0);
         boolean coin2Bool = trialCoinBool.get(1);
         boolean coin3Bool = trialCoinBool.get(2);
@@ -194,8 +222,7 @@ public class World implements Serializable {
         boolean coin6Bool = trialCoinBool.get(5);
 
         //coin.generateCoins(world, rand, true, trialNum);
-        coin.placeTrialCoins(world, trialNum, coin1X, coin1Y, coin2X, coin2Y, coin3X, coin3Y, coin4X, coin4Y, coin5X,
-                coin5Y, coin6X, coin6Y);
+        coin.placeTrialCoins(world, trialNum, coin1Coor, coin2Coor, coin3Coor, coin4Coor, coin5Coor, coin6Coor);
         coin.removeTrialCoinsPickedUp(world, trialCoinCoor, coin1Bool, coin2Bool, coin3Bool, coin4Bool, coin5Bool,
                 coin6Bool);
 
@@ -211,7 +238,7 @@ public class World implements Serializable {
         Objectives objective = new Objectives();
         PlayingGame playGame = new PlayingGame();
 
-        objective.whilePlayingTrial(world, avatarCoor, random, trial, numTrial, seed);
+        objective.whilePlayingTrial(world, avatarCoor, seed);
         if (numTrial != 3) {
             playGame.playingGame(world, avatarCoor, random, false, numTrial, seed, 0, 0);
         }

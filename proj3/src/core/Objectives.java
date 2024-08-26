@@ -45,7 +45,7 @@ public class Objectives {
         }
         return 0;
     }
-    public void objective1 (TETile[][] world, Random rand, long seed, int x, int y) {
+    public void objective1(TETile[][] world, Random rand, long seed, int x, int y) {
         PlayingGame playGame = new PlayingGame();
         SavedGame save = new SavedGame();
         Coins coins = new Coins();
@@ -67,11 +67,9 @@ public class Objectives {
         ArrayList<Integer> avatarCoor = newAvatar.generateAvatar(world, rand);
         ter.renderFrame(world);
 
-        whilePlayingTrial(world, avatarCoor, rand, true, 1, seed);
+        whilePlayingTrial(world, avatarCoor, seed);
 
-
-
-                }
+    }
 
 
 
@@ -97,7 +95,7 @@ public class Objectives {
         ArrayList<Integer> avatarCoor = newAvatar.generateAvatar(world, rand);
         ter.renderFrame(world);
 
-        whilePlayingTrial(world, avatarCoor, rand, true, 2, seed);
+        whilePlayingTrial(world, avatarCoor, seed);
     }
 
     public void objective3(TETile[][] world, Random rand, long seed, int x, int y) {
@@ -124,7 +122,7 @@ public class Objectives {
         ArrayList<Integer> avatarCoor = newAvatar.generateAvatar(world, rand);
         ter.renderFrame(world);
 
-        whilePlayingTrial(world, avatarCoor, rand, true, 3, seed);
+        whilePlayingTrial(world, avatarCoor, seed);
         endGame.callEndGame(world);
     }
 
@@ -195,14 +193,15 @@ public class Objectives {
         return numTrialCoins;
     }
 
-    public void whilePlayingTrial(TETile[][] world, ArrayList<Integer> avatarCoor, Random rand, Boolean trial,
-                                  int numTrial, long seed) {
+    public void whilePlayingTrial(TETile[][] world, ArrayList<Integer> avatarCoor, long seed) {
         Character avatar = new Character();
         Boolean playingGame = true;
         TERenderer ter = new TERenderer();
         EndGame endGame = new EndGame();
         SavedGame loadGame = new SavedGame();
         loadGame.saveIfTrial(true);
+        boolean trial = true;
+        int numTrial = avatarCoor.get(3);
 
         Hover mousePointer = new Hover();
         //int numLoops = 0;
@@ -244,7 +243,7 @@ public class Objectives {
                     ifColon = true;
                     key = StdDraw.nextKeyTyped();
 
-                    avatarCoor = avatar.moveChar(key, world, avatarCoor, rand, trial, numTrial, seed);
+                    avatarCoor = avatar.moveChar(key, world, avatarCoor, trial, numTrial, seed);
                     if (avatarCoor.size() != 11) {
                         avatarCoor.add(oGCoin1.get(0));
                         avatarCoor.add(oGCoin1.get(1));

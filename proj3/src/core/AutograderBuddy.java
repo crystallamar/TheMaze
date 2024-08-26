@@ -70,7 +70,7 @@ public class AutograderBuddy {
                     return seedFromEnterSeed;
                 }
                 return seedFromEnterSeed;
-            } else if ((key == 'l') || (key == 'L')) {
+            } else if ((key == 'l') || ((key == 'L'))) {
                 titleOn = false;
                 return 'a';
 
@@ -178,7 +178,7 @@ public class AutograderBuddy {
 
                 ArrayList<Integer> temp = new ArrayList<>();
                 temp.addAll(avatarCoor);
-                avatarCoor = avatar.moveChar(key, world, avatarCoor, rand, trial, numTrial, seed);
+                avatarCoor = avatar.moveChar(key, world, avatarCoor, trial, numTrial, seed);
                 if (temp.equals(avatarCoor)) {
                     didCharMove = false;
                 }
@@ -353,7 +353,7 @@ public class AutograderBuddy {
                     key = getNextChar();
                     ifColon = true;
 
-                    avatarCoor = avatar.moveChar(key, world, avatarCoor, rand, trial, numTrial, seed);
+                    avatarCoor = avatar.moveChar(key, world, avatarCoor, trial, numTrial, seed);
                     if (avatarCoor.size() != 11) {
                         avatarCoor.add(oGCoin1.get(0));
                         avatarCoor.add(oGCoin1.get(1));
@@ -562,7 +562,7 @@ public class AutograderBuddy {
                     int numTrialCoinsPickedUp = avatarCoor.get(2);
                     int numTrial = avatarCoor.get(3);
                     Random rand = updatedWorld.rand;
-                    copyPlayingGame(world, avatarCoor, rand, seed);                            0);
+                    copyPlayingGame(world, avatarCoor, rand, seed);
 
                 }
             }

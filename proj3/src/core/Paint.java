@@ -24,9 +24,7 @@ public class Paint {
                 if ((sand.isTouchingGrassRight(world, rightX, topY)) && (sand.isTouchingGrassTop(world, leftX, topY))) {
                     for (int x = rightX; x > leftX; x--) {
                         for (int y = topY; y > bottomY; y--) {
-                            {
-                                world[x][y] = Tileset.SAND;
-                            }
+                            world[x][y] = Tileset.SAND;
                         }
 
                     }
@@ -38,5 +36,4 @@ public class Paint {
 
     return buildWorld;
     }
-    
 }

@@ -37,8 +37,8 @@ public class Character {
         world[avatarCoor.get(0)][avatarCoor.get(1)] = Tileset.AVATAR;
     }
 
-    public ArrayList<Integer> moveChar(char input, TETile[][] world, ArrayList<Integer> avatarCoor, Random rand,
-                                       Boolean trial, int oGCoins, long seed) {
+    public ArrayList<Integer> moveChar(char input, TETile[][] world, ArrayList<Integer> avatarCoor, Boolean trial,
+                                       int oGCoins, long seed) {
         int xCoor = avatarCoor.get(0);
         int yCoor = avatarCoor.get(1);
         int trialNum = oGCoins;

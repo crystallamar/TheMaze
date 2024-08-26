@@ -46,7 +46,8 @@ public class Coins {
         return coinCoor;
     }
 
-    public boolean ifSandPlaceCoin(TETile[][] world, int x, int y, Boolean trial, Integer numCoinsTotal, int trialNum) {
+    public boolean ifSandPlaceCoin(TETile[][] world, int x, int y, boolean trial, int numCoinsTotal,
+                                   int trialNum) {
         boolean placedCoin = false;
 
         if (!trial) {
@@ -115,7 +116,8 @@ public class Coins {
                     world[x][y] = Tileset.num4;
                     placedCoin = true;
                 }
-            } if (numCoinsTotal == 5) {
+            }
+            if (numCoinsTotal == 5) {
                 if (world[x][y] == Tileset.SAND) {
                     world[x][y] = Tileset.num5;
                     placedCoin = true;
@@ -151,7 +153,8 @@ public class Coins {
                     world[x][y] = Tileset.letterD;
                     placedCoin = true;
                 }
-            } if (numCoinsTotal == 5) {
+            }
+            if (numCoinsTotal == 5) {
                 if (world[x][y] == Tileset.SAND) {
                     world[x][y] = Tileset.letterE;
                     placedCoin = true;
@@ -307,9 +310,10 @@ public class Coins {
         world[oGCoin3X][oGCoin3Y] = Tileset.CELL;
     }
 
-    public void placeTrialCoins(TETile[][] world, int trialNum, int coin1X, int coin1Y, int coin2X, int coin2Y,
-                                int coin3X, int coin3Y, int coin4X, int coin4Y, int coin5X, int coin5Y, int coin6X,
-                                int coin6Y) {
+    public void placeTrialCoins(TETile[][] world, int trialNum, ArrayList<Integer> coin1Coor,
+                                ArrayList<Integer> coin2Coor, ArrayList<Integer> coin3Coor,
+                                ArrayList<Integer> coin4Coor, ArrayList<Integer> coin5Coor,
+                                ArrayList<Integer> coin6Coor) {
         SavedGame loadGame = new SavedGame();
         boolean place1 = loadGame.readTrialCoin1Bool("trialCoin1Bool");
         boolean place2 = loadGame.readTrialCoin2Bool("trialCoin2Bool");
@@ -317,6 +321,25 @@ public class Coins {
         boolean place4 = loadGame.readTrialCoin4Bool("trialCoin4Bool");
         boolean place5 = loadGame.readTrialCoin5Bool("trialCoin5Bool");
         boolean place6 = loadGame.readTrialCoin6Bool("trialCoin6Bool");
+
+        int coin1X = coin1Coor.get(0);
+        int coin1Y = coin1Coor.get(1);
+
+        int coin2X = coin2Coor.get(0);
+        int coin2Y = coin2Coor.get(1);
+
+        int coin3X = coin3Coor.get(0);
+        int coin3Y = coin3Coor.get(1);
+
+        int coin4X = coin4Coor.get(0);
+        int coin4Y = coin4Coor.get(1);
+
+        int coin5X = coin5Coor.get(0);
+        int coin5Y = coin5Coor.get(1);
+
+        int coin6X = coin6Coor.get(0);
+        int coin6Y = coin6Coor.get(1);
+
 
         if (trialNum == 1) {
             if (!place1) {
