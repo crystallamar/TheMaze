@@ -817,8 +817,8 @@ public class SavedGame {
 //        String stringTrialCoins = trialCoin1X + " " + trialCoin1Y + " " + trialCoin2X + " " + trialCoin2Y
 //                + " " + trialCoin3X + " " + trialCoin3Y + " " + trialCoin4X + " " + trialCoin4Y
 //                + " " + trialCoin5X + " " + trialCoin5Y + " " + trialCoin6X + " " + trialCoin6Y;
-//        FileUtils.writeFile("trialCoinsCoor", stringTrialCoins);
-//    }
+//        FileUtils.writeFile("trialCoinsCoor", stringTrialCoins)
+
     public ArrayList<Integer> readTrialCoinsCoor(String fileName) {
         ArrayList<Integer> trialCoins = new ArrayList<>();
         String sTrialCoins = FileUtils.readFile(fileName);
@@ -838,16 +838,16 @@ public class SavedGame {
 
         trialCoins.add(trialCoin1X);
         trialCoins.add(trialCoin1Y);
-//        trialCoins.add(trialCoin2X);
-//        trialCoins.add(trialCoin2Y);
-//        trialCoins.add(trialCoin3X);
-//        trialCoins.add(trialCoin3Y);
-//        trialCoins.add(trialCoin4X);
-//        trialCoins.add(trialCoin4Y);
-//        trialCoins.add(trialCoin5X);
-//        trialCoins.add(trialCoin5Y);
-//        trialCoins.add(trialCoin6X);
-//        trialCoins.add(trialCoin6Y);
+//      trialCoins.add(trialCoin2X);
+//      trialCoins.add(trialCoin2Y);
+//      trialCoins.add(trialCoin3X);
+//      trialCoins.add(trialCoin3Y);
+//      trialCoins.add(trialCoin4X);
+//      trialCoins.add(trialCoin4Y);
+//      trialCoins.add(trialCoin5X);
+//      trialCoins.add(trialCoin5Y);
+//      trialCoins.add(trialCoin6X);
+//      trialCoins.add(trialCoin6Y);
 
         return trialCoins;
     }

@@ -73,7 +73,7 @@ public class World implements Serializable {
         //return world;
     }
 
-    public void callPlayGame(TETile[][] world, ArrayList<Integer> avatarCoor, long seed, int numTrial,
+    public void callPlayGame(TETile[][] world, ArrayList<Integer> avatarCoor, long seeds, int numTrial,
                               int numTrialCoinsPickedUp, int trialBool) {
         PlayingGame playingGame = new PlayingGame();
         Random random = this.rand;
@@ -83,7 +83,7 @@ public class World implements Serializable {
         //boolean ifGameEnd = true;
         boolean trial;
         trial = trialBool != 0;
-        playingGame.playingGame(world, avatarCoor, random, trial, numTrial, seed, numTrialCoinsPickedUp, trialBool);
+        playingGame.playingGame(world, avatarCoor, random, trial, numTrial, seeds, numTrialCoinsPickedUp, trialBool);
     }
 
     public TETile[][] generateSavedWorld(TETile[][] world, ArrayList<Integer> savedAvatarCoor,
@@ -93,7 +93,7 @@ public class World implements Serializable {
         int width = 94;
         int height = 55;
         Grass genGrass = new Grass();
-        Random rand = this.rand;
+        Random random = this.rand;
         long seeds = this.seed;
         Hallways hallways = new Hallways();
         Mountains addMountains = new Mountains();
@@ -137,7 +137,7 @@ public class World implements Serializable {
         return world;
     }
 
-    public TETile[][] generateTrialWorld(TETile[][] world, long seed) {
+    public TETile[][] generateTrialWorld(TETile[][] world, long seeds) {
         Grass genGrass = new Grass();
         Objectives objective = new Objectives();
         SavedGame readFile = new SavedGame();
@@ -209,13 +209,13 @@ public class World implements Serializable {
     }
 
     public void callObjectivePlayGame(TETile[][] world, ArrayList<Integer> avatarCoor, Boolean trial, int numTrial,
-                                      long seed) {
+                                      long seeds) {
         Objectives objective = new Objectives();
         PlayingGame playGame = new PlayingGame();
 
-        objective.whilePlayingTrial(world, avatarCoor, seed, numTrial);
+        objective.whilePlayingTrial(world, avatarCoor, seeds, numTrial);
         if (numTrial != 3) {
-            playGame.playingGame(world, avatarCoor, this.rand, false, numTrial, seed, 0, 0);
+            playGame.playingGame(world, avatarCoor, this.rand, false, numTrial, seeds, 0, 0);
         }
     }
 }
