@@ -226,14 +226,15 @@ public class Objectives {
                         numCoinsPickedUpInTrial = trialPickUpCoin(world, x, y, numCoinsPickedUpInTrial, numTrial);
                         updateAvatarCoor(avatarCoor, x, y, numCoinsPickedUpInTrial, oGCoin1, oGCoin2, oGCoin3,
                                 numTrial);
-                    } if (numCoinsPickedUpInTrial == 7) {
+                    }
+                    if (numCoinsPickedUpInTrial == 7) {
                         prepareForNextStage(loadGame, avatarCoor, oGCoin1, oGCoin2, oGCoin3, numTrial);
                         playingGame = false;
                         break;
                     }
 
                     if (key == ':') {
-                        handleColonKey(loadGame, avatar, world, avatarCoor, seed, oGCoin1, oGCoin2, oGCoin3,
+                        handleColonKey(world, avatarCoor, seed, oGCoin1, oGCoin2, oGCoin3,
                                 numCoinsPickedUpInTrial);
                     }
 
@@ -288,9 +289,11 @@ public class Objectives {
         addOGCoinsToAvatarCoor(avatarCoor, oGCoin1, oGCoin2, oGCoin3);
     }
 
-    private void handleColonKey(SavedGame loadGame, Character avatar, TETile[][] world, ArrayList<Integer> avatarCoor,
+    private void handleColonKey(TETile[][] world, ArrayList<Integer> avatarCoor,
                                 long seed, ArrayList<Integer> oGCoin1, ArrayList<Integer> oGCoin2,
                                 ArrayList<Integer> oGCoin3, int numCoinsPickedUpInTrial) {
+        Character avatar = new Character();
+        SavedGame loadGame = new SavedGame();
         while (true) {
             if (StdDraw.hasNextKeyTyped()) {
                 char key = StdDraw.nextKeyTyped();
