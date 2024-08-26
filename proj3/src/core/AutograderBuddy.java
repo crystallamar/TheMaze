@@ -537,7 +537,7 @@ public class AutograderBuddy {
                     int numTrialCoinsPickedUp = avatarCoor.get(2);
                     int numTrial = avatarCoor.get(3);
                     Random rand = updatedWorld.rand;
-                    copyPG(world, avatarCoor, rand, seed);
+                    copyPlayingGame(world, avatarCoor, rand, seed);
 
                 }
             }

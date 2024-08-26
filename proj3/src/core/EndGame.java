@@ -99,14 +99,10 @@ public class EndGame {
         ArrayList<Integer> oGCoin2;
         ArrayList<Integer> oGCoin3;
         ArrayList<Integer> firstCoinPickedUp;
-        ArrayList<Integer> secondCoinPickedUp;
-
-
         world[oGavatarCoor.get(0)][oGavatarCoor.get(1)] = Tileset.SAND;
         oGCoin1 = retrieveGame.readOGCoin1("OGCoin1");
         oGCoin2 = retrieveGame.readOGCoin2("OGCoin2");
         oGCoin3 = retrieveGame.readOGCoin3("OGCoin3");
-
         int trialCoinsPickedUp = avatarCoor.get(2);
         int oGCoins = avatarCoor.get(3);
         int boolTrial = avatarCoor.get(4);
@@ -121,30 +117,21 @@ public class EndGame {
         avatarCoor.addAll(oGCoin1);
         avatarCoor.addAll(oGCoin2);
         avatarCoor.addAll(oGCoin3);
-
-
         genWorld.generateSavedWorld(world, avatarCoor, oGCoin1, oGCoin2, oGCoin3, trialCoinsPickedUp, boolTrial,
                 oGCoins);
-
         if (trialNum == 1) {
             if (oGCoin1.equals(avXY)) {
                 retrieveGame.saveCoinPickedUpFirst(oGCoin1); // Save first coin coor
-                //firstCoinPickedUp = retrieveGame.readFirstCoinPickedUp("FirstCoinPickedUp"); //
                 avatar.removeOGCoin(world, oGCoin1);
                 avatar.setAvatarCoor(world, avatarCoor);
-
             } else if (oGCoin2.equals(avXY)) {
                 retrieveGame.saveCoinPickedUpFirst(oGCoin2);
-                //firstCoinPickedUp = retrieveGame.readFirstCoinPickedUp("FirstCoinPickedUp");
                 avatar.removeOGCoin(world, oGCoin2);
                 avatar.setAvatarCoor(world, avatarCoor);
-
             } else if (oGCoin3.equals(avXY)) {
                 retrieveGame.saveCoinPickedUpFirst(oGCoin3);
-                //firstCoinPickedUp = retrieveGame.readFirstCoinPickedUp("FirstCoinPickedUp");
                 avatar.removeOGCoin(world, oGCoin3);
                 avatar.setAvatarCoor(world, avatarCoor);
-
             }
         } else if (trialNum == 2) { //NOT SURE NEEDED
             if (oGCoin1.equals(avXY)) {
@@ -154,28 +141,21 @@ public class EndGame {
                 avatar.removeOGCoin(world, oGCoin1);
                 avatar.setAvatarCoor(world, avatarCoor);
             }
-
             if (oGCoin2.equals(avXY)) {
                 firstCoinPickedUp = retrieveGame.readFirstCoinPickedUp("FirstCoinPickedUp");
                 avatar.removeOGCoin(world, firstCoinPickedUp);
                 retrieveGame.saveCoinPickedUpSecond(oGCoin2);
-
                 avatar.removeOGCoin(world, oGCoin2);
                 avatar.setAvatarCoor(world, avatarCoor);
-
             }
             if (oGCoin3.equals(avXY)) {
                 firstCoinPickedUp = retrieveGame.readFirstCoinPickedUp("FirstCoinPickedUp");
                 avatar.removeOGCoin(world, firstCoinPickedUp);
                 retrieveGame.saveCoinPickedUpSecond(oGCoin3);
-
                 avatar.removeOGCoin(world, oGCoin3);
                 avatar.setAvatarCoor(world, avatarCoor);
-
             }
-
         }
         return false;
-
     }
 }

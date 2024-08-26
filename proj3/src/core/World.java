@@ -19,7 +19,8 @@ public class World implements Serializable {
 
     public ArrayList<Integer> generateWorld(TETile[][] world, int width, int height) {
 
-        Random rand = this.rand;
+        Random random = this.rand;
+        long currSeed = this.seed;
         Hallways hallways = new Hallways();
         Mountains addMountains = new Mountains();
         Sand addSand = new Sand();
@@ -34,10 +35,10 @@ public class World implements Serializable {
 
         ArrayList<ArrayList<Integer>> centerCoorOfSand = new ArrayList<>();
 
-        addMountains.generateMountains(world, seed, width, height, rand);
-        centerCoorOfSand = addSand.generateSand(world, rand);
-        hallways.generateHallways(world, rand, centerCoorOfSand);
-        coinCoor = coins.generateCoins(world, rand, false, 0);
+        addMountains.generateMountains(world, currSeed, width, height, random);
+        centerCoorOfSand = addSand.generateSand(world, random);
+        hallways.generateHallways(world, random, centerCoorOfSand);
+        coinCoor = coins.generateCoins(world, random, false, 0);
 
         int coinCoor1X = coinCoor.get(0);
         int coinCoor1Y = coinCoor.get(1);
@@ -56,7 +57,7 @@ public class World implements Serializable {
         saveGame.saveOGCoin2(coinCoor2);
         saveGame.saveOGCoin3(coinCoor3);
 
-        avatarCoor = avatar.generateAvatar(world, rand);
+        avatarCoor = avatar.generateAvatar(world, random);
 
         saveGame.saveOGAvCoor(avatarCoor);
         avatarCoor.add(coinCoor1X);
@@ -75,13 +76,14 @@ public class World implements Serializable {
     public void callPlayGame(TETile[][] world, ArrayList<Integer> avatarCoor, long seed, int numTrial,
                               int numTrialCoinsPickedUp, int trialBool) {
         PlayingGame playingGame = new PlayingGame();
+        Random random = this.rand;
         SavedGame savedGame = new SavedGame();
         // read Num OG COIns picked up
         //EndGame endGame = new EndGame();
         //boolean ifGameEnd = true;
         boolean trial;
         trial = trialBool != 0;
-        playingGame.playingGame(world, avatarCoor, rand, trial, numTrial, seed, numTrialCoinsPickedUp, trialBool);
+        playingGame.playingGame(world, avatarCoor, random, trial, numTrial, seed, numTrialCoinsPickedUp, trialBool);
     }
 
     public TETile[][] generateSavedWorld(TETile[][] world, ArrayList<Integer> savedAvatarCoor,
@@ -99,33 +101,11 @@ public class World implements Serializable {
         Coins coins = new Coins();
         //ArrayList<Integer> avatarCoor = new ArrayList<>();
         SavedGame saveGame =  new SavedGame();
-        //ArrayList<Integer> coinCoor;
-        //        avatarCoor.addAll(saveGame.readAVCoorWorld());
-        //        avatarCoor.add(savedAvatarCoor.get(2));
-        //        avatarCoor.add(savedAvatarCoor.get(3));
-        //        avatarCoor.add(savedAvatarCoor.get(4));
-        //        avatarCoor.add(savedAvatarCoor.get(5));
-        //        avatarCoor.add(savedAvatarCoor.get(6));
-        //        avatarCoor.add(savedAvatarCoor.get(7));
-        //        avatarCoor.add(savedAvatarCoor.get(8));
-        //        avatarCoor.add(savedAvatarCoor.get(9));
-        //        avatarCoor.add(savedAvatarCoor.get(10));
 
         ArrayList<Integer> coinCoor1 = oGCoin1;
         ArrayList<Integer> coinCoor2 = oGCoin2;
         ArrayList<Integer> coinCoor3 = oGCoin3;
 
-        // ArrayList<Integer> savedAvatarCoorXY = saveGame.readAVCoorWorld();
-        //        int trialCoinsPickedUp = avatarCoor.get(2);
-        //        int trialBool = avatarCoor.get(3);
-        //        int numOGCoins = avatarCoor.get(4);
-
-        //        int OGCoin1X = avatarCoor.get(5);
-        //        int OGCoin1Y = avatarCoor.get(6);
-        //        int OGCoin2X = avatarCoor.get(7);
-        //        int OGCoin2Y = avatarCoor.get(8);
-        //        int OGCoin3X = avatarCoor.get(9);
-        //        int OGCoin3Y = avatarCoor.get(10);
 
         numOGCoinsPickedUp = savedAvatarCoor.get(3);
         ArrayList<ArrayList<Integer>> centerCoorOfSand = new ArrayList<>();
@@ -162,7 +142,7 @@ public class World implements Serializable {
         SavedGame readFile = new SavedGame();
         Coins coin = new Coins();
         Character avatar = new Character();
-        Random rand = this.rand;
+        Random random = this.rand;
 
         genGrass.generateGrass(world, 94, 55);
         objective.trialRoom(world); // build background of trial room
