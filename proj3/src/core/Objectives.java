@@ -208,9 +208,9 @@ public class Objectives {
         //int numLoops = 0;
         int numCoinsPickedUpInTrial;
         Objectives objectives = new Objectives();
-        ArrayList<Integer> OGCoin1 = loadGame.readOGCoin1("OGCoin1");
-        ArrayList<Integer> OGCoin2 = loadGame.readOGCoin1("OGCoin2");
-        ArrayList<Integer> OGCoin3 = loadGame.readOGCoin1("OGCoin3");
+        ArrayList<Integer> oGCoin1 = loadGame.readOGCoin1("OGCoin1");
+        ArrayList<Integer> oGCoin2 = loadGame.readOGCoin1("OGCoin2");
+        ArrayList<Integer> oGCoin3 = loadGame.readOGCoin1("OGCoin3");
 
 
         ArrayList<Integer> mouseCoor;
@@ -246,12 +246,12 @@ public class Objectives {
 
                     avatarCoor = avatar.moveChar(key, world, avatarCoor, rand, trial, numTrial, seed);
                     if (avatarCoor.size() != 11) {
-                        avatarCoor.add(OGCoin1.get(0));
-                        avatarCoor.add(OGCoin1.get(1));
-                        avatarCoor.add(OGCoin2.get(0));
-                        avatarCoor.add(OGCoin2.get(1));
-                        avatarCoor.add(OGCoin3.get(0));
-                        avatarCoor.add(OGCoin3.get(1));
+                        avatarCoor.add(oGCoin1.get(0));
+                        avatarCoor.add(oGCoin1.get(1));
+                        avatarCoor.add(oGCoin2.get(0));
+                        avatarCoor.add(oGCoin2.get(1));
+                        avatarCoor.add(oGCoin3.get(0));
+                        avatarCoor.add(oGCoin3.get(1));
                     }
                     int x = avatarCoor.get(0);
                     int y = avatarCoor.get(1);
@@ -269,12 +269,12 @@ public class Objectives {
                         avatarCoor.add(numCoinsPickedUpInTrial);
                         avatarCoor.add(OGCoins);
                         avatarCoor.add(trialBool);
-                        avatarCoor.add(OGCoin1.get(0));
-                        avatarCoor.add(OGCoin1.get(1));
-                        avatarCoor.add(OGCoin2.get(0));
-                        avatarCoor.add(OGCoin2.get(1));
-                        avatarCoor.add(OGCoin3.get(0));
-                        avatarCoor.add(OGCoin3.get(1));
+                        avatarCoor.add(oGCoin1.get(0));
+                        avatarCoor.add(oGCoin1.get(1));
+                        avatarCoor.add(oGCoin2.get(0));
+                        avatarCoor.add(oGCoin2.get(1));
+                        avatarCoor.add(oGCoin3.get(0));
+                        avatarCoor.add(oGCoin3.get(1));
                     }
                     if (numCoinsPickedUpInTrial == 7) {
                         playingGame = false;
@@ -288,12 +288,12 @@ public class Objectives {
                         avatarCoor.add(0);
                         avatarCoor.add(OGCoins);
                         avatarCoor.add(0);
-                        avatarCoor.add(OGCoin1.get(0));
-                        avatarCoor.add(OGCoin1.get(1));
-                        avatarCoor.add(OGCoin2.get(0));
-                        avatarCoor.add(OGCoin2.get(1));
-                        avatarCoor.add(OGCoin3.get(0));
-                        avatarCoor.add(OGCoin3.get(1));
+                        avatarCoor.add(oGCoin1.get(0));
+                        avatarCoor.add(oGCoin1.get(1));
+                        avatarCoor.add(oGCoin2.get(0));
+                        avatarCoor.add(oGCoin2.get(1));
+                        avatarCoor.add(oGCoin3.get(0));
+                        avatarCoor.add(oGCoin3.get(1));
 
 
 
@@ -309,7 +309,7 @@ public class Objectives {
 
                                 ArrayList<Boolean> trialCoinsBool =
                                         loadGame.readTrialCoinsBool("trialCoinsBool");
-                                avatar.ifExitObjective(key, world, avatarCoor, seed, OGCoin1, OGCoin2, OGCoin3,
+                                avatar.ifExitObjective(key, world, avatarCoor, seed, oGCoin1, oGCoin2, oGCoin3,
                                         numCoinsPickedUpInTrial, trialCoinsCoor, trialCoinsBool);
                                 ifColon = false;
                             }

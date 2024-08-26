@@ -18,27 +18,27 @@ public class PlayingGame {
 
     public void playingGame(TETile[][] world, ArrayList<Integer> avatarCoor, Random rand, Boolean trial, int numTrial,
                             long seed, int numTrialCoinsPickedUp, int trialBoolPassedIn) {
-        ArrayList<Integer> OGCoin1 = new ArrayList<>();
-        ArrayList<Integer> OGCoin2 = new ArrayList<>();
-        ArrayList<Integer> OGCoin3 = new ArrayList<>();
+        ArrayList<Integer> oGCoin1 = new ArrayList<>();
+        ArrayList<Integer> oGCoin2 = new ArrayList<>();
+        ArrayList<Integer> oGCoin3 = new ArrayList<>();
         int avX = avatarCoor.get(0);
         int avY = avatarCoor.get(1);
         Coins coin = new Coins();
         SavedGame savedGame = new SavedGame();
         if (avatarCoor.size() == 11) {
-            OGCoin1.add(avatarCoor.get(5));
-            OGCoin1.add(avatarCoor.get(6));
-            OGCoin2.add(avatarCoor.get(7));
-            OGCoin2.add(avatarCoor.get(8));
-            OGCoin3.add(avatarCoor.get(9));
-            OGCoin3.add(avatarCoor.get(10));
+            oGCoin1.add(avatarCoor.get(5));
+            oGCoin1.add(avatarCoor.get(6));
+            oGCoin2.add(avatarCoor.get(7));
+            oGCoin2.add(avatarCoor.get(8));
+            oGCoin3.add(avatarCoor.get(9));
+            oGCoin3.add(avatarCoor.get(10));
         } else {
-            OGCoin1.add(avatarCoor.get(2));
-            OGCoin1.add(avatarCoor.get(3));
-            OGCoin2.add(avatarCoor.get(4));
-            OGCoin2.add(avatarCoor.get(5));
-            OGCoin3.add(avatarCoor.get(6));
-            OGCoin3.add(avatarCoor.get(7));
+            oGCoin1.add(avatarCoor.get(2));
+            oGCoin1.add(avatarCoor.get(3));
+            oGCoin2.add(avatarCoor.get(4));
+            oGCoin2.add(avatarCoor.get(5));
+            oGCoin3.add(avatarCoor.get(6));
+            oGCoin3.add(avatarCoor.get(7));
         }
         ArrayList<Integer> mouseCoor;
         while (playingGame) {
@@ -88,20 +88,20 @@ public class PlayingGame {
                         avatarCoor.add(0);
                         avatarCoor.add(0);
                         avatarCoor.add(0);
-                        avatarCoor.add(OGCoin1.get(0));
-                        avatarCoor.add(OGCoin1.get(1));
-                        avatarCoor.add(OGCoin2.get(0));
-                        avatarCoor.add(OGCoin2.get(1));
-                        avatarCoor.add(OGCoin3.get(0));
-                        avatarCoor.add(OGCoin3.get(1));
+                        avatarCoor.add(oGCoin1.get(0));
+                        avatarCoor.add(oGCoin1.get(1));
+                        avatarCoor.add(oGCoin2.get(0));
+                        avatarCoor.add(oGCoin2.get(1));
+                        avatarCoor.add(oGCoin3.get(0));
+                        avatarCoor.add(oGCoin3.get(1));
                     }
                     if (avatarCoor.size() != 11) {
-                        avatarCoor.add(OGCoin1.get(0));
-                        avatarCoor.add(OGCoin1.get(1));
-                        avatarCoor.add(OGCoin2.get(0));
-                        avatarCoor.add(OGCoin2.get(1));
-                        avatarCoor.add(OGCoin3.get(0));
-                        avatarCoor.add(OGCoin3.get(1));
+                        avatarCoor.add(oGCoin1.get(0));
+                        avatarCoor.add(oGCoin1.get(1));
+                        avatarCoor.add(oGCoin2.get(0));
+                        avatarCoor.add(oGCoin2.get(1));
+                        avatarCoor.add(oGCoin3.get(0));
+                        avatarCoor.add(oGCoin3.get(1));
                     }
                     int x = avatarCoor.get(0);
                     int y = avatarCoor.get(1);
@@ -127,12 +127,12 @@ public class PlayingGame {
                             avatarCoor.add(numTrialCoinsPickedUp);
                             avatarCoor.add(numTrial);
                             avatarCoor.add(0);
-                            avatarCoor.add(OGCoin1.get(0));
-                            avatarCoor.add(OGCoin1.get(1));
-                            avatarCoor.add(OGCoin2.get(0));
-                            avatarCoor.add(OGCoin2.get(1));
-                            avatarCoor.add(OGCoin3.get(0));
-                            avatarCoor.add(OGCoin3.get(1));
+                            avatarCoor.add(oGCoin1.get(0));
+                            avatarCoor.add(oGCoin1.get(1));
+                            avatarCoor.add(oGCoin2.get(0));
+                            avatarCoor.add(oGCoin2.get(1));
+                            avatarCoor.add(oGCoin3.get(0));
+                            avatarCoor.add(oGCoin3.get(1));
 
                             playingGame(world, avatarCoor, rand, false, numTrial, seed, numTrialCoinsPickedUp,
                                     trialBool);
@@ -156,7 +156,7 @@ public class PlayingGame {
                             if (StdDraw.hasNextKeyTyped()) {
                                 key = StdDraw.nextKeyTyped();
                                 save.saveIfTrial(false);
-                                avatar.ifExitMain(key, world, avatarCoor, seed, OGCoin1, OGCoin2, OGCoin3, numTrial);
+                                avatar.ifExitMain(key, world, avatarCoor, seed, oGCoin1, oGCoin2, oGCoin3, numTrial);
                                 ifColon = false;
                             }
                         }

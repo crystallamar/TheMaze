@@ -61,11 +61,11 @@ public class Character {
     }
 
     public void ifExitMain(char input, TETile[][] world, ArrayList<Integer> avatarCoor, long seed,
-                           ArrayList<Integer> oGCoin1, ArrayList<Integer> OGCoin2, ArrayList<Integer> oGCoin3,
+                           ArrayList<Integer> oGCoin1, ArrayList<Integer> oGCoin2, ArrayList<Integer> oGCoin3,
                            int numCoinsPickedUp) {
         SavedGame saveGame = new SavedGame();
         if ((input == 'q') || (input == 'Q')) {
-            saveGame.createSavedFile(world, avatarCoor, seed, oGCoin1, OGCoin2, oGCoin3, numCoinsPickedUp, false);
+            saveGame.createSavedFile(world, avatarCoor, seed, oGCoin1, oGCoin2, oGCoin3, numCoinsPickedUp, false);
             System.exit(0);
         }
     }

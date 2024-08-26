@@ -11,13 +11,13 @@ public class SavedGame {
     public static final String savedGameDirectory = (new File(System.getProperty("user.dir")).getPath());
 
     public void createSavedFile (TETile[][] world, ArrayList<Integer> avatarCoor, long seed,
-                                 ArrayList<Integer> OGCoin1, ArrayList<Integer> OGCoin2, ArrayList<Integer> OGCoin3,
+                                 ArrayList<Integer> oGCoin1, ArrayList<Integer> oGCoin2, ArrayList<Integer> oGCoin3,
                                  int numOGCoinsPickedUp, boolean trial) {
         saveSeed(seed);
         saveAvatarCoor(avatarCoor);
-        saveOGCoin1(OGCoin1);
-        saveOGCoin2(OGCoin2);
-        saveOGCoin3(OGCoin3);
+        saveOGCoin1(oGCoin1);
+        saveOGCoin2(oGCoin2);
+        saveOGCoin3(oGCoin3);
         saveNumOGCoinsPickedUp(numOGCoinsPickedUp);
     }
 
@@ -28,9 +28,9 @@ public class SavedGame {
         Coins coin = new Coins();
 
         ArrayList<Integer> avatarCoor = readAvatarCoor("avatarCoor");
-        ArrayList<Integer> OGCoin1 = readOGCoin1("OGCoin1");
-        ArrayList<Integer> OGCoin2 = readOGCoin2("OGCoin2");
-        ArrayList<Integer> OGCoin3 = readOGCoin3("OGCoin3");
+        ArrayList<Integer> oGCoin1 = readOGCoin1("OGCoin1");
+        ArrayList<Integer> oGCoin2 = readOGCoin2("OGCoin2");
+        ArrayList<Integer> oGCoin3 = readOGCoin3("OGCoin3");
         ArrayList<Integer> firstCoinPickedUp = readFirstCoinPickedUp("firstCoinPickedUp");
         Boolean ifTrial = readIfTrial("ifTrial");
 
@@ -42,7 +42,7 @@ public class SavedGame {
         //Trial Num
 
         if (!ifTrial) {
-            world = genWorld.generateSavedWorld(world, avatarCoor, OGCoin1, OGCoin2, OGCoin3, trialCoinsPickedUp,
+            world = genWorld.generateSavedWorld(world, avatarCoor, oGCoin1, oGCoin2, oGCoin3, trialCoinsPickedUp,
                     trialBool, numOGCoins);
             coin.removeCoin(world, firstCoinPickedUp.get(0), firstCoinPickedUp.get(1));
             if (numOGCoins == 2) {
@@ -75,24 +75,24 @@ public class SavedGame {
         int trialBool = avatarCoor.get(3);
         int numOGCoins = avatarCoor.get(4);
 
-        int OGCoin1X = avatarCoor.get(5);
-        int OGCoin1Y = avatarCoor.get(6);
-        int OGCoin2X = avatarCoor.get(7);
-        int OGCoin2Y = avatarCoor.get(8);
-        int OGCoin3X = avatarCoor.get(9);
-        int OGCoin3Y = avatarCoor.get(10);
+        int oGCoin1X = avatarCoor.get(5);
+        int oGCoin1Y = avatarCoor.get(6);
+        int oGCoin2X = avatarCoor.get(7);
+        int oGCoin2Y = avatarCoor.get(8);
+        int oGCoin3X = avatarCoor.get(9);
+        int oGCoin3Y = avatarCoor.get(10);
 
         String sXCoor = Integer.toString(xCoor);
         String sYCoor = Integer.toString(yCoor);
         String sTrialCoinsPickedUp = Integer.toString(trialCoinsPickedUp);
         String sTrialBool = Integer.toString(trialBool);
         String sNumOGCoins = Integer.toString(numOGCoins);
-        String sOGCOIN1X = Integer.toString(OGCoin1X);
-        String sOGCOIN1Y = Integer.toString(OGCoin1Y);
-        String sOGCOIN2X = Integer.toString(OGCoin2X);
-        String sOGCOIN2Y = Integer.toString(OGCoin2Y);
-        String sOGCOIN3X = Integer.toString(OGCoin3X);
-        String sOGCOIN3Y = Integer.toString(OGCoin3Y);
+        String sOGCOIN1X = Integer.toString(oGCoin1X);
+        String sOGCOIN1Y = Integer.toString(oGCoin1Y);
+        String sOGCOIN2X = Integer.toString(oGCoin2X);
+        String sOGCOIN2Y = Integer.toString(oGCoin2Y);
+        String sOGCOIN3X = Integer.toString(oGCoin3X);
+        String sOGCOIN3Y = Integer.toString(oGCoin3Y);
 
         String stringCoor = sXCoor + " " + sYCoor + " " + sTrialCoinsPickedUp + " " + sTrialBool + " "
                 + sNumOGCoins + " " + sOGCOIN1X + " " + sOGCOIN1Y + " " + sOGCOIN2X + " " + sOGCOIN2Y
@@ -112,24 +112,24 @@ public class SavedGame {
         int trialBool = Integer.parseInt(stringArray[3]);
         int numOGCoins = Integer.parseInt(stringArray[4]);
 
-        int OGCoin1X = Integer.parseInt(stringArray[5]);
-        int OGCoin1Y = Integer.parseInt(stringArray[6]);
-        int OGCoin2X = Integer.parseInt(stringArray[7]);
-        int OGCoin2Y = Integer.parseInt(stringArray[8]);
-        int OGCoin3X = Integer.parseInt(stringArray[9]);
-        int OGCoin3Y = Integer.parseInt(stringArray[10]);
+        int oGCoin1X = Integer.parseInt(stringArray[5]);
+        int oGCoin1Y = Integer.parseInt(stringArray[6]);
+        int oGCoin2X = Integer.parseInt(stringArray[7]);
+        int oGCoin2Y = Integer.parseInt(stringArray[8]);
+        int oGCoin3X = Integer.parseInt(stringArray[9]);
+        int oGCoin3Y = Integer.parseInt(stringArray[10]);
 
         avatarCoor.add(xCoor);
         avatarCoor.add(yCoor);
         avatarCoor.add(trialCoinsPickedUp);
         avatarCoor.add(trialBool);
         avatarCoor.add(numOGCoins);
-        avatarCoor.add(OGCoin1X);
-        avatarCoor.add(OGCoin1Y);
-        avatarCoor.add(OGCoin2X);
-        avatarCoor.add(OGCoin2Y);
-        avatarCoor.add(OGCoin3X);
-        avatarCoor.add(OGCoin3Y);
+        avatarCoor.add(oGCoin1X);
+        avatarCoor.add(oGCoin1Y);
+        avatarCoor.add(oGCoin2X);
+        avatarCoor.add(oGCoin2Y);
+        avatarCoor.add(oGCoin3X);
+        avatarCoor.add(oGCoin3Y);
 
         return avatarCoor;
     }
@@ -166,14 +166,14 @@ public class SavedGame {
     }
 
     public ArrayList<Integer> readOGCoin1(String fileName) {
-        ArrayList<Integer> OGCoin1 = new ArrayList<>();
+        ArrayList<Integer> oGCoin1 = new ArrayList<>();
         String stringAvatarCoor = FileUtils.readFile(fileName);
         String[] stringArray = stringAvatarCoor.split(" ");
         int xCoor = Integer.parseInt(stringArray[0]);
         int yCoor = Integer.parseInt(stringArray[1]);
-        OGCoin1.add(xCoor);
-        OGCoin1.add(yCoor);
-        return OGCoin1;
+        oGCoin1.add(xCoor);
+        oGCoin1.add(yCoor);
+        return oGCoin1;
     }
 
     public void saveOGCoin2(ArrayList<Integer> coin2Coor) {
@@ -187,14 +187,14 @@ public class SavedGame {
     }
 
     public ArrayList<Integer> readOGCoin2(String fileName) {
-        ArrayList<Integer> OGCoin2 = new ArrayList<>();
+        ArrayList<Integer> oGCoin2 = new ArrayList<>();
         String stringAvatarCoor = FileUtils.readFile(fileName);
         String[] stringArray = stringAvatarCoor.split(" ");
         int xCoor = Integer.parseInt(stringArray[0]);
         int yCoor = Integer.parseInt(stringArray[1]);
-        OGCoin2.add(xCoor);
-        OGCoin2.add(yCoor);
-        return OGCoin2;
+        oGCoin2.add(xCoor);
+        oGCoin2.add(yCoor);
+        return oGCoin2;
     }
 
     public void saveOGCoin3(ArrayList<Integer> coin3Coor) {
@@ -208,14 +208,14 @@ public class SavedGame {
     }
 
     public ArrayList<Integer> readOGCoin3(String fileName) {
-        ArrayList<Integer> OGCoin3 = new ArrayList<>();
+        ArrayList<Integer> oGCoin3 = new ArrayList<>();
         String stringAvatarCoor = FileUtils.readFile(fileName);
         String[] stringArray = stringAvatarCoor.split(" ");
         int xCoor = Integer.parseInt(stringArray[0]);
         int yCoor = Integer.parseInt(stringArray[1]);
-        OGCoin3.add(xCoor);
-        OGCoin3.add(yCoor);
-        return OGCoin3;
+        oGCoin3.add(xCoor);
+        oGCoin3.add(yCoor);
+        return oGCoin3;
     }
 
     public void saveCoinPickedUpFirst(ArrayList<Integer> coinCoor) {

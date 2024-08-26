@@ -115,7 +115,7 @@ public class TitleScreen {
         return seedToReturn;
     }
 
-    public String forAutoGrader() {
+    public String forAutgrader() {
         long seedToConvert = enterSeed(seed);
         return Long.toString(seedToConvert);
     }

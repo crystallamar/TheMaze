@@ -86,8 +86,8 @@ public class World implements Serializable {
     }
 
     public TETile[][] generateSavedWorld (TETile[][] world, ArrayList<Integer> savedAvatarCoor,
-                                          ArrayList<Integer> OGCoin1, ArrayList<Integer> OGCoin2,
-                                          ArrayList<Integer> OGCoin3, int numTrialCoinsPickedUp, int trialBool,
+                                          ArrayList<Integer> oGCoin1, ArrayList<Integer> oGCoin2,
+                                          ArrayList<Integer> oGCoin3, int numTrialCoinsPickedUp, int trialBool,
                                           int numOGCoinsPickedUp) {
         int width = 94;
         int height = 55;
@@ -112,9 +112,9 @@ public class World implements Serializable {
         //        avatarCoor.add(savedAvatarCoor.get(9));
         //        avatarCoor.add(savedAvatarCoor.get(10));
 
-        ArrayList<Integer> coinCoor1 = OGCoin1;
-        ArrayList<Integer> coinCoor2 = OGCoin2;
-        ArrayList<Integer> coinCoor3 = OGCoin3;
+        ArrayList<Integer> coinCoor1 = oGCoin1;
+        ArrayList<Integer> coinCoor2 = oGCoin2;
+        ArrayList<Integer> coinCoor3 = oGCoin3;
 
         // ArrayList<Integer> savedAvatarCoorXY = saveGame.readAVCoorWorld();
         //        int trialCoinsPickedUp = avatarCoor.get(2);
@@ -134,7 +134,7 @@ public class World implements Serializable {
         addMountains.generateMountains(world, seed, width, height, rand);
         centerCoorOfSand = addSand.generateSand(world, rand);
         hallways.generateHallways(world, rand, centerCoorOfSand);
-        coins.generateSavedCoins(world, OGCoin1, OGCoin2, OGCoin3);
+        coins.generateSavedCoins(world, oGCoin1, oGCoin2, oGCoin3);
 
         //coinCoor = coins.generateCoins(world, rand, false, 0);
         if (numOGCoinsPickedUp != 0) {
@@ -207,13 +207,13 @@ public class World implements Serializable {
 
     public void callObjectivePlayGame(TETile[][] world, ArrayList<Integer> avatarCoor, Boolean trial, int numTrial,
                                       long seed) {
-        Random rand = this.rand;
+        Random random = this.rand;
         Objectives objective = new Objectives();
         PlayingGame playGame = new PlayingGame();
 
-        objective.whilePlayingTrial(world, avatarCoor, rand, trial, numTrial, seed);
+        objective.whilePlayingTrial(world, avatarCoor, random, trial, numTrial, seed);
         if (numTrial != 3) {
-            playGame.playingGame(world, avatarCoor, rand, false, numTrial, seed, 0, 0);
+            playGame.playingGame(world, avatarCoor, random, false, numTrial, seed, 0, 0);
         }
     }
 }

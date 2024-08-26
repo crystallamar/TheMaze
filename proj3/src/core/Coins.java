@@ -294,17 +294,17 @@ public class Coins {
 
     public void generateSavedCoins(TETile[][] world, ArrayList<Integer> oGCoin1, ArrayList<Integer> oGCoin2,
                                    ArrayList<Integer> oGCoin3) {
-        int OGCoin1X = oGCoin1.get(0);
-        int OGCoin1Y = oGCoin1.get(1);
+        int oGCoin1X = oGCoin1.get(0);
+        int oGCoin1Y = oGCoin1.get(1);
 
-        int OGCoin2X = oGCoin2.get(0);
-        int OGCoin2Y = oGCoin2.get(1);
+        int oGCoin2X = oGCoin2.get(0);
+        int oGCoin2Y = oGCoin2.get(1);
 
-        int OGCoin3X = oGCoin3.get(0);
-        int OGCoin3Y = oGCoin3.get(1);
-        world[OGCoin1X][OGCoin1Y] = Tileset.CELL;
-        world[OGCoin2X][OGCoin2Y] = Tileset.CELL;
-        world[OGCoin3X][OGCoin3Y] = Tileset.CELL;
+        int oGCoin3X = oGCoin3.get(0);
+        int oGCoin3Y = oGCoin3.get(1);
+        world[oGCoin1X][oGCoin1Y] = Tileset.CELL;
+        world[oGCoin2X][oGCoin2Y] = Tileset.CELL;
+        world[oGCoin3X][oGCoin3Y] = Tileset.CELL;
     }
 
     public void placeTrialCoins(TETile[][] world, int trialNum, int coin1X, int coin1Y, int coin2X, int coin2Y,
