@@ -58,7 +58,7 @@ public class SavedGame {
             coin.removeCoin(world, firstCoinPickedUp.get(0), firstCoinPickedUp.get(1));
             if (numOGCoins == 2) {
                 ArrayList<Integer> secondCoindPickedUp = readSecondCoinPickedUp("secondCoinPickedUp");
-                coin.removeCoin(world, secondCoindPickedUp.getFirst(), secondCoindPickedUp.get(1));
+                coin.removeCoin(world, secondCoindPickedUp.get(0), secondCoindPickedUp.get(1));
             }
             return world;
         }
@@ -84,7 +84,7 @@ public class SavedGame {
     }
 
     public void saveAvatarCoor(ArrayList<Integer> avatarCoor) {
-        int xCoor = avatarCoor.getFirst();
+        int xCoor = avatarCoor.get(0);
         int yCoor = avatarCoor.get(1);
         int trialCoinsPickedUp = avatarCoor.get(2);
         int trialBool = avatarCoor.get(3);
@@ -186,7 +186,7 @@ public class SavedGame {
     }
 
     public void saveOGAvCoor(ArrayList<Integer> avatarCoor) {
-        int xCoor = avatarCoor.getFirst();
+        int xCoor = avatarCoor.get(0);
         int yCoor = avatarCoor.get(1);
         String stringCoor = Integer.toString(xCoor);
         stringCoor += " ";
@@ -206,7 +206,7 @@ public class SavedGame {
     }
 
     public void saveOGCoin1(ArrayList<Integer> coin1Coor) {
-        int xCoor = coin1Coor.getFirst();
+        int xCoor = coin1Coor.get(0);
         int yCoor = coin1Coor.get(1);
         String stringCoor = Integer.toString(xCoor);
         stringCoor += " ";
@@ -226,7 +226,7 @@ public class SavedGame {
     }
 
     public void saveOGCoin2(ArrayList<Integer> coin2Coor) {
-        int xCoor = coin2Coor.getFirst();
+        int xCoor = coin2Coor.get(0);
         int yCoor = coin2Coor.get(1);
         String stringCoor = Integer.toString(xCoor);
         stringCoor += " ";
@@ -245,7 +245,7 @@ public class SavedGame {
         return OGCoin2;
     }
     public void saveOGCoin3(ArrayList<Integer> coin3Coor) {
-        int xCoor = coin3Coor.getFirst();
+        int xCoor = coin3Coor.get(0);
         int yCoor = coin3Coor.get(1);
         String stringCoor = Integer.toString(xCoor);
         stringCoor += " ";
@@ -265,7 +265,7 @@ public class SavedGame {
     }
 
     public void saveCoinPickedUpFirst(ArrayList<Integer> coinCoor) {
-        int xCoor = coinCoor.getFirst();
+        int xCoor = coinCoor.get(0);
         int yCoor = coinCoor.get(1);
         String stringCoor = Integer.toString(xCoor);
         stringCoor += " ";
@@ -285,7 +285,7 @@ public class SavedGame {
     }
 
     public void saveCoinPickedUpSecond(ArrayList<Integer> coinCoor) {
-        int xCoor = coinCoor.getFirst();
+        int xCoor = coinCoor.get(0);
         int yCoor = coinCoor.get(1);
         String stringCoor = Integer.toString(xCoor);
         stringCoor += " ";

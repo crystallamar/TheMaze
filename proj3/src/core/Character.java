@@ -38,7 +38,7 @@ public class Character {
         public void setAvatarCoor(TETile[][] world, ArrayList<Integer> avatarCoor) {
             SavedGame save = new SavedGame();
             //ArrayList<Integer> avCoor = save.readAVCoorWorld();
-            world[avatarCoor.getFirst()][avatarCoor.get(1)] = Tileset.AVATAR;
+            world[avatarCoor.get(0)][avatarCoor.get(1)] = Tileset.AVATAR;
         }
 
     public ArrayList<Integer> moveChar(char input, TETile[][] world, ArrayList<Integer> avatarCoor, Random rand, Boolean trial, int OGCoins, long seed) {
@@ -102,7 +102,7 @@ public class Character {
 
 
         ArrayList<Integer> avatarPickedUpCoinArray = avatarPickedUpCoin(world, xCoor, yCoor + 1, rand, trial, trialNum, seed);
-        numCoinsPickedUp = avatarPickedUpCoinArray.getFirst();
+        numCoinsPickedUp = avatarPickedUpCoinArray.get(0);
         int trialHappening = avatarPickedUpCoinArray.get(1);
         trialNum = avatarPickedUpCoinArray.get(2); ///////////////////
         int whichCoin = avatarPickedUpCoinArray.get(3);
@@ -123,7 +123,7 @@ public class Character {
             }
             avatarCoor.add(xCoor);
             avatarCoor.add(yCoor + 1);
-            world[avatarCoor.getFirst()][avatarCoor.getLast()] = Tileset.AVATAR;
+            world[avatarCoor.get(0)][avatarCoor.get(1)] = Tileset.AVATAR;
             avatarCoor.add(numCoinsPickedUp);
             avatarCoor.add(trialNum);
             avatarCoor.add(trialHappening);
@@ -146,7 +146,7 @@ public class Character {
 
         ArrayList<Integer> avatarPickedUpCoinArray = avatarPickedUpCoin(world, xCoor - 1, yCoor, rand, trial, trialNum, seed);
 
-        numCoinsPickedUp = avatarPickedUpCoinArray.getFirst();
+        numCoinsPickedUp = avatarPickedUpCoinArray.get(0);
         trialNum = avatarPickedUpCoinArray.get(2);
         int trialHappening = avatarPickedUpCoinArray.get(1);
         int whichCoin = avatarPickedUpCoinArray.get(3);
@@ -167,7 +167,7 @@ public class Character {
             }
             avatarCoor.add(xCoor - 1);
             avatarCoor.add(yCoor);
-            world[avatarCoor.getFirst()][avatarCoor.getLast()] = Tileset.AVATAR;
+            world[avatarCoor.get(0)][avatarCoor.get(1)] = Tileset.AVATAR;
             avatarCoor.add(numCoinsPickedUp);
             avatarCoor.add(trialNum);
             avatarCoor.add(trialHappening);
@@ -192,7 +192,7 @@ public class Character {
         int numCoinsPickedUp;
 
         ArrayList<Integer> avatarPickedUpCoinArray = avatarPickedUpCoin(world, xCoor, yCoor - 1, rand, trial, trialNum, seed);
-        numCoinsPickedUp = avatarPickedUpCoinArray.getFirst();
+        numCoinsPickedUp = avatarPickedUpCoinArray.get(0);
         int trialHappening = avatarPickedUpCoinArray.get(1);
         trialNum = avatarPickedUpCoinArray.get(2);
         int whichCoin = avatarPickedUpCoinArray.get(3);
@@ -218,7 +218,7 @@ public class Character {
             avatarCoor.add(xCoor);
             yCoor -= 1;
             avatarCoor.add(yCoor);
-            world[avatarCoor.getFirst()][avatarCoor.get(1)] = Tileset.AVATAR;
+            world[avatarCoor.get(0)][avatarCoor.get(1)] = Tileset.AVATAR;
             avatarCoor.add(numCoinsPickedUp);
             avatarCoor.add(trialNum);
             avatarCoor.add(trialHappening);
@@ -243,7 +243,7 @@ public class Character {
         // int trialNum;
 
         ArrayList<Integer> avatarPickedUpCoinArray = avatarPickedUpCoin(world, xCoor + 1, yCoor, rand, trial, trialNum, seed);
-        numCoinsPickedUp = avatarPickedUpCoinArray.getFirst();
+        numCoinsPickedUp = avatarPickedUpCoinArray.get(0);
         int trialHappening = avatarPickedUpCoinArray.get(1);
         trialNum = avatarPickedUpCoinArray.get(2);
         int whichCoin = avatarPickedUpCoinArray.get(3);
@@ -267,7 +267,7 @@ public class Character {
             }
             avatarCoor.add(xCoor + 1);
             avatarCoor.add(yCoor);
-            world[avatarCoor.getFirst()][avatarCoor.getLast()] = Tileset.AVATAR;
+            world[avatarCoor.get(0)][avatarCoor.get(1)] = Tileset.AVATAR;
             avatarCoor.add(numCoinsPickedUp);
             avatarCoor.add(trialNum);
             avatarCoor.add(trialHappening);

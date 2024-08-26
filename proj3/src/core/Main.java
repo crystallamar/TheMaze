@@ -21,8 +21,8 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 public class Main {
-        private static final int WIDTH = 94;
-        private static final int HEIGHT = 55;
+    private static final int WIDTH = 94;
+    private static final int HEIGHT = 55;
 
     public static void main(String[] args) {
         FileUtils files = new FileUtils();
@@ -101,5 +101,4 @@ public class Main {
             }
         }
     }
-
 }

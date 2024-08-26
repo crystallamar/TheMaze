@@ -92,8 +92,8 @@ public class Hover {
         }
 
     public String convertCoor(TETile[][] world, ArrayList<Integer> coor) {
-        int xCoor = coor.getFirst();
-        int yCoor = coor.getLast();
+        int xCoor = coor.get(0);
+        int yCoor = coor.get(1);
 
         if (xCoor == 0 && yCoor == 0) {
             return "Out of bounds";

@@ -191,8 +191,8 @@ public class AutograderBuddy {
 
             mouseCoor = mousePointer.mouseMoves();
 
-            currMouseXCoor = mouseCoor.getFirst();
-            currMouseYCoor = mouseCoor.getLast();
+            currMouseXCoor = mouseCoor.get(0);
+            currMouseYCoor = mouseCoor.get(1);
             String tileTitle = mousePointer.convertCoor(world, mouseCoor);
             if ((initMouseXCoor != currMouseXCoor) || (initMouseYCoor != currMouseYCoor)) {
                 mousePointer.displayNothing();
@@ -236,7 +236,7 @@ public class AutograderBuddy {
                     avatarCoor.add(OGCoin3.get(0));
                     avatarCoor.add(OGCoin3.get(1));
                 }
-                int x = avatarCoor.getFirst();
+                int x = avatarCoor.get(0);
                 int y = avatarCoor.get(1);
                 int numLoops = avatarCoor.get(2);
                 int trialBool = avatarCoor.get(4);
@@ -382,8 +382,8 @@ public class AutograderBuddy {
                 // AvatarCoor: x, y, numCoinsPickedUp, OG Coins, if Trial True (0 false, 1 true)
                 mouseCoor = mousePointer.mouseMoves();
 
-                currMouseXCoor = mouseCoor.getFirst();
-                currMouseYCoor = mouseCoor.getLast();
+                currMouseXCoor = mouseCoor.get(0);
+                currMouseYCoor = mouseCoor.get(1);
                 String tileTitle = mousePointer.convertCoor(world, mouseCoor);
                 if ((initMouseXCoor != currMouseXCoor) || (initMouseYCoor != currMouseYCoor)) {
                     mousePointer.displayNothing();
@@ -405,7 +405,7 @@ public class AutograderBuddy {
                         avatarCoor.add(OGCoin3.get(0));
                         avatarCoor.add(OGCoin3.get(1));
                     }
-                    int x = avatarCoor.getFirst();
+                    int x = avatarCoor.get(0);
                     int y = avatarCoor.get(1);
                     numCoinsPickedUpInTrial = avatarCoor.get(2);
                     int OGCoins = avatarCoor.get(3);

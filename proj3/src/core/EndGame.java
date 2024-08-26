@@ -123,7 +123,7 @@ public boolean endObjective(TETile[][] world, int trialNum) {
         ArrayList<Integer> secondCoinPickedUp;
 
 
-        world[OGavatarCoor.getFirst()][OGavatarCoor.getLast()] = Tileset.SAND;
+        world[OGavatarCoor.get(0)][OGavatarCoor.get(1)] = Tileset.SAND;
         OGCoin1 = retrieveGame.readOGCoin1("OGCoin1");
         OGCoin2 = retrieveGame.readOGCoin2("OGCoin2");
         OGCoin3 = retrieveGame.readOGCoin3("OGCoin3");
