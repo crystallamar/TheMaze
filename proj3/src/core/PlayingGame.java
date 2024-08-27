@@ -1,9 +1,12 @@
 package core;
 
 import edu.princeton.cs.algs4.StdDraw;
+import org.checkerframework.checker.units.qual.A;
 import org.checkerframework.checker.units.qual.C;
 import tileengine.TETile;
 import tileengine.TERenderer;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import java.util.Arrays;
@@ -20,9 +23,7 @@ public class PlayingGame {
     public void playingGame(TETile[][] world, ArrayList<Integer> avatarCoor, Random rand, Boolean trial, int numTrial,
                             long seed, int numTrialCoinsPickedUp, int trialBoolPassedIn) {
         Character avatar = new Character();
-        ArrayList<Integer> oGCoin1 = new ArrayList<>();
-        ArrayList<Integer> oGCoin2 = new ArrayList<>();
-        ArrayList<Integer> oGCoin3 = new ArrayList<>();
+        ArrayList<Integer> oGCoinArray;
         int avX = avatarCoor.get(0);
         int avY = avatarCoor.get(1);
         SavedGame savedGame = new SavedGame();
@@ -32,20 +33,13 @@ public class PlayingGame {
         Hover mousePointer = new Hover();
 
         if (avatarCoor.size() == 11) {
-            oGCoin1.add(avatarCoor.get(5));
-            oGCoin1.add(avatarCoor.get(6));
-            oGCoin2.add(avatarCoor.get(7));
-            oGCoin2.add(avatarCoor.get(8));
-            oGCoin3.add(avatarCoor.get(9));
-            oGCoin3.add(avatarCoor.get(10));
+            oGCoinArray = combineOGCoinsIntoArray(avatarCoor, 11);
         } else {
-            oGCoin1.add(avatarCoor.get(2));
-            oGCoin1.add(avatarCoor.get(3));
-            oGCoin2.add(avatarCoor.get(4));
-            oGCoin2.add(avatarCoor.get(5));
-            oGCoin3.add(avatarCoor.get(6));
-            oGCoin3.add(avatarCoor.get(7));
+            oGCoinArray =combineOGCoinsIntoArray(avatarCoor, 0);
         }
+        ArrayList<Integer> oGCoin1 = returnCoin1FromArray(oGCoinArray);
+        ArrayList<Integer> oGCoin2 = returnCoin2FromArray(oGCoinArray);
+        ArrayList<Integer> oGCoin3 = returnCoin3FromArray(oGCoinArray);
         while (playingGame) {
             int[] mouseCoords = {0, 0};
             boolean expectingInput = true;
@@ -54,10 +48,8 @@ public class PlayingGame {
             Boolean didCharMove = true;
             while (expectingInput) {
                 updateMousePointer(world, mousePointer, mouseCoords);
-
                 if (StdDraw.hasNextKeyTyped()) {
                     key = StdDraw.nextKeyTyped();
-
                     ArrayList<Integer> temp = new ArrayList<>();
                     temp.addAll(avatarCoor);
                     avatarCoor = avatar.moveChar(key, world, avatarCoor, trial, numTrial, seed);
@@ -65,7 +57,8 @@ public class PlayingGame {
                         didCharMove = false;
                     }
                     if (avatarCoor.size() == 8) {
-                        avatarCoor = addBackToCoor(avX, avY, 0, 0, 0, oGCoin1, oGCoin2, oGCoin3);
+                        avatarCoor = addBackToCoor(avX, avY, 0, 0, 0, oGCoin1, oGCoin2,
+                                oGCoin3);
                     }
                     if (avatarCoor.size() != 11) {
                         addOGCoinsToAvatarCoor(avatarCoor, oGCoin1, oGCoin2, oGCoin3);
@@ -79,14 +72,14 @@ public class PlayingGame {
                         trial = false; // if numCoins == 0, don't call objective
                     } else if (didCharMove) {
                         trial = true;
-                        //numCoins = avatarCoor.get(2);
                         if (numLoops == 0) {
                             SavedGame saveGame = new SavedGame();
                             saveGame.saveAvatarCoor(avatarCoor);
                             saveGame.saveAVCoorWorld(avatarCoor.get(0), avatarCoor.get(1));
                             numTrial = avatarCoor.get(3);
                             objectives.objectives(world, numTrial, rand, numLoops, x, y, seed);
-                            avatarCoor = addBackToCoor(x, y, numTrialCoinsPickedUp, numTrial, 0, oGCoin1, oGCoin2, oGCoin3);
+                            avatarCoor = addBackToCoor(x, y, numTrialCoinsPickedUp, numTrial, 0, oGCoin1, oGCoin2,
+                                    oGCoin3);
                             playingGame(world, avatarCoor, rand, false, numTrial, seed, numTrialCoinsPickedUp,
                                     trialBool);
                         } else if (numLoops == 7) {
@@ -97,7 +90,6 @@ public class PlayingGame {
                             arrayForSecondCoinPickedUp.add(xx);
                             arrayForSecondCoinPickedUp.add(yy);
                             savedGame.saveCoinPickedUpSecond(arrayForSecondCoinPickedUp);
-
                         } else {
                             numLoops = objectives.objectives(world, numTrial, rand, numLoops, x, y, seed);
                         }
@@ -171,4 +163,67 @@ public class PlayingGame {
         return avatarCoor;
 
     }
+
+    public ArrayList<Integer> returnOGCoin1(ArrayList<Integer> avatarCoor, int y, int z) {
+        ArrayList<Integer> oGCoin1 = new ArrayList<>();
+        oGCoin1.add(avatarCoor.get(y));
+        oGCoin1.add(avatarCoor.get(z));
+        return oGCoin1;
+    }
+
+    public ArrayList<Integer> returnOGCoin2(ArrayList<Integer> avatarCoor, int y, int z) {
+        ArrayList<Integer> oGCoin2 = new ArrayList<>();
+        oGCoin2.add(avatarCoor.get(y));
+        oGCoin2.add(avatarCoor.get(z));
+        return oGCoin2;
+    }
+
+    public ArrayList<Integer> returnOGCoin3(ArrayList<Integer> avatarCoor, int y, int z) {
+        ArrayList<Integer> oGCoin3 = new ArrayList<>();
+        oGCoin3.add(avatarCoor.get(y));
+        oGCoin3.add(avatarCoor.get(z));
+        return oGCoin3;
+    }
+
+    public ArrayList<Integer> combineOGCoinsIntoArray(ArrayList<Integer> avatarCoor, int which) {
+        ArrayList<Integer> allOGCoins = new ArrayList<>();
+
+        if (which == 11) {
+            ArrayList<Integer> oGCoin1 = returnOGCoin1(avatarCoor, 5, 6);
+            ArrayList<Integer> oGCoin2 = returnOGCoin2(avatarCoor, 7, 8);
+            ArrayList<Integer> oGCoin3 = returnOGCoin3(avatarCoor, 9, 10);
+            allOGCoins.addAll(oGCoin1);
+            allOGCoins.addAll(oGCoin2);
+            allOGCoins.addAll(oGCoin3);
+        }
+        else {
+            ArrayList<Integer> oGCoin1 = returnOGCoin1(avatarCoor, 2, 3);
+            ArrayList<Integer> oGCoin2 = returnOGCoin2(avatarCoor, 4, 5);
+            ArrayList<Integer> oGCoin3 = returnOGCoin3(avatarCoor, 6, 7);
+            allOGCoins.addAll(oGCoin1);
+            allOGCoins.addAll(oGCoin2);
+            allOGCoins.addAll(oGCoin3);
+        }
+        return allOGCoins;
+    }
+
+    public ArrayList<Integer> returnCoin1FromArray(ArrayList<Integer> oGCoinArray) {
+        ArrayList<Integer> oGCoin1 = new ArrayList<>();
+        oGCoin1.add(oGCoinArray.get(0));
+        oGCoin1.add(oGCoinArray.get(1));
+        return oGCoin1;
+    }
+    public ArrayList<Integer> returnCoin2FromArray(ArrayList<Integer> oGCoinArray) {
+        ArrayList<Integer> oGCoin2 = new ArrayList<>();
+        oGCoin2.add(oGCoinArray.get(2));
+        oGCoin2.add(oGCoinArray.get(3));
+        return oGCoin2;
+    }
+    public ArrayList<Integer> returnCoin3FromArray(ArrayList<Integer> oGCoinArray) {
+        ArrayList<Integer> oGCoin3 = new ArrayList<>();
+        oGCoin3.add(oGCoinArray.get(4));
+        oGCoin3.add(oGCoinArray.get(5));
+        return oGCoin3;
+    }
+
 }
