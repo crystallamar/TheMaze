@@ -14,26 +14,23 @@ public class Main {
     public static void main(String[] args) {
         FileUtils files = new FileUtils();
         File savedGame = new File("Saved Game");
-        boolean runningAutograder = false;
+        boolean runningAutograder = true;
 
         TERenderer ter = new TERenderer();
         ter.initialize(WIDTH, HEIGHT); // Creates screen
         TETile[][] world = new TETile[WIDTH][HEIGHT]; // creates the world to build in
 
         if (runningAutograder) {
-
+            world = AutograderBuddy.getWorldFromInput("n1724641833626swddddddddddddwwwwww");
             //AutograderBuddy auto = new AutograderBuddy();
-            world = AutograderBuddy.getWorldFromInput("n1ssdddddddddddwww");
+            //world = AutograderBuddy.getWorldFromInput("n1ssdddddddddddwww");
 
             //world = AutograderBuddy.getWorldFromInput("n1724641833626swwddddddddddddwwwwwaaaaaaaaaaaaawwwwwwwwwdwwwww
             // wwwwwwwwwwwwaaaadddddddddddddddddddddddddddddddssssssssssssssssddwwaaaaaawwwwwwwaaaaaaaaaaaasssddddddddd
             // ddssssssssssssdddddddddddddddssswwwwwwwwwwaaawwwwwwwwwwwwaawdwwwwwwddddaaaaaaaaaaawwwwaaaaaaassssssaawww
             // wwwwwwwwwwwaaaaaaaaassssssssa"); //AFTER WWWWW is first Trial
-            //world = AutograderBuddy.getWorldFromInput("n1724641833626swwddddddddddddwwwwwaaaaaaaaaaaaa1234wwwwwwwwwd
-            // wwwwgfwwwwwwwwwwwwwaaaadddddddddddddddddddddddddddddddssssssssssssssssddwwaaaaaawwwwwwwaaaaaaaaaaaasssddd
-            // ddddddddssssssssssssdddddddddddddddssswwwwwwwwwwaaawwwwwwwwwwwwaawdwwwwwwddddaaaaaaaaaaawwwwaaaaaaassssss
-            // aawwwwwwwwwwwwwwaaaaaaaaassssssssa");
-            //ter.renderFrame(world); // EASY WORLD 1724641833626
+            //world = AutograderBuddy.getWorldFromInput("n1724641833626swwddddddddddddwwwwwaaaaaaaaaaaaa1234wwwwwwwwwdwwwwgfwwwwwwwwwwwwwaaaadddddddddddddddddddddddddddddddssssssssssssssssddwwaaaaaawwwwwwwaaaaaaaaaaaasssdddddddddddssssssssssssdddddddddddddddssswwwwwwwwwwaaawwwwwwwwwwwwaawdwwwwwwddddaaaaaaaaaaawwwwaaaaaaassssssaawwwwwwwwwwwwwwaaaaaaaaassssssssa");
+            ter.renderFrame(world); // EASY WORLD 1724641833626
 
         } else {
             TitleScreen titleScreen = new TitleScreen();
