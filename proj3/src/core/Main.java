@@ -14,7 +14,7 @@ public class Main {
     public static void main(String[] args) {
         FileUtils files = new FileUtils();
         File savedGame = new File("Saved Game");
-        boolean runningAutograder = true;
+        boolean runningAutograder = false;
 
         TERenderer ter = new TERenderer();
         ter.initialize(WIDTH, HEIGHT); // Creates screen
@@ -30,7 +30,7 @@ public class Main {
             // ddssssssssssssdddddddddddddddssswwwwwwwwwwaaawwwwwwwwwwwwaawdwwwwwwddddaaaaaaaaaaawwwwaaaaaaassssssaawww
             // wwwwwwwwwwwaaaaaaaaassssssssa"); //AFTER WWWWW is first Trial
             //world = AutograderBuddy.getWorldFromInput("n1724641833626swwddddddddddddwwwwwaaaaaaaaaaaaa1234wwwwwwwwwdwwwwgfwwwwwwwwwwwwwaaaadddddddddddddddddddddddddddddddssssssssssssssssddwwaaaaaawwwwwwwaaaaaaaaaaaasssdddddddddddssssssssssssdddddddddddddddssswwwwwwwwwwaaawwwwwwwwwwwwaawdwwwwwwddddaaaaaaaaaaawwwwaaaaaaassssssaawwwwwwwwwwwwwwaaaaaaaaassssssssa");
-            ter.renderFrame(world); // EASY WORLD 1724641833626
+            //ter.renderFrame(world); // EASY WORLD 1724641833626
 
         } else {
             TitleScreen titleScreen = new TitleScreen();

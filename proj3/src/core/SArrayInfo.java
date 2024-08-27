@@ -96,7 +96,8 @@ public class SArrayInfo {
 
 
 
-    public TETile[][] copyPlayingGame(TETile[][] world, ArrayList<Integer> avatarCoor, Random rand, long seed, int numTrial) {
+    public TETile[][] copyPlayingGame(TETile[][] world, ArrayList<Integer> avatarCoor, Random rand, long seed,
+                                      int numTrial) {
         Character avatar = new Character();
         boolean playingGame = true;
         boolean trial = false;
