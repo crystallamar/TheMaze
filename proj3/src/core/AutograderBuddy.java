@@ -21,8 +21,8 @@ public class AutograderBuddy {
      */
 
 
-    char[] sArray;
-    static int i = 0; //where we are in sArray
+    //char[] sArray;
+    //static int i = 0; //where we are in sArray
 
     public static TETile[][] getWorldFromInput(String input) {
         SArrayInfo sArrayInfo = new SArrayInfo(input);
