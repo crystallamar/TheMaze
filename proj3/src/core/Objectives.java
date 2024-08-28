@@ -200,9 +200,9 @@ public class Objectives {
         loadGame.saveIfTrial(true);
 
         Hover mousePointer = new Hover();
-        ArrayList<Integer> oGCoin1 = loadGame.readOGCoin1("OGCoin1");
-        ArrayList<Integer> oGCoin2 = loadGame.readOGCoin2("OGCoin2");
-        ArrayList<Integer> oGCoin3 = loadGame.readOGCoin3("OGCoin3");
+        ArrayList<Integer> oGCoin1 = loadGame.readOGCoin1("OGCoin1.txt");
+        ArrayList<Integer> oGCoin2 = loadGame.readOGCoin2("OGCoin2.txt");
+        ArrayList<Integer> oGCoin3 = loadGame.readOGCoin3("OGCoin3.txt");
 
         boolean playingGame = true;
         while (playingGame) {

@@ -22,17 +22,17 @@ public class SavedGame {
     }
 
     public TETile[][] openSavedFile() {
-        long seed = readSeed("seed");
+        long seed = readSeed("seed.txt");
         World genWorld = new World(seed);
         TETile[][] world = new TETile[94][55];
         Coins coin = new Coins();
 
-        ArrayList<Integer> avatarCoor = readAvatarCoor("avatarCoor");
-        ArrayList<Integer> oGCoin1 = readOGCoin1("OGCoin1");
-        ArrayList<Integer> oGCoin2 = readOGCoin2("OGCoin2");
-        ArrayList<Integer> oGCoin3 = readOGCoin3("OGCoin3");
-        ArrayList<Integer> firstCoinPickedUp = readFirstCoinPickedUp("firstCoinPickedUp");
-        Boolean ifTrial = readIfTrial("ifTrial");
+        ArrayList<Integer> avatarCoor = readAvatarCoor("avatarCoor.txt");
+        ArrayList<Integer> oGCoin1 = readOGCoin1("OGCoin1.txt");
+        ArrayList<Integer> oGCoin2 = readOGCoin2("OGCoin2.txt");
+        ArrayList<Integer> oGCoin3 = readOGCoin3("OGCoin3.txt");
+        ArrayList<Integer> firstCoinPickedUp = readFirstCoinPickedUp("FirstCoinPickedUp.txt");
+        Boolean ifTrial = readIfTrial("ifTrial.txt");
 
         int trialCoinsPickedUp = avatarCoor.get(2);
         int trialBool = avatarCoor.get(3);
@@ -46,7 +46,7 @@ public class SavedGame {
                     trialBool, numOGCoins);
             coin.removeCoin(world, firstCoinPickedUp.get(0), firstCoinPickedUp.get(1));
             if (numOGCoins == 2) {
-                ArrayList<Integer> secondCoindPickedUp = readSecondCoinPickedUp("secondCoinPickedUp");
+                ArrayList<Integer> secondCoindPickedUp = readSecondCoinPickedUp("secondCoinPickedUp.txt");
                 coin.removeCoin(world, secondCoindPickedUp.get(0), secondCoindPickedUp.get(1));
             }
             return world;
@@ -59,7 +59,7 @@ public class SavedGame {
 
     public void saveSeed(long seed) {
         String seedString = Long.toString(seed);
-        FileUtils.writeFile("seed", seedString);
+        FileUtils.writeFile("seed.txt", seedString);
     }
 
     public long readSeed(String fileName) {
@@ -98,7 +98,7 @@ public class SavedGame {
                 + sNumOGCoins + " " + sOGCOIN1X + " " + sOGCOIN1Y + " " + sOGCOIN2X + " " + sOGCOIN2Y
                 + " " + sOGCOIN3X + " " + sOGCOIN3Y;
 
-        FileUtils.writeFile("avatarCoor", stringCoor);
+        FileUtils.writeFile("avatarCoor.txt", stringCoor);
     }
 
     public ArrayList<Integer> readAvatarCoor(String fileName) {
@@ -141,7 +141,7 @@ public class SavedGame {
         stringCoor += " ";
         stringCoor += Integer.toString(yCoor);
 
-        FileUtils.writeFile("OGAvCoor", stringCoor);
+        FileUtils.writeFile("OGAvCoor.txt", stringCoor);
     }
 
     public ArrayList<Integer> readOGAvCoor(String fileName) {
@@ -162,7 +162,7 @@ public class SavedGame {
         stringCoor += " ";
         stringCoor += Integer.toString(yCoor);
 
-        FileUtils.writeFile("OGCoin1", stringCoor);
+        FileUtils.writeFile("OGCoin1.txt", stringCoor);
     }
 
     public ArrayList<Integer> readOGCoin1(String fileName) {
@@ -183,7 +183,7 @@ public class SavedGame {
         stringCoor += " ";
         stringCoor += Integer.toString(yCoor);
 
-        FileUtils.writeFile("OGCoin2", stringCoor);
+        FileUtils.writeFile("OGCoin2.txt", stringCoor);
     }
 
     public ArrayList<Integer> readOGCoin2(String fileName) {
@@ -204,7 +204,7 @@ public class SavedGame {
         stringCoor += " ";
         stringCoor += Integer.toString(yCoor);
 
-        FileUtils.writeFile("OGCoin3", stringCoor);
+        FileUtils.writeFile("OGCoin3.txt", stringCoor);
     }
 
     public ArrayList<Integer> readOGCoin3(String fileName) {
@@ -225,7 +225,7 @@ public class SavedGame {
         stringCoor += " ";
         stringCoor += Integer.toString(yCoor);
 
-        FileUtils.writeFile("FirstCoinPickedUp", stringCoor);
+        FileUtils.writeFile("FirstCoinPickedUp.txt", stringCoor);
     }
 
     public ArrayList<Integer> readFirstCoinPickedUp(String fileName) {
@@ -246,7 +246,7 @@ public class SavedGame {
         stringCoor += " ";
         stringCoor += Integer.toString(yCoor);
 
-        FileUtils.writeFile("secondCoinPickedUp", stringCoor);
+        FileUtils.writeFile("secondCoinPickedUp.txt", stringCoor);
     }
 
     public ArrayList<Integer> readSecondCoinPickedUp(String fileName) {
@@ -262,7 +262,7 @@ public class SavedGame {
 
     public void saveNumOGCoinsPickedUp(int num) {
         String stringCoor = Integer.toString(num);
-        FileUtils.writeFile("numOGCoinsPickedUp", stringCoor);
+        FileUtils.writeFile("numOGCoinsPickedUp.txt", stringCoor);
     }
 
     public int readNumOGCoinsPickedUp(String fileName) {
@@ -313,7 +313,7 @@ public class SavedGame {
                 trialCoin1Y = trialCoins.get(11);
                 trialRedCoin = true;
                 String stringTrialCoins = trialCoin1X + " " + trialCoin1Y;
-                FileUtils.writeFile("trialCoinsCoorRED", stringTrialCoins);
+                FileUtils.writeFile("trialCoinsCoorRED.txt", stringTrialCoins);
             }
         }
     }
@@ -362,7 +362,7 @@ public class SavedGame {
             }
         }
         String stringTrialCoins = trialCoin2X + " " + trialCoin2Y;
-        FileUtils.writeFile("trialCoinsCoorORANGE", stringTrialCoins);
+        FileUtils.writeFile("trialCoinsCoorORANGE.txt", stringTrialCoins);
     }
 
     public void saveTrialCoinsPositionYellow(TETile[][] world, ArrayList<Integer> trialCoins, int trialNum) {
@@ -409,7 +409,7 @@ public class SavedGame {
             }
         }
         String stringTrialCoins = trialCoin3X + " " + trialCoin3Y;
-        FileUtils.writeFile("trialCoinsCoorYELLOW", stringTrialCoins);
+        FileUtils.writeFile("trialCoinsCoorYELLOW.txt", stringTrialCoins);
     }
     public void saveTrialCoinsPositionGreen(TETile[][] world, ArrayList<Integer> trialCoins, int trialNum) {
         boolean trialGreenCoin = false;
@@ -455,7 +455,7 @@ public class SavedGame {
             }
         }
         String stringTrialCoins = trialCoin4X + " " + trialCoin4Y;
-        FileUtils.writeFile("trialCoinsCoorGREEN", stringTrialCoins);
+        FileUtils.writeFile("trialCoinsCoorGREEN.txt", stringTrialCoins);
     }
     public void saveTrialCoinsPositionBlue(TETile[][] world, ArrayList<Integer> trialCoins, int trialNum) {
         boolean trialBlueCoin = false;
@@ -502,7 +502,7 @@ public class SavedGame {
         }
 
         String stringTrialCoins = trialCoin5X + " " + trialCoin5Y;
-        FileUtils.writeFile("trialCoinsCoorBLUE", stringTrialCoins);
+        FileUtils.writeFile("trialCoinsCoorBLUE.txt", stringTrialCoins);
     }
     public void saveTrialCoinsPositionViolet(TETile[][] world, ArrayList<Integer> trialCoins, int trialNum) {
         boolean trialVioletCoin = false;
@@ -549,7 +549,7 @@ public class SavedGame {
         }
 
         String stringTrialCoins = trialCoin6X + " " + trialCoin6Y;
-        FileUtils.writeFile("trialCoinsCoorVIOLET", stringTrialCoins);
+        FileUtils.writeFile("trialCoinsCoorVIOLET.txt", stringTrialCoins);
     }
 
     public ArrayList<Integer> readTrialCoinsCoor(String fileName) {
@@ -565,12 +565,12 @@ public class SavedGame {
     }
 
     public void saveTrialCoinsBool() {
-        boolean bool1 = readTrialCoin1Bool("trialCoin1Bool");
-        boolean bool2 = readTrialCoin1Bool("trialCoin2Bool");
-        boolean bool3 = readTrialCoin1Bool("trialCoin3Bool");
-        boolean bool4 = readTrialCoin1Bool("trialCoin4Bool");
-        boolean bool5 = readTrialCoin1Bool("trialCoin5Bool");
-        boolean bool6 = readTrialCoin1Bool("trialCoin6Bool");
+        boolean bool1 = readTrialCoin1Bool("trialCoin1Bool.txt");
+        boolean bool2 = readTrialCoin1Bool("trialCoin2Bool.txt");
+        boolean bool3 = readTrialCoin1Bool("trialCoin3Bool.txt");
+        boolean bool4 = readTrialCoin1Bool("trialCoin4Bool.txt");
+        boolean bool5 = readTrialCoin1Bool("trialCoin5Bool.txt");
+        boolean bool6 = readTrialCoin1Bool("trialCoin6Bool.txt");
 
         String sBool1 = Boolean.toString(bool1);
         String sBool2 = Boolean.toString(bool2);
@@ -580,37 +580,37 @@ public class SavedGame {
         String sBool6 = Boolean.toString(bool6);
 
         String sTrialCoinsBool = sBool1 + " " + sBool2 + " " + sBool3 + " " + sBool4 + " " + sBool5 + " " + sBool6;
-        FileUtils.writeFile("trialCoinsBool", sTrialCoinsBool);
+        FileUtils.writeFile("trialCoinsBool.txt", sTrialCoinsBool);
     }
 
     public void saveTrialCoin1Bool(Boolean bool) {
         String s = Boolean.toString(bool);
-        FileUtils.writeFile("trialCoin1Bool", s);
+        FileUtils.writeFile("trialCoin1Bool.txt", s);
     }
 
     public void saveTrialCoin2Bool(Boolean bool) {
         String s = Boolean.toString(bool);
-        FileUtils.writeFile("trialCoin2Bool", s);
+        FileUtils.writeFile("trialCoin2Bool.txt", s);
     }
 
     public void saveTrialCoin3Bool(Boolean bool) {
         String s = Boolean.toString(bool);
-        FileUtils.writeFile("trialCoin3Bool", s);
+        FileUtils.writeFile("trialCoin3Bool.txt", s);
     }
 
     public void saveTrialCoin4Bool(Boolean bool) {
         String s = Boolean.toString(bool);
-        FileUtils.writeFile("trialCoin4Bool", s);
+        FileUtils.writeFile("trialCoin4Bool.txt", s);
     }
 
     public void saveTrialCoin5Bool(Boolean bool) {
         String s = Boolean.toString(bool);
-        FileUtils.writeFile("trialCoin5Bool", s);
+        FileUtils.writeFile("trialCoin5Bool.txt", s);
     }
 
     public void saveTrialCoin6Bool(Boolean bool) {
         String s = Boolean.toString(bool);
-        FileUtils.writeFile("trialCoin6Bool", s);
+        FileUtils.writeFile("trialCoin6Bool.txt", s);
     }
 
     public boolean readTrialCoin1Bool(String fileName) {
@@ -667,7 +667,7 @@ public class SavedGame {
 
     public void saveIfTrial(boolean trial) {
         String bool = Boolean.toString(trial);
-        FileUtils.writeFile("ifTrial", bool);
+        FileUtils.writeFile("ifTrial.txt", bool);
     }
 
     public Boolean readIfTrial(String fileName) {
@@ -678,7 +678,7 @@ public class SavedGame {
 
     public void saveIfLoadedGame(Boolean bool) {
         String sBool = Boolean.toString(bool);
-        FileUtils.writeFile("ifLoadedGame", sBool);
+        FileUtils.writeFile("ifLoadedGame.txt", sBool);
     }
 
     public Boolean readIfLoadedGame(String fileName) {
@@ -691,11 +691,11 @@ public class SavedGame {
         String sX = Integer.toString(x);
         String sY = Integer.toString(y);
         String s = sX + " " + sY;
-        FileUtils.writeFile("worldAvCoor", s);
+        FileUtils.writeFile("worldAvCoor.txt", s);
     }
 
     public ArrayList<Integer> readAVCoorWorld() {
-        String s = FileUtils.readFile("worldAvCoor");
+        String s = FileUtils.readFile("worldAvCoor.txt");
         String[] sArray = s.split(" ");
         int x = Integer.parseInt(sArray[0]);
         int y = Integer.parseInt(sArray[1]);

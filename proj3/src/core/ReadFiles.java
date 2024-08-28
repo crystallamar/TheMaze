@@ -9,10 +9,10 @@ public class ReadFiles {
     public Long readFileSeed() {
         long savedSeed = 12345L;
         try {
-            ObjectInputStream input = new ObjectInputStream(new FileInputStream("Seed.data"));
+            ObjectInputStream input = new ObjectInputStream(new FileInputStream("Seed.txt"));
             savedSeed = input.readLong();
         } catch (IOException ioe) {
-            System.err.println("Issue retrieving Seed.data");
+            System.err.println("Issue retrieving Seed.txt");
         }
         return savedSeed;
     }

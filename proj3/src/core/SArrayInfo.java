@@ -84,11 +84,11 @@ public class SArrayInfo {
             seedToReturn = Long.parseLong(stringKey);
         }
         try {
-            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("Seed.data"));
+            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("Seed.txt"));
             output.writeLong(seedToReturn);
             output.close();
         } catch (IOException ioe) {
-            System.err.println("Issue saving seed.data");
+            System.err.println("Issue saving seed.txt");
         }
 
         return seedToReturn;
@@ -237,14 +237,14 @@ public class SArrayInfo {
         if (seed == 'a') {
             loadGame.saveIfLoadedGame(true);
             world = loadGame.openSavedFile();
-            seed = loadGame.readSeed("seed");
+            seed = loadGame.readSeed("seed.txt");
             World updatedWorld = new World(seed);
             Random rand = updatedWorld.rand;
-            avatarCoor = loadGame.readAvatarCoor("avatarCoor");
+            avatarCoor = loadGame.readAvatarCoor("avatarCoor.txt");
             int numTrial = avatarCoor.get(3);
             int trialCoinsPickedUp = avatarCoor.get(2);
             int trialBool = avatarCoor.get(4);
-            Boolean ifTrial = loadGame.readIfTrial("ifTrial");
+            Boolean ifTrial = loadGame.readIfTrial("ifTrial.txt");
             if (!ifTrial) {
                 copyPlayingGame(world, avatarCoor, rand, seed, numTrial);
             } else {
@@ -273,9 +273,9 @@ public class SArrayInfo {
         boolean trial = true;
         //int numTrial = avatarCoor.get(3);
 
-        ArrayList<Integer> oGCoin1 = loadGame.readOGCoin1("OGCoin1");
-        ArrayList<Integer> oGCoin2 = loadGame.readOGCoin1("OGCoin2");
-        ArrayList<Integer> oGCoin3 = loadGame.readOGCoin1("OGCoin3");
+        ArrayList<Integer> oGCoin1 = loadGame.readOGCoin1("OGCoin1.txt");
+        ArrayList<Integer> oGCoin2 = loadGame.readOGCoin1("OGCoin2.txt");
+        ArrayList<Integer> oGCoin3 = loadGame.readOGCoin1("OGCoin3.txt");
 
         int initMouseXCoor = 0;
         int initMouseYCoor = 0;

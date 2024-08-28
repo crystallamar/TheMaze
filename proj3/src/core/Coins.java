@@ -336,12 +336,12 @@ public class Coins {
                         ArrayList<Integer> coin3Coor, ArrayList<Integer> coin4Coor, ArrayList<Integer> coin5Coor,
                         ArrayList<Integer> coin6Coor) {
         SavedGame loadGame = new SavedGame();
-        boolean place1 = loadGame.readTrialCoin1Bool("trialCoin1Bool");
-        boolean place2 = loadGame.readTrialCoin2Bool("trialCoin2Bool");
-        boolean place3 = loadGame.readTrialCoin3Bool("trialCoin3Bool");
-        boolean place4 = loadGame.readTrialCoin4Bool("trialCoin4Bool");
-        boolean place5 = loadGame.readTrialCoin5Bool("trialCoin5Bool");
-        boolean place6 = loadGame.readTrialCoin6Bool("trialCoin6Bool");
+        boolean place1 = loadGame.readTrialCoin1Bool("trialCoin1Bool.txt");
+        boolean place2 = loadGame.readTrialCoin2Bool("trialCoin2Bool.txt");
+        boolean place3 = loadGame.readTrialCoin3Bool("trialCoin3Bool.txt");
+        boolean place4 = loadGame.readTrialCoin4Bool("trialCoin4Bool.txt");
+        boolean place5 = loadGame.readTrialCoin5Bool("trialCoin5Bool.txt");
+        boolean place6 = loadGame.readTrialCoin6Bool("trialCoin6Bool.txt");
         int coin1X = coin1Coor.get(0);
         int coin1Y = coin1Coor.get(1);
         int coin2X = coin2Coor.get(0);

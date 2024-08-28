@@ -105,11 +105,11 @@ public class TitleScreen {
         }
 
         try {
-            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("Seed.data"));
+            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("Seed.txt"));
             output.writeLong(seedToReturn);
             output.close();
         } catch (IOException ioe) {
-            System.err.println("Issue saving seed.data");
+            System.err.println("Issue saving seed.txt");
         }
 
         return seedToReturn;

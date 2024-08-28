@@ -53,16 +53,16 @@ public class Main {
                 loadGame.saveIfLoadedGame(true);
                 world = loadGame.openSavedFile();
                 ter.renderFrame(world);
-                seed = loadGame.readSeed("seed");
+                seed = loadGame.readSeed("seed.txt");
                 World updatedWorld = new World(seed);
-                avatarCoor = loadGame.readAvatarCoor("avatarCoor");
-                ArrayList<Integer> oGCoin1 = loadGame.readOGCoin1("OGCoin1");
-                ArrayList<Integer> oGCoin2 = loadGame.readOGCoin1("OGCoin2");
-                ArrayList<Integer> oGCoin3 = loadGame.readOGCoin1("OGCoin3");
+                avatarCoor = loadGame.readAvatarCoor("avatarCoor.txt");
+                ArrayList<Integer> oGCoin1 = loadGame.readOGCoin1("OGCoin1.txt");
+                ArrayList<Integer> oGCoin2 = loadGame.readOGCoin1("OGCoin2.txt");
+                ArrayList<Integer> oGCoin3 = loadGame.readOGCoin1("OGCoin3.txt");
                 int numTrial = avatarCoor.get(3);
                 int trialCoinsPickedUp = avatarCoor.get(2);
                 int trialBool = avatarCoor.get(4);
-                Boolean ifTrial = loadGame.readIfTrial("ifTrial");
+                Boolean ifTrial = loadGame.readIfTrial("ifTrial.txt");
                 if (!ifTrial) {
                     updatedWorld.callPlayGame(world, avatarCoor, seed, numTrial, trialCoinsPickedUp, trialBool);
                 } else {

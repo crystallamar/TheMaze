@@ -123,9 +123,9 @@ public class World implements Serializable {
             //     world[firstCoinPickedUp.get(0)][firstCoinPickedUp.get(1)] = Tileset.SAND;
             // }
             if (numOGCoinsPickedUp == 2) {
-                ArrayList<Integer> firstCoinPickedUp = saveGame.readFirstCoinPickedUp("firstCoinPickedUp");
+                ArrayList<Integer> firstCoinPickedUp = saveGame.readFirstCoinPickedUp("firstCoinPickedUp.txt");
                 world[firstCoinPickedUp.get(0)][firstCoinPickedUp.get(1)] = Tileset.SAND;
-                ArrayList<Integer> secondCoinPickedUp = saveGame.readSecondCoinPickedUp("secondCoinPickedUp");
+                ArrayList<Integer> secondCoinPickedUp = saveGame.readSecondCoinPickedUp("secondCoinPickedUp.txt");
                 world[secondCoinPickedUp.get(0)][secondCoinPickedUp.get(1)] = Tileset.SAND;
             }
         }
@@ -146,14 +146,14 @@ public class World implements Serializable {
         genGrass.generateGrass(world, 94, 55);
         objective.trialRoom(world); // build background of trial room
         ArrayList<Integer> trialCoinCoor = new ArrayList<>();
-        ArrayList<Integer> trialCoinCoorRED = readFile.readTrialCoinsCoor("trialCoinsCoorRED");
-        ArrayList<Integer> trialCoinCoorORANGE = readFile.readTrialCoinsCoor("trialCoinsCoorORANGE");
-        ArrayList<Integer> trialCoinCoorYELLOW = readFile.readTrialCoinsCoor("trialCoinsCoorYELLOW");
-        ArrayList<Integer> trialCoinCoorGREEN = readFile.readTrialCoinsCoor("trialCoinsCoorGREEN");
-        ArrayList<Integer> trialCoinCoorBLUE = readFile.readTrialCoinsCoor("trialCoinsCoorBLUE");
-        ArrayList<Integer> trialCoinCoorVIOLET = readFile.readTrialCoinsCoor("trialCoinsCoorVIOLET");
-        ArrayList<Boolean> trialCoinBool = readFile.readTrialCoinsBool("trialCoinsBool");
-        ArrayList<Integer> avatarCoor = readFile.readAvatarCoor("avatarCoor");
+        ArrayList<Integer> trialCoinCoorRED = readFile.readTrialCoinsCoor("trialCoinsCoorRED.txt");
+        ArrayList<Integer> trialCoinCoorORANGE = readFile.readTrialCoinsCoor("trialCoinsCoorORANGE.txt");
+        ArrayList<Integer> trialCoinCoorYELLOW = readFile.readTrialCoinsCoor("trialCoinsCoorYELLOW.txt");
+        ArrayList<Integer> trialCoinCoorGREEN = readFile.readTrialCoinsCoor("trialCoinsCoorGREEN.txt");
+        ArrayList<Integer> trialCoinCoorBLUE = readFile.readTrialCoinsCoor("trialCoinsCoorBLUE.txt");
+        ArrayList<Integer> trialCoinCoorVIOLET = readFile.readTrialCoinsCoor("trialCoinsCoorVIOLET.txt");
+        ArrayList<Boolean> trialCoinBool = readFile.readTrialCoinsBool("trialCoinsBool.txt");
+        ArrayList<Integer> avatarCoor = readFile.readAvatarCoor("avatarCoor.txt");
         int trialNum = avatarCoor.get(3);
         int coin1X = trialCoinCoorRED.get(0);
         int coin1Y = trialCoinCoorRED.get(1);

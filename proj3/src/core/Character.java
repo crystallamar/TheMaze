@@ -271,9 +271,9 @@ public class Character {
         boolean isCoin = coins.isCoin(world, x, y);
         ArrayList<Integer> numCoinsAndBool = new ArrayList<>();
         SavedGame save = new SavedGame();
-        boolean ifSaved = save.readIfLoadedGame("ifLoadedGame");
+        boolean ifSaved = save.readIfLoadedGame("ifLoadedGame.txt");
         if (ifSaved) {
-            ArrayList<Integer> avatarCoor = save.readAvatarCoor("avatarCoor");
+            ArrayList<Integer> avatarCoor = save.readAvatarCoor("avatarCoor.txt");
             coinsPickedUp = avatarCoor.get(2);
             save.saveIfLoadedGame(false);
         }
