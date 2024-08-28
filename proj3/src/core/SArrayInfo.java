@@ -58,7 +58,8 @@ public class SArrayInfo {
                 //  LOAD GAME //
             } else if ((key == 'q') || (key == 'Q')) {
                 //System.exit(0);
-                break;
+                //break;
+                throw new RuntimeException("System.exit()");
             }
         }
         return seed;

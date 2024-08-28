@@ -60,7 +60,7 @@ public class Character {
         return avatarCoor;
     }
 
-    public void ifExitMain(char input, TETile[][] world, ArrayList<Integer> avatarCoor, long seed) {
+    public void ifExitMain(char input, TETile[][] world, ArrayList<Integer> avatarCoor, long seed) throws Exception {
         SavedGame saveGame = new SavedGame();
         int numCoinsPickedUp = avatarCoor.get(2);
 
@@ -78,7 +78,8 @@ public class Character {
 
         if ((input == 'q') || (input == 'Q')) {
             saveGame.createSavedFile(world, avatarCoor, seed, oGCoin1, oGCoin2, oGCoin3, numCoinsPickedUp, false);
-            System.exit(0);
+            //System.exit(0);
+            throw new RuntimeException("System.exit()");
 
         }
     }
@@ -91,7 +92,8 @@ public class Character {
             saveGame.createSavedFile(world, avatarCoor, seed, oGCoin1, oGCoin2, oGCoin3, numCoinsPickedUp, true);
             saveGame.saveTrialCoinsBool();
 
-            System.exit(0);
+            //System.exit(0);
+            throw new RuntimeException("System.exit()");
         }
     }
 

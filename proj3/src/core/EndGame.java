@@ -51,7 +51,9 @@ public class EndGame {
             while (StdDraw.hasNextKeyTyped()) {
                 key = StdDraw.nextKeyTyped();
                 if ((key == 'q') || (key == 'Q')) {
-                    break;
+                    //break;
+                    throw new RuntimeException("System.exit()");
+
                     //System.exit(0);
                 } else if ((key == 'n') || (key == 'N')) {
                     TitleScreen titleScreen = new TitleScreen();

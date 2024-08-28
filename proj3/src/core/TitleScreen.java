@@ -65,7 +65,8 @@ public class TitleScreen {
 
                     //  LOAD GAME //
                 } else if ((key == 'q') || (key == 'Q')) {
-                    System.exit(0);
+                    //System.exit(0);
+                    throw new RuntimeException("System.exit()");
                 }
             }
         }
