@@ -31,12 +31,12 @@ public class SavedGame {
         ArrayList<Integer> oGCoin1 = readOGCoin1("OGCoin1.txt");
         ArrayList<Integer> oGCoin2 = readOGCoin2("OGCoin2.txt");
         ArrayList<Integer> oGCoin3 = readOGCoin3("OGCoin3.txt");
-        ArrayList<Integer> firstCoinPickedUp = readFirstCoinPickedUp("FirstCoinPickedUp.txt");
-        Boolean ifTrial = readIfTrial("ifTrial.txt");
-
         int trialCoinsPickedUp = avatarCoor.get(2);
         int trialBool = avatarCoor.get(3);
         int numOGCoins = avatarCoor.get(4);
+        Boolean ifTrial = readIfTrial("ifTrial.txt");
+
+
 
         //Check if OGCoins have been removed
         //Trial Num
@@ -44,7 +44,10 @@ public class SavedGame {
         if (!ifTrial) {
             world = genWorld.generateSavedWorld(world, avatarCoor, oGCoin1, oGCoin2, oGCoin3, trialCoinsPickedUp,
                     trialBool, numOGCoins);
-            coin.removeCoin(world, firstCoinPickedUp.get(0), firstCoinPickedUp.get(1));
+            if (numOGCoins != 0) {
+                ArrayList<Integer> firstCoinPickedUp = readFirstCoinPickedUp("FirstCoinPickedUp.txt");
+                coin.removeCoin(world, firstCoinPickedUp.get(0), firstCoinPickedUp.get(1));
+            }
             if (numOGCoins == 2) {
                 ArrayList<Integer> secondCoindPickedUp = readSecondCoinPickedUp("secondCoinPickedUp.txt");
                 coin.removeCoin(world, secondCoindPickedUp.get(0), secondCoindPickedUp.get(1));

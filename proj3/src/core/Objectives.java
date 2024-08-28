@@ -23,6 +23,7 @@ public class Objectives {
     public int objectives(TETile[][] world, int coinCountOG, Random random, int numLoops, int x, int y, long seed) {
         EndGame endGame = new EndGame();
         Coins coin = new Coins();
+        SavedGame save = new SavedGame();
         if (complete) {
             return trialPickUpCoin(world, x, y, numLoops, coinCountOG);
         } else if (coinCountOG == 1 && numLoops == 0) {
@@ -33,6 +34,10 @@ public class Objectives {
             return trialPickUpCoin(world, x, y, numLoops, coinCountOG);
         }
         if (coinCountOG == 2 && numLoops == 0) {
+            ArrayList<Integer> coinCoor = new ArrayList<>();
+            coinCoor.add(x);
+            coinCoor.add(y);
+            save.saveCoinPickedUpSecond(coinCoor);
             objective2(world, random, seed, x, y);
             return 0;
         } else if (coinCountOG == 2) {
