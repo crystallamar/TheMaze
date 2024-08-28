@@ -60,7 +60,7 @@ public class Character {
         return avatarCoor;
     }
 
-    public void ifExitMain(char input, TETile[][] world, ArrayList<Integer> avatarCoor, long seed) throws Exception {
+    public void ifExitMain(char input, TETile[][] world, ArrayList<Integer> avatarCoor, long seed) {
         SavedGame saveGame = new SavedGame();
         int numCoinsPickedUp = avatarCoor.get(2);
 
