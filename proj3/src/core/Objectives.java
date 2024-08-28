@@ -201,8 +201,8 @@ public class Objectives {
 
         Hover mousePointer = new Hover();
         ArrayList<Integer> oGCoin1 = loadGame.readOGCoin1("OGCoin1");
-        ArrayList<Integer> oGCoin2 = loadGame.readOGCoin1("OGCoin2");
-        ArrayList<Integer> oGCoin3 = loadGame.readOGCoin1("OGCoin3");
+        ArrayList<Integer> oGCoin2 = loadGame.readOGCoin2("OGCoin2");
+        ArrayList<Integer> oGCoin3 = loadGame.readOGCoin3("OGCoin3");
 
         boolean playingGame = true;
         while (playingGame) {
@@ -230,6 +230,7 @@ public class Objectives {
                     if (numCoinsPickedUpInTrial == 7) {
                         prepareForNextStage(loadGame, avatarCoor, oGCoin1, oGCoin2, oGCoin3, numTrial);
                         playingGame = false;
+                        loadGame.saveIfTrial(false);
                         break;
                     }
 
@@ -287,6 +288,7 @@ public class Objectives {
         avatarCoor.addAll(avXY);
         avatarCoor.addAll(Arrays.asList(0, numTrial, 0));
         addOGCoinsToAvatarCoor(avatarCoor, oGCoin1, oGCoin2, oGCoin3);
+
     }
 
     private void handleColonKey(TETile[][] world, ArrayList<Integer> avatarCoor,

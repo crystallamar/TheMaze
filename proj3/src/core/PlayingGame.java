@@ -26,7 +26,7 @@ public class PlayingGame {
         SavedGame savedGame = new SavedGame();
         Objectives objectives = new Objectives();
         boolean playingGame = true;
-        SavedGame save = new SavedGame();
+        //SavedGame save = new SavedGame();
         Hover mousePointer = new Hover();
 
         if (avatarCoor.size() == 11) {
@@ -40,7 +40,7 @@ public class PlayingGame {
         while (playingGame) {
             int[] mouseCoords = {0, 0};
             boolean expectingInput = true;
-            save.saveIfTrial(false);
+            savedGame.saveIfTrial(false);
             Boolean didCharMove = true;
             while (expectingInput) {
                 updateMousePointer(world, mousePointer, mouseCoords);
@@ -68,12 +68,13 @@ public class PlayingGame {
                     } else if (didCharMove) {
                         trial = true;
                         if (numLoops == 0) {
-                            save.saveAvatarCoor(avatarCoor);
-                            save.saveAVCoorWorld(avatarCoor.get(0), avatarCoor.get(1));
+                            savedGame.saveAvatarCoor(avatarCoor);
+                            savedGame.saveAVCoorWorld(avatarCoor.get(0), avatarCoor.get(1));
                             numTrial = avatarCoor.get(3);
                             objectives.objectives(world, numTrial, rand, numLoops, x, y, seed);
                             avatarCoor = addBackToCoor(x, y, numTrialCoinsPickedUp, numTrial, 0, oGCoin1, oGCoin2,
                                     oGCoin3);
+                            savedGame.saveIfTrial(false);
                             playingGame(world, avatarCoor, rand, false, numTrial, seed, numTrialCoinsPickedUp,
                                     trialBool);
                         } else if (numLoops == 7) {
@@ -105,7 +106,7 @@ public class PlayingGame {
         while (true) {
             if (StdDraw.hasNextKeyTyped()) {
                 char key = StdDraw.nextKeyTyped();
-                loadGame.saveIfTrial(true);
+                loadGame.saveIfTrial(false);
                 avatar.ifExitObjective(key, world, avatarCoor, seed, oGCoin1, oGCoin2, oGCoin3,
                         numCoinsPickedUpInTrial);
                 break;
