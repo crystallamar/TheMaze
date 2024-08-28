@@ -28,7 +28,8 @@ public class EndGame {
                 }
 
                 if ((key == 'q') || (key == 'Q')) {
-                    System.exit(0);
+                    //System.exit(0);
+                    break;
                 }
 
             }
@@ -50,7 +51,8 @@ public class EndGame {
             while (StdDraw.hasNextKeyTyped()) {
                 key = StdDraw.nextKeyTyped();
                 if ((key == 'q') || (key == 'Q')) {
-                    System.exit(0);
+                    break;
+                    //System.exit(0);
                 } else if ((key == 'n') || (key == 'N')) {
                     TitleScreen titleScreen = new TitleScreen();
                     Character character = new Character();
