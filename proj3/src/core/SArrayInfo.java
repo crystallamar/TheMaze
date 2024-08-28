@@ -58,8 +58,7 @@ public class SArrayInfo {
                 //  LOAD GAME //
             } else if ((key == 'q') || (key == 'Q')) {
                 //System.exit(0);
-                //break;
-                throw new RuntimeException("System.exit()");
+                return 'z';
             }
         }
         return seed;
@@ -235,7 +234,9 @@ public class SArrayInfo {
     public TETile[][] copyMain(TETile[][] world, long seed) {
         SavedGame loadGame = new SavedGame();
         ArrayList<Integer> avatarCoor;
-
+        if (seed == 'z') {
+            return world;
+        }
         if (seed == 'a') {
             loadGame.saveIfLoadedGame(true);
             world = loadGame.openSavedFile();

@@ -78,9 +78,7 @@ public class Character {
 
         if ((input == 'q') || (input == 'Q')) {
             saveGame.createSavedFile(world, avatarCoor, seed, oGCoin1, oGCoin2, oGCoin3, numCoinsPickedUp, false);
-            //System.exit(0);
-            throw new RuntimeException("System.exit()");
-
+            System.exit(0);
         }
     }
 
@@ -92,8 +90,7 @@ public class Character {
             saveGame.createSavedFile(world, avatarCoor, seed, oGCoin1, oGCoin2, oGCoin3, numCoinsPickedUp, true);
             saveGame.saveTrialCoinsBool();
 
-            //System.exit(0);
-            throw new RuntimeException("System.exit()");
+            System.exit(0);
         }
     }
 
