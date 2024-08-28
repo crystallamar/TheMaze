@@ -225,8 +225,7 @@ public class SArrayInfo {
             if (isIbound()) {
                 char key = getNextChar();
                 save.saveIfTrial(false);
-                new Character().ifExitMain(key, world, avatarCoor, seed);
-                break;
+                world = new Character().ifExitMain(key, world, avatarCoor, seed, "getWorldFromInput");
             }
         }
     }
