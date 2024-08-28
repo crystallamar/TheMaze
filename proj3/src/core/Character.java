@@ -79,6 +79,7 @@ public class Character {
         if ((input == 'q') || (input == 'Q')) {
             saveGame.createSavedFile(world, avatarCoor, seed, oGCoin1, oGCoin2, oGCoin3, numCoinsPickedUp, false);
             System.exit(0);
+
         }
     }
 
