@@ -60,7 +60,8 @@ public class Character {
         return avatarCoor;
     }
 
-    public TETile[][] ifExitMain(char input, TETile[][] world, ArrayList<Integer> avatarCoor, long seed, String ifGetWorldInput) {
+    public boolean ifExitMain(char input, TETile[][] world, ArrayList<Integer> avatarCoor, long seed,
+                                 String ifGetWorldInput) {
         SavedGame saveGame = new SavedGame();
         int numCoinsPickedUp = avatarCoor.get(2);
 
@@ -78,13 +79,13 @@ public class Character {
 
         if ((input == 'q') || (input == 'Q')) {
             saveGame.createSavedFile(world, avatarCoor, seed, oGCoin1, oGCoin2, oGCoin3, numCoinsPickedUp, false);
-            if (ifGetWorldInput.equals("getWorldFromInput")) {
-                return world;
+            if (ifGetWorldInput.equals("z")) {
+                return true;
             } else {
                 System.exit(0);
             }
         }
-        return world;
+        return false;
     }
 
     public void ifExitObjective(char input, TETile[][] world, ArrayList<Integer> avatarCoor, long seed,
