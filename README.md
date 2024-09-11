@@ -33,7 +33,7 @@ NOTABLE FEATURES:
 
 About the Development:
 
-I LOVED working designing and developing this project. When this assignment was given to me, I wasn't sure what I wanted to do. 
+I LOVED designing and developing this project. When this assignment was given to me, I initially wasn't sure what I wanted to do. 
 The idea actually came to me after working with one of my kiddos with special needs*.
 I told him about a text adventure I had created in the past and he wanted to see it.
 I showed him a basic one online, but was saddened to realize that his mobility impairment made it impossible for him to play it.
